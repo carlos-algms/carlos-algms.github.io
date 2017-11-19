@@ -1,0 +1,3 @@
+[submodule "themes/materialize"]
+	path = themes/materialize
+	url = git@github.com:carlos-algms/hexo-theme-materialize.git
