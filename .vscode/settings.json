@@ -6,5 +6,6 @@
   },
   "eslint.packageManager": "npm",
   "prettier.packageManager": "npm",
-  "npm.packageManager": "npm"
+  "npm.packageManager": "npm",
+  "liveServer.settings.root": "/public/"
 }
