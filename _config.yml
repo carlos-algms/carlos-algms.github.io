@@ -75,6 +75,7 @@ deploy:
   repo: https://github.com/carlos-algms/carlos-algms.github.io.git
   branch: gh-pages
   token: $DEPLOY_TOKEN
+  name: $GITHUB_ACTOR
 
 # Miscellaneous
 favicon: images/favicon
