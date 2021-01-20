@@ -1,11 +1,14 @@
 {
+  "[js]": {
+    "editor.formatOnSave": true
+  },
   "cSpell.language": "en,pt-BR",
-  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
+  "editor.formatOnSave": false,
   "eslint.packageManager": "npm",
-  "prettier.packageManager": "npm",
+  "liveServer.settings.root": "/public/",
   "npm.packageManager": "npm",
-  "liveServer.settings.root": "/public/"
+  "prettier.packageManager": "npm"
 }

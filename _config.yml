@@ -66,7 +66,7 @@ time_format: HH:mm:ss
 ## Themes: https://hexo.io/themes/
 theme: materialize
 exclude_generators:
-- index
+  - index
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -75,6 +75,12 @@ deploy:
   repo: git@github.com:carlos-algms/carlos-algms.github.io.git
   branch: gh-pages
 
+# Miscellaneous
+favicon: images/favicon
+twitter:
+google_plus:
+fb_admins:
+fb_app_id:
 
 google_analytics: UA-52188553-1
 disqus_shortname: carlos-algms
