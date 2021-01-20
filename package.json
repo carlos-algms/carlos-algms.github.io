@@ -14,7 +14,7 @@
   "scripts": {
     "start": "hexo serve --silent",
     "build": "npm run clear && hexo generate",
-    "deploy": "npm run build && hexo deploy",
+    "deploy": "hexo deploy",
     "clear": "rimraf public/ db.json"
   },
   "dependencies": {
