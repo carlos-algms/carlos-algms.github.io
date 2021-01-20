@@ -9,8 +9,16 @@
 
 
     <url>
+        <loc>http://carlos-algms.github.io/blog/configure-ubuntu-server-to-support-pt-br/</loc>
+        <lastmod>2021-01-20T14:04:28.328Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://carlos-algms.github.io/blog/cygwin-Memorizar-senha-do-ssh-no-terminal-como-no-Linux/</loc>
-        <lastmod>2020-12-26T16:48:30.565Z</lastmod>
+        <lastmod>2021-01-20T14:04:28.328Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -18,7 +26,7 @@
 
     <url>
         <loc>http://carlos-algms.github.io/blog/how-to-chmod-on-multiple-files-or-folder-at-same-time/</loc>
-        <lastmod>2020-12-26T16:48:30.565Z</lastmod>
+        <lastmod>2021-01-20T14:04:28.328Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -26,7 +34,7 @@
 
     <url>
         <loc>http://carlos-algms.github.io/blog/how-to-configure-the-hostname-of-the-server/</loc>
-        <lastmod>2020-12-26T16:48:30.565Z</lastmod>
+        <lastmod>2021-01-20T14:04:28.328Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -34,15 +42,7 @@
 
     <url>
         <loc>http://carlos-algms.github.io/blog/tutorial-docker-iniciando-e-como-rodar-containers/</loc>
-        <lastmod>2020-12-26T16:48:30.565Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://carlos-algms.github.io/blog/configure-ubuntu-server-to-support-pt-br/</loc>
-        <lastmod>2020-12-26T16:48:30.564Z</lastmod>
+        <lastmod>2021-01-20T14:04:28.328Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -50,7 +50,7 @@
 
     <url>
         <loc>http://carlos-algms.github.io/blog/Install-oracle-java-on-ubuntu/</loc>
-        <lastmod>2020-12-26T16:48:30.563Z</lastmod>
+        <lastmod>2021-01-20T14:04:28.324Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -58,7 +58,7 @@
 
     <url>
         <loc>http://carlos-algms.github.io/blog/como-criar-um-plugin-de-carrossel-de-imagens-com-css-puro/</loc>
-        <lastmod>2020-12-26T16:48:30.563Z</lastmod>
+        <lastmod>2021-01-20T14:04:28.324Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -66,7 +66,7 @@
 
     <url>
         <loc>http://carlos-algms.github.io/blog/como-utilizar-o-cygwin-como-terminal-no-intellij/</loc>
-        <lastmod>2020-12-26T16:48:30.563Z</lastmod>
+        <lastmod>2021-01-20T14:04:28.324Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
