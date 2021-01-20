@@ -72,7 +72,7 @@ exclude_generators:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:carlos-algms/carlos-algms.github.io.git
+  repo: https://github.com/carlos-algms/carlos-algms.github.io.git
   branch: gh-pages
 
 # Miscellaneous

@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
+      - main
       - master
 jobs:
   deploy-gh-pages:
@@ -24,6 +25,7 @@ jobs:
       - name: prepare
         run: |
           cd "$GITHUB_WORKSPACE"
+          git config --global init.defaultBranch main
           git config --global user.name "${GITHUB_ACTOR}"
           git config --global user.email "${GITHUB_ACTOR}@bots.github.com"
 
