@@ -71,6 +71,7 @@ exclude_generators:
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 ## https://github.com/hexojs/hexo-deployer-git/issues/159
+## Moved away to https://github.com/peaceiris/actions-gh-pages
 deploy:
   type: git
   name: $GITHUB_ACTOR
