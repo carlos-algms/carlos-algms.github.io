@@ -39,5 +39,4 @@ jobs:
         env:
           DEPLOY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo $DEPLOY_TOKEN
           npm run deploy

@@ -73,12 +73,12 @@ exclude_generators:
 ## https://github.com/hexojs/hexo-deployer-git/issues/159
 deploy:
   type: git
+  name: $GITHUB_ACTOR
   repo:
     github:
       url: https://github.com/carlos-algms/carlos-algms.github.io.git
       branch: gh-pages
       token: $DEPLOY_TOKEN
-      name: $GITHUB_ACTOR
 
 # Miscellaneous
 favicon: images/favicon
