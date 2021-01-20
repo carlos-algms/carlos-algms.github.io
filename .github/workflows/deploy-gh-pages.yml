@@ -29,6 +29,8 @@ jobs:
           git config --global user.name "${GITHUB_ACTOR}"
           git config --global user.email "${GITHUB_ACTOR}@bots.github.com"
 
+      - run: git submodule update --init
+
       - run: npm install
 
       - run: npm run build
