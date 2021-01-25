@@ -85,9 +85,6 @@ Vamos deixar o carrossel responsivo:
 .carousel {
   width: 80%;
   height: 80%;
-  position: relative;
-  display: flex;
-  align-items: center;
   margin: 0 auto;
 }
 
@@ -109,7 +106,9 @@ Vamos deixar o carrossel responsivo:
 }
 
 .carousel__image {
+  width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 ```
 
