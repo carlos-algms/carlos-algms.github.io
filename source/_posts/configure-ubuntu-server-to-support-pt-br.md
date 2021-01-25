@@ -2,6 +2,7 @@
 layout: post
 title: "Configure Ubuntu Server to support pt-br"
 date: 2014-07-06 20:01:32 -0300
+updated: 2014-07-06 20:01:32 -0300
 comments: true
 tags: [Ubuntu, Linux, cloud, VM]
 ---

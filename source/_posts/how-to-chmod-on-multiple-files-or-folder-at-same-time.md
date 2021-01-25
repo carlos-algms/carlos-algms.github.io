@@ -2,6 +2,7 @@
 layout: post
 title: "How to CHMOD on Multiple Files or Folder at Same Time"
 date: 2014-11-20T15:11:46-02:00
+updated: 2014-11-20T15:11:46-02:00
 tags: [ Linux, Ubuntu ]
 ---
 

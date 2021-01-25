@@ -1,6 +1,7 @@
 ---
 title: como utilizar o cygwin como terminal no intellij
 date: 2016-01-30 18:39:37
+updated: 2016-01-30 18:39:37
 tags: [ cygwin, intelliJ ]
 ---
 

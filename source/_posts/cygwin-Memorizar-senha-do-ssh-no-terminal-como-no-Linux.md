@@ -1,6 +1,7 @@
 ---
 title: cygwin - Memorizar senha do ssh no terminal como no Linux
 date: 2016-01-10 18:55:56
+updated: 2016-01-10 18:55:56
 tags: [ windows, cygwin, ssh ]
 ---
 

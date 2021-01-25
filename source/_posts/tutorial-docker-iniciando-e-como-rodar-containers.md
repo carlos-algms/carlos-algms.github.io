@@ -1,6 +1,7 @@
 ---
 title: tutorial docker iniciando e como rodar containers
 date: 2016-01-25 23:28:06
+updated: 2016-01-25 23:28:06
 tags: [ docker ]
 ---
 
@@ -103,6 +104,3 @@ $ docker rm servidor-teste
 
 
 É isso aí pessoal, espero que tenham gostado e não perca a próxima parte onde vamos falar de como criar uma imagem customizada e rodar seu Dockerfile.
-
-
-

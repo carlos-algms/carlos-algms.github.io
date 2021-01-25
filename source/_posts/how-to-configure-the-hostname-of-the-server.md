@@ -2,6 +2,7 @@
 layout: post
 title: "How to configure the hostname of the server"
 date: 2014-07-06 13:27:40 -0300
+updated: 2014-07-06 13:27:40 -0300
 comments: true
 tags: [ Linux, Ubuntu, Cloud ]
 ---
