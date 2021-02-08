@@ -10,7 +10,7 @@ updated: 2021-02-08 17:00:00
 A clone of the famous snake game before smartphones were a thing.  
 You can play it in the [live-version here](https://carlos-algms.github.io/snake-game/)
 
-![snake-game](snake-game.png)
+<img src="snake-game.png" alt="Snake game screenshot" style="max-height: 600px" />
 
 [snake-game sources](https://github.com/carlos-algms/snake-game)
 
@@ -44,8 +44,10 @@ Usage:
 [CSS flex-layout sources](https://github.com/webdev-tools/css-flex-layout)
 
 ## Multiple-clocks
-Create a live-clock with different technologies, like with CSS only and With SVG + JavaScript
+Create an animated clock with different technologies, like with CSS and with SVG + JavaScript
 
-![multiple-clocks](multiple-clocks.png)
+Live version: https://multiple-clocks.vercel.app/
+
+<img src="multiple-clocks.png" alt="multiple clocks with css and svg" style="max-height: 400px" />
 
 [Multiple-clocks sources](https://github.com/carlos-algms/multiple-clocks)
