@@ -93,3 +93,12 @@ disqus_shortname: carlos-algms
 
 stylus:
   compress: true
+
+#  Header menu items
+menu:
+  Home: /
+  Blog: /blog
+
+rss: false
+
+excerpt_link: Read More
