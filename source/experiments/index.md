@@ -2,7 +2,6 @@
 layout: page
 title: Experiments with CSS, JavaScript and DevOPS
 comments: false
-updated: 2021-02-08 17:00:00
 ---
 
 ## Snake Game
