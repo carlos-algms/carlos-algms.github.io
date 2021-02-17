@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>http://carlos-algms.github.io/blog/Como-configurar-host-Linux-para-acessar-e-resolver-services-Kubernetes-por-nome/</loc>
+        <lastmod>2021-02-18T01:10:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://carlos-algms.github.io/blog/como-criar-um-plugin-de-carrossel-de-imagens-com-css-puro/</loc>
         <lastmod>2021-01-25T13:00:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
