@@ -4,8 +4,8 @@
 
 # Site
 title: Carlos A. Gomes
-subtitle: Front-end engineer
-description: Portfolio of projects with PHP, MySql, AngularJs, jQuery, HTML5 e CSS3.
+subtitle: Frontend engineer
+description: Portfolio of projects with React, TypeScript, HTML5 CSS3, PHP, MySql, AngularJs, and jQuery.
 author: Carlos A. Gomes
 language: pt-BR
 timezone: America/Sao_Paulo
@@ -67,6 +67,10 @@ time_format: HH:mm:ss
 theme: materialize
 exclude_generators:
   - index
+
+# We just need pagination, not arquives by year or month
+archive_generator:
+  enabled: false
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
