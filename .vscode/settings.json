@@ -9,6 +9,5 @@
   "editor.formatOnSave": false,
   "eslint.packageManager": "npm",
   "liveServer.settings.root": "/public/",
-  "npm.packageManager": "npm",
-  "prettier.packageManager": "npm"
+  "npm.packageManager": "npm"
 }
