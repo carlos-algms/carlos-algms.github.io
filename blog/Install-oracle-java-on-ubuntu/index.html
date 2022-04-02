@@ -70,7 +70,7 @@
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es5,es6,es7,fetch,Object.entries,Object.values&flags=gated"></script>
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 <body>
 
   
@@ -167,21 +167,24 @@
           <div class="article-entry " itemprop="articleBody">
             
               <p>Ubuntu comes with an opensource java installed. To use the oracle’s java,<br>you need to remove the openjkd and install oracle’s.</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>First we need to remove the openjdk from Ubuntu.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get purge openjdk*</span><br></pre></td></tr></table></figure>
+
 <p>Then add webupd8team repository, since Oracle still don’t have an official repository.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:webupd8team/java</span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
 <p>After the update finished, we can install java via:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install oracle-java8-installer</span><br></pre></td></tr></table></figure>
+
             
           </div>
 
           
 
           <footer class="article-footer">
-            <a data-url="http://carlos-algms.github.io/blog/Install-oracle-java-on-ubuntu/" data-id="cl1i2mvxy0003cdoncxwz5s7m" class="article-share-link">Share</a>
+            <a data-url="http://carlos-algms.github.io/blog/Install-oracle-java-on-ubuntu/" data-id="cl1i32re60003d0ojcf8c8y5s" class="article-share-link">Share</a>
             
               <a href="http://carlos-algms.github.io/blog/Install-oracle-java-on-ubuntu/#disqus_thread" class="article-comment-link">Comments</a>
             

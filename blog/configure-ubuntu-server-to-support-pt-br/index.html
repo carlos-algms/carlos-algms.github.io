@@ -71,7 +71,7 @@
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es5,es6,es7,fetch,Object.entries,Object.values&flags=gated"></script>
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 <body>
 
   
@@ -168,23 +168,26 @@
           <div class="article-entry " itemprop="articleBody">
             
               <p>Every cloud that you use outside Brazil, does not come with pt-br support installed.<br>When you access your server via SSH, almost every command that you run on terminal,<br>will generate a warn that your language is not supported.</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>To avoid this annoying warning, you just need to install the language pack.</p>
 <p>Note: This will not translate your Ubuntu, this will only add support to your<br>language and remove the errors.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install language-pack-pt-base</span><br><span class="line">sudo dpkg-reconfigure locales</span><br></pre></td></tr></table></figure>
+
 <h3 id="Configure-timezone"><a href="#Configure-timezone" class="headerlink" title="Configure timezone"></a>Configure timezone</h3><p>After install the language-pack, is a good pratice configure the clock of<br>your Ubuntu to reflect the clock of your<br>location.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg-reconfigure tzdata</span><br></pre></td></tr></table></figure>
+
 <p>First chose America, then São Paulo, or your own city.</p>
 <p>You can verify the current time by run the command:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">date</span></span><br></pre></td></tr></table></figure>
+
             
           </div>
 
           
 
           <footer class="article-footer">
-            <a data-url="http://carlos-algms.github.io/blog/configure-ubuntu-server-to-support-pt-br/" data-id="cl1i2mvy50007cdongtzdazlq" class="article-share-link">Share</a>
+            <a data-url="http://carlos-algms.github.io/blog/configure-ubuntu-server-to-support-pt-br/" data-id="cl1i32rec0007d0ojhlupaus6" class="article-share-link">Share</a>
             
               <a href="http://carlos-algms.github.io/blog/configure-ubuntu-server-to-support-pt-br/#disqus_thread" class="article-comment-link">Comments</a>
             

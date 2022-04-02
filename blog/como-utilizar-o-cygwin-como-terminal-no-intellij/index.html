@@ -72,7 +72,7 @@
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es5,es6,es7,fetch,Object.entries,Object.values&flags=gated"></script>
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 <body>
 
   
@@ -171,8 +171,10 @@
               <p>Para o intelliJ abrir um terminal bash corretamente no windows, crie um arquivo <code>.bat</code> com os seguintes comandos:</p>
 <p>Se você instalou a versão 64 bits:</p>
 <figure class="highlight bat"><figcaption><span>c:\cygwin64\bin\start-bash.bat</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">set</span> CHERE_INVOKING=<span class="number">1</span> &amp; c:\cygwin64\bin\bash.exe --login -i</span><br></pre></td></tr></table></figure>
+
 <p>Para versão 32 bits:</p>
 <figure class="highlight bat"><figcaption><span>c:\cygwin\bin\start-bash.bat</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">set</span> CHERE_INVOKING=<span class="number">1</span> &amp; c:\cygwin\bin\bash.exe --login -i</span><br></pre></td></tr></table></figure>
+
 <h2 id="Configurar-o-intelliJ"><a href="#Configurar-o-intelliJ" class="headerlink" title="Configurar o intelliJ"></a>Configurar o intelliJ</h2><p>No intelliJ, <code>File -&gt; Setting -&gt; Tools -&gt; Terminal</code>, e altere o terminal para o arquivo que você criou:</p>
 <img src="/blog/como-utilizar-o-cygwin-como-terminal-no-intellij/intellij-config-terminal.jpg" class="" title="Print configuração do terminal intelliJ">
 
@@ -182,6 +184,7 @@
 
 <h2 id="Bonus"><a href="#Bonus" class="headerlink" title="Bonus"></a>Bonus</h2><p>O intelliJ não exibe corretamente comandos longos <code>git log</code> ou simplesmente o <code>vim</code>, para resolver isso, você só precisa adicionar uma variável no seu arquivo <code>.bash_profile</code>, pode ser na primeira linha mesmo.</p>
 <figure class="highlight shell"><figcaption><span>c:\cygwin64\home\voce\.bash_profile OU c:\cygwin\home\voce\.bash_profile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export TERM=cygwin</span><br></pre></td></tr></table></figure>
+
 <p>Fonte: <a target="_blank" rel="noopener" href="https://janzhou.org/2015/06/integrating-cygwin-miktex-java-maven-and-intellij-idea-in-windows/">janzhou</a></p>
 
             
@@ -190,7 +193,7 @@
           
 
           <footer class="article-footer">
-            <a data-url="http://carlos-algms.github.io/blog/como-utilizar-o-cygwin-como-terminal-no-intellij/" data-id="cl1i2mvy40006cdonfdc741nz" class="article-share-link">Share</a>
+            <a data-url="http://carlos-algms.github.io/blog/como-utilizar-o-cygwin-como-terminal-no-intellij/" data-id="cl1i32reb0006d0ojaas7106n" class="article-share-link">Share</a>
             
               <a href="http://carlos-algms.github.io/blog/como-utilizar-o-cygwin-como-terminal-no-intellij/#disqus_thread" class="article-comment-link">Comments</a>
             

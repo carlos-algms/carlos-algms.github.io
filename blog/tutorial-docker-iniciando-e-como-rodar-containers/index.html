@@ -71,7 +71,7 @@
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es5,es6,es7,fetch,Object.entries,Object.values&flags=gated"></script>
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 <body>
 
   
@@ -169,7 +169,7 @@
             
               <img src="/blog/tutorial-docker-iniciando-e-como-rodar-containers/docker.png" class="" title="docker logo">
 
-<h2 id="Rodando-imagens"><a href="#Rodando-imagens" class="headerlink" title="Rodando imagens"></a>Rodando imagens</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker run ubuntu</span></span><br></pre></td></tr></table></figure>
+<h2 id="Rodando-imagens"><a href="#Rodando-imagens" class="headerlink" title="Rodando imagens"></a>Rodando imagens</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run ubuntu</span></span><br></pre></td></tr></table></figure>
 <p>Este comando vai seguir os seguintes passos:</p>
 <ul>
 <li>Baixar a última versão do Ubuntu disponível para Docker, caso você ainda não tenha</li>
@@ -177,36 +177,42 @@
 <li>Finalizar a execução</li>
 </ul>
 <p>É possível, ainda, escolher a versão da imagem</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker run ubuntu:14.04</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run ubuntu:14.04</span></span><br></pre></td></tr></table></figure>
 <p>O problema do comando run é que ele cria um container e morre, desligando assim a máquina virtual e deixando você sem acesso.</p>
-<a id="more"></a>
+<span id="more"></span>
 
 
 <h2 id="O-que-e-o-docker"><a href="#O-que-e-o-docker" class="headerlink" title="O que é o docker"></a>O que é o docker</h2><p>Docker é uma ferramenta que cria “micro maquinas virtuais” com a finalidade de não “sujar” o ambiente do desenvolvedor.<br>Desta forma você pode ter vários ambientes configurados sem um conflitar com o outro.</p>
 <h2 id="Conceito-de-imagem-X-container"><a href="#Conceito-de-imagem-X-container" class="headerlink" title="Conceito de imagem X container"></a>Conceito de imagem X container</h2><p><strong>Imagem</strong>: É como se fosse uma ISO de um sistema operacional. Server para iniciar uma máquina virtual e se tornar um container.<br>As imagens podem ser limpas como as que você usa para formatar um computador ou customizadas com vários aplicativos pré-instalados, por exemplo apache, mysql, jenkins, nodeJS, etc. Qualquer coisa que possa ser feita por linha de comando pode servir como uma configuração para a imagem.</p>
 <p><strong>Container</strong>: É uma máquina virtual pronta para uso iniciada a partir de uma imagem. Trata-se de um ambiente completo que pode ser acessado via linha de comando. Containers ligam e desligam instantaneamente e podem ser “resetados” ao desligar ou manter as alterações para próxima vez que forem ligados.<br>Pense assim: Você baixa uma imagem ISO, formata seu computador, instala uns programas, e pronto, ele é um container.<br>O poder e a velocidade do Docker vem da vantagem de que todas as imagens já estão prontas para uso e não há a perda de tempo para formatação da máquina.<br>Então se você rodar uma imagem do mysql, o Docker vai fazer o download e sem nenhuma interação, o servidor já vai estar configurado e operacional. Mas nós estamos falando só do tempo de download, a imagem vem configurada pronta para rodar.</p>
-<h2 id="Manter-o-container-docker-rodando"><a href="#Manter-o-container-docker-rodando" class="headerlink" title="Manter o container docker rodando"></a>Manter o container docker rodando</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker run ubuntu bash</span></span><br></pre></td></tr></table></figure>
+<h2 id="Manter-o-container-docker-rodando"><a href="#Manter-o-container-docker-rodando" class="headerlink" title="Manter o container docker rodando"></a>Manter o container docker rodando</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run ubuntu bash</span></span><br></pre></td></tr></table></figure>
 <p>Este comando vai montar toda a configuração e te dar acesso ao shell root do container.<br>Enquanto você não digitar <code>exit</code> e der enter, o container permanecerá rodando.</p>
 <h2 id="Listando-containers"><a href="#Listando-containers" class="headerlink" title="Listando containers"></a>Listando containers</h2><p>Cada vez que você executa o comando <code>run</code>, o Docker vai criar um novo container do zero e armazenar em cache para utilização futura. Você não deve ficar utilizando o comando <code>run</code> toda hora. </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker ps -a</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker ps -a</span></span><br></pre></td></tr></table></figure>
+
 <img src="/blog/tutorial-docker-iniciando-e-como-rodar-containers/docker-ps-a.jpg" class="" title="$ docker ps -a">
 
 
 <p>O Docker cria automaticamente um nome aleatório para cada container criado a partir do comando <code>run</code>, através deste nome você pode continuar a utilizar um container sem perder os dados a cada inicialização</p>
-<h2 id="Rodando-containers-Docker-ja-criados"><a href="#Rodando-containers-Docker-ja-criados" class="headerlink" title="Rodando containers Docker já criados"></a>Rodando containers Docker já criados</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker start NOME_CONTAINER</span></span><br></pre></td></tr></table></figure>
+<h2 id="Rodando-containers-Docker-ja-criados"><a href="#Rodando-containers-Docker-ja-criados" class="headerlink" title="Rodando containers Docker já criados"></a>Rodando containers Docker já criados</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker start NOME_CONTAINER</span></span><br></pre></td></tr></table></figure>
 <p>O comando <code>start</code> só funciona com containers, portanto é <strong>obrigatório</strong> rodar o comando <code>run</code> pelo menos uma vez.<br>O container será iniciado e permanecerá rodando em segundo plano até o comando <code>stop</code> ser rodado. Por tanto você não terá acesso ao shell sem utilizar outro comando.</p>
-<h2 id="Acessar-containers-Docker-que-ja-estao-rodando"><a href="#Acessar-containers-Docker-que-ja-estao-rodando" class="headerlink" title="Acessar containers Docker que já estão rodando"></a>Acessar containers Docker que já estão rodando</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker attach NOME_CONTAINER</span> </span><br></pre></td></tr></table></figure>
+<h2 id="Acessar-containers-Docker-que-ja-estao-rodando"><a href="#Acessar-containers-Docker-que-ja-estao-rodando" class="headerlink" title="Acessar containers Docker que já estão rodando"></a>Acessar containers Docker que já estão rodando</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker attach NOME_CONTAINER</span> </span><br></pre></td></tr></table></figure>
+
 
 <h2 id="Renomear-containers"><a href="#Renomear-containers" class="headerlink" title="Renomear containers"></a>Renomear containers</h2><p>O Docker se encarrega de dar nomes aleatórios para cada container, porém eles não são normalmente fáceis de lembrar.<br>Ou você acha que <code> adoring_ardinghelli</code> é fácil de escrever e lembrar? </p>
 <p>O Código segue o seguinte padrão: <code>$ docker rename NOME_ATUAL NOME_FACIL_DE_LEMBRAR </code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker rename adoring_ardinghelli servidor-teste</span></span><br></pre></td></tr></table></figure>
-<p>E para rodar:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker start servidor-teste</span> </span><br><span class="line"><span class="meta">$</span><span class="bash"> docker attach servidor-teste</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker rename adoring_ardinghelli servidor-teste</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Parar-container"><a href="#Parar-container" class="headerlink" title="Parar container"></a>Parar container</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker stop servidor-teste</span></span><br></pre></td></tr></table></figure>
+<p>E para rodar:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker start servidor-teste</span> </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker attach servidor-teste</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Parar-container"><a href="#Parar-container" class="headerlink" title="Parar container"></a>Parar container</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker stop servidor-teste</span></span><br></pre></td></tr></table></figure>
+
 
 <h2 id="Remover-containers"><a href="#Remover-containers" class="headerlink" title="Remover containers"></a>Remover containers</h2><p>A lista de containers vai acabar ficando extensa, e para liberar espaço você pode deletar os containers que não vai utilizar mais:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker rm servidor-teste</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker <span class="built_in">rm</span> servidor-teste</span></span><br></pre></td></tr></table></figure>
+
 
 <p>É isso aí pessoal, espero que tenham gostado e não perca a próxima parte onde vamos falar de como criar uma imagem customizada e rodar seu Dockerfile.</p>
 
@@ -216,7 +222,7 @@
           
 
           <footer class="article-footer">
-            <a data-url="http://carlos-algms.github.io/blog/tutorial-docker-iniciando-e-como-rodar-containers/" data-id="cl1i2mvyb000ecdon9rlo349s" class="article-share-link">Share</a>
+            <a data-url="http://carlos-algms.github.io/blog/tutorial-docker-iniciando-e-como-rodar-containers/" data-id="cl1i32rei000ed0ojba3q4gx5" class="article-share-link">Share</a>
             
               <a href="http://carlos-algms.github.io/blog/tutorial-docker-iniciando-e-como-rodar-containers/#disqus_thread" class="article-comment-link">Comments</a>
             

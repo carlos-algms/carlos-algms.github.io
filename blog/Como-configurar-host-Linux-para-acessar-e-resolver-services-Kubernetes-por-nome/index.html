@@ -70,7 +70,7 @@
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es5,es6,es7,fetch,Object.entries,Object.values&flags=gated"></script>
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 <body>
 
   
@@ -170,10 +170,11 @@
 
 <p>Neste post vou explicar como configurar um host Ubuntu para ter acesso aos serviços de um Cluster Kubernetes instalado utilizando <a target="_blank" rel="noopener" href="https://microk8s.io/">microk8s</a>.</p>
 <h3 id="Como-funciona-o-DNS-interno-do-Kubernetes"><a href="#Como-funciona-o-DNS-interno-do-Kubernetes" class="headerlink" title="Como funciona o DNS interno do Kubernetes"></a>Como funciona o DNS interno do Kubernetes</h3><p>Todos os <em lang="eng">Pods</em> e <em lang="eng">Services</em> estão conectados em uma mesma rede virtual privada com IPs da faixa <code>10.x.x.x</code> e o host aonde o Kubernetes está instalado não está conectado a esta rede, e por isso não tem acesso nem aos services nem aos pods.</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>Digamos que você tenha criado um banco de dados qualquer e que tenha exposto este banco de dados através de um serviço chamado simplesmente de <code>my-db</code>.</p>
 <figure class="highlight yaml"><figcaption><span>service.yaml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">my-db</span></span><br></pre></td></tr></table></figure>
+
 <p>Como descrito na <a target="_blank" rel="noopener" href="https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/">documentação</a>, O Kubernetes vai criar um nome completo para este serviço no formato:<br><code>[service-name].[namespace].svc.cluster.local</code></p>
 <p>Que neste exemplo será: <code>my-db.default.svc.cluster.local</code>.</p>
 <p>Internamente os Pods conseguirão encontrar este serviço, por que o sistema de nomes (DNS) do Kubernetes vai converter este nome em um IP da faixa <code>10.x.x.x</code>.</p>
@@ -186,11 +187,13 @@
 <p><span class="grey-text text-darken-1">“O Add-on <code>host-access</code> habilita o acesso a serviços rodando na máquina hospedeira através de um IP fixo.”</span> em tradução literal.</p>
 <p>Para habilitar o add-on host-access, é só executar o comando:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">microk8s enable host-access</span><br></pre></td></tr></table></figure>
+
 <p>Uma nova interface de rede será criada na máquina host com o nome <code>lo:microk8s</code> e com o IP <code>10.0.1.1</code> conectando o host à rede privada do Kubernetes.</p>
 <p>Agora que estamos conectados, o acesso por IP já é possível, porém a resolução de nomes ainda precisa ser configurada.</p>
 <h3 id="Como-descobrir-o-IP-do-servidor-DNS-do-cluster-Kubernetes"><a href="#Como-descobrir-o-IP-do-servidor-DNS-do-cluster-Kubernetes" class="headerlink" title="Como descobrir o IP do servidor DNS do cluster Kubernetes"></a>Como descobrir o IP do servidor DNS do cluster Kubernetes</h3><p>Precisamos descobrir qual é o IP do serviço que está convertendo os nomes em IPs para o Kubernetes para que possamos utilizar o mesmo em nosso host.</p>
 <p>Para descobrir o IP do servidor DNS interno do Kubernetes, basta listar os serviços que estão rodando no <em lang="en">namespace</em> <code>kube-system</code>:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> microk8s.kubectl get service --namespace kube-system</span></span><br><span class="line">NAME          TYPE            CLUSTER-IP</span><br><span class="line">kube-dns      ClusterIP       10.152.183.10</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">microk8s.kubectl get service --namespace kube-system</span></span><br><span class="line">NAME          TYPE            CLUSTER-IP</span><br><span class="line">kube-dns      ClusterIP       10.152.183.10</span><br></pre></td></tr></table></figure>
+
 <p>Várious outros serviços podem estar rodando, mas o único importante é o <code>kube-dns</code> e o seu IP, que neste caso é <code>10.152.183.10</code>.</p>
 <p><strong>OBS:</strong> Existe a possíbilidade deste IP ser diferente em outras instalações, por tanto é necessário rodar o comando acima para encontrar o IP correto.</p>
 <h3 id="Configurar-a-resolucao-de-DNS-para-services-Kubernetes"><a href="#Configurar-a-resolucao-de-DNS-para-services-Kubernetes" class="headerlink" title="Configurar a resolução de DNS para services Kubernetes"></a>Configurar a resolução de DNS para services Kubernetes</h3><p>O Ubuntu, desde a versão 16.04, utiliza o serviço <code>systemd-resolved</code> para gerenciar os servidores DNS utilizados, e é na pasta deste serviço que vamos fazer as alterações.</p>
@@ -199,15 +202,19 @@
 <p>O primeiro é apenas um arquivo vazio e não tem efeito nenhum, enquanto o segundo é o arquivo que realmente contém as configurações.</p>
 <p>O sistema UNIX lê o arquivo <code>/etc/resolv.conf</code> para descobrir quais são os servidores DNS disponíveis.</p>
 <p>Se analisármos este arquivo no Ubuntu rodando o seguinte comando:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ls -l /etc | grep resolv</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> resolv.conf -&gt; /run/systemd/resolve/stub-resolv.conf</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> -l /etc | grep resolv</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">resolv.conf -&gt; /run/systemd/resolve/stub-resolv.conf</span></span><br></pre></td></tr></table></figure>
+
 <p>É possível identificar que este arquivo é apenas um link simbólico apontando para a configuração <em lang="eng">stub</em>, citada acima, e que não contém nenhum DNS, deixando assim a responsabilidade de resolver nomes em IPs para o servidor DHCP da rede, que por sua vez, não tem nenhum conhecimento sobre os serviços que estão rodando dentro do Kubernetes.</p>
 <p>Vamos remover o link simbólico atual e criar outro apontando para o arquivo certo:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo rm /etc/resolv.conf</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo <span class="built_in">rm</span> /etc/resolv.conf</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo <span class="built_in">ln</span> -s /run/systemd/resolve/resolv.conf /etc/resolv.conf</span></span><br></pre></td></tr></table></figure>
+
 <p>Por padrão, o <code>systemd-resolved</code> vem com apenas 1 arquivo de configuração no Ubuntu:<br><code>/etc/systemd/resolve.conf</code>, porém alterações feitas neste arquivo serão perdidas em uma a próxima atualização do sistema, sendo assim NÃO é recomendado alterar este arquivo.</p>
 <p>A solução para não perder as configurações, é criar uma nova pasta e colocar o arquivo de configuração dentro desta nova pasta.</p>
 <p>Este novo arquivo pode ter qualquer nome, desde que termine com a extensão <code>.conf</code>.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo mkdir -p /etc/systemd/resolved.conf.d</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo vim /etc/systemd/resolved.conf.d/00-k8s-dns-resolver.conf</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo <span class="built_in">mkdir</span> -p /etc/systemd/resolved.conf.d</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo vim /etc/systemd/resolved.conf.d/00-k8s-dns-resolver.conf</span></span><br></pre></td></tr></table></figure>
+
 <figure class="highlight properties"><figcaption><span>/etc/systemd/resolved.conf.d/00-k8s-dns-resolver.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">[Resolve]</span></span><br><span class="line"><span class="attr">Cache</span>=<span class="string">yes</span></span><br><span class="line"><span class="attr">DNS</span>=<span class="string">10.152.183.10</span></span><br><span class="line"><span class="attr">Domains</span>=<span class="string">default.svc.cluster.local svc.cluster.local cluster.local</span></span><br></pre></td></tr></table></figure>
+
 <p>Explicação de cada linha:</p>
 <ul>
 <li><strong><code>Cache=yes</code></strong>: manter na memória os nomes de serviços já resolvidos para ser mais rápido nas resoluções seguintes;</li>
@@ -215,13 +222,16 @@
 <li><strong><code>Domains=default.svc.cluster.local svc.cluster.local cluster.local</code></strong>: Instrui ao servidor DNS, que caso o nome não seja encontrado, tente novamente adicionando estes domínios ao fim do nome;</li>
 </ul>
 <p>Para finalizar e carregar as configurações, reinicie o serviço <code>systemd-resolved</code>:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo service systemd-resolved restart</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo service systemd-resolved restart</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="Testando-a-configuracao"><a href="#Testando-a-configuracao" class="headerlink" title="Testando a configuração"></a>Testando a configuração</h3><p>Agora é a hora de testar se é possível encontrar o service citado no começo do post, o <code>my-db</code>.</p>
 <p>Vamos simplesmente rodar o <code>ping</code> para saber se se o nome <code>my-db</code> será convertido no IP correto:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ping my-db</span></span><br><span class="line">PING my-db.default.svc.cluster.local (10.152.183.5) 56(84) bytes of data.</span><br><span class="line">64 bytes from my-db.default.svc.cluster.local (10.152.183.5): icmp_seq=1 ttl=64 time=0.028 ms</span><br><span class="line">64 bytes from my-db.default.svc.cluster.local (10.152.183.5): icmp_seq=2 ttl=64 time=0.048 ms</span><br><span class="line">64 bytes from my-db.default.svc.cluster.local (10.152.183.5): icmp_seq=3 ttl=64 time=0.045 ms</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ping my-db</span></span><br><span class="line">PING my-db.default.svc.cluster.local (10.152.183.5) 56(84) bytes of data.</span><br><span class="line">64 bytes from my-db.default.svc.cluster.local (10.152.183.5): icmp_seq=1 ttl=64 time=0.028 ms</span><br><span class="line">64 bytes from my-db.default.svc.cluster.local (10.152.183.5): icmp_seq=2 ttl=64 time=0.048 ms</span><br><span class="line">64 bytes from my-db.default.svc.cluster.local (10.152.183.5): icmp_seq=3 ttl=64 time=0.045 ms</span><br></pre></td></tr></table></figure>
+
 <p>Como você pode ver pela resposta do comando <code>ping</code>, <code>my-db</code> foi resolvido para seu nome completo, também chamado de <em lang="en"><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Fully_qualified_domain_name">Full Qualified Domain Name (FQDN)</a></em>, e para o IP <code>10.152.183.5</code>.</p>
 <p>Como a configuração foi feita incluindo múltiplos domínios, todos estes comandos são válidos:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ping my-db</span><br><span class="line">ping my-db.default</span><br><span class="line">ping my-db.default.svc</span><br></pre></td></tr></table></figure>
+
 <p>Caso você tenha vários namespaces e não só o default, basta incluir outro domínio no arquivo <code>/etc/systemd/resolved.conf.d/00-k8s-dns-resolver.conf</code>. </p>
 <p>Espero que essa post possa te ajudar a configurar um cluster Kubernetes para seu ambiente de trabalhou ou até mesmo para criar um servidor Cloud próprio, quem sabe.</p>
 </main>
@@ -232,7 +242,7 @@
           
 
           <footer class="article-footer">
-            <a data-url="http://carlos-algms.github.io/blog/Como-configurar-host-Linux-para-acessar-e-resolver-services-Kubernetes-por-nome/" data-id="cl1i2mvyc000gcdondiz8657b" class="article-share-link">Share</a>
+            <a data-url="http://carlos-algms.github.io/blog/Como-configurar-host-Linux-para-acessar-e-resolver-services-Kubernetes-por-nome/" data-id="cl1i32rek000gd0oj6j7p8hpu" class="article-share-link">Share</a>
             
               <a href="http://carlos-algms.github.io/blog/Como-configurar-host-Linux-para-acessar-e-resolver-services-Kubernetes-por-nome/#disqus_thread" class="article-comment-link">Comments</a>
             

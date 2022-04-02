@@ -69,7 +69,7 @@
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es5,es6,es7,fetch,Object.entries,Object.values&flags=gated"></script>
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 <body>
 
   
@@ -166,12 +166,14 @@
           <div class="article-entry " itemprop="articleBody">
             
               <p>Do chmod on multiple files could be hard if you only use chmod alone.<br>You can use find command to filter files and folder and apply chmod with only one simple line.</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>Apply CHMOD to every folder and subfolder recursively</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find clients/ -<span class="built_in">type</span> d -print0 | xargs -0 chmod 755</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find clients/ -<span class="built_in">type</span> d -print0 | xargs -0 <span class="built_in">chmod</span> 755</span><br></pre></td></tr></table></figure>
+
 <p>Apply CHMOD to every file recursively</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find clients/ -<span class="built_in">type</span> f -print0 | xargs -0 chmod 644</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find clients/ -<span class="built_in">type</span> f -print0 | xargs -0 <span class="built_in">chmod</span> 644</span><br></pre></td></tr></table></figure>
+
 <p>The trick is <code>-type -d</code> and <code>-type -f</code> that tell to find command<br>to only find folders and files, respectively.</p>
 
             
@@ -180,7 +182,7 @@
           
 
           <footer class="article-footer">
-            <a data-url="http://carlos-algms.github.io/blog/how-to-chmod-on-multiple-files-or-folder-at-same-time/" data-id="cl1i2mvy8000acdonb9t96vug" class="article-share-link">Share</a>
+            <a data-url="http://carlos-algms.github.io/blog/how-to-chmod-on-multiple-files-or-folder-at-same-time/" data-id="cl1i32ref000ad0oj4ql86ucx" class="article-share-link">Share</a>
             
               <a href="http://carlos-algms.github.io/blog/how-to-chmod-on-multiple-files-or-folder-at-same-time/#disqus_thread" class="article-comment-link">Comments</a>
             

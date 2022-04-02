@@ -70,7 +70,7 @@
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es5,es6,es7,fetch,Object.entries,Object.values&flags=gated"></script>
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 <body>
 
   
@@ -166,23 +166,25 @@
 
           <div class="article-entry " itemprop="articleBody">
             
-              <h2 id="Hostname-X-FQDN"><a href="#Hostname-X-FQDN" class="headerlink" title="Hostname X FQDN"></a>Hostname X FQDN</h2><a id="more"></a>
+              <h2 id="Hostname-X-FQDN"><a href="#Hostname-X-FQDN" class="headerlink" title="Hostname X FQDN"></a>Hostname X FQDN</h2><span id="more"></span>
 
 <h3 id="Hostname"><a href="#Hostname" class="headerlink" title="Hostname"></a>Hostname</h3><p>Hostname is the name that you give to your machine.<br>It is used on your local network and is shown at terminal after the name of loged user,<br>ex: john@[hostname]. There is no way to access your server remotely with this name.</p>
 <p>The name could be anything that start with a letter and can have numbers, undercore and dash.<br>Ex: “john-notebook” or “office-pc3” or “plato”.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;machine-name&quot;</span> &gt; /etc/hostname</span><br><span class="line">$ hostname -F /etc/hostname</span><br></pre></td></tr></table></figure>
 
+
 <h3 id="FQDN"><a href="#FQDN" class="headerlink" title="FQDN"></a>FQDN</h3><p><strong>Full Qualified Domain Name</strong> is the domain that you pay to register.<br>It is the only way that you can access your machine by a name and not by an IP.</p>
 <p>ex: company.com, myblog.net, or restaurant.com.br, it is your choice.<br>Configure it is mandatory when you want to have a valid reverse dns.</p>
-<h3 id="Update-etc-hosts"><a href="#Update-etc-hosts" class="headerlink" title="Update /etc/hosts"></a>Update /etc/hosts</h3><p>Here you will configure your external IP followed by your FQDN and your hostname, in that order.<br>If yout dont follow that order, you can`t have your reverse dns working.</p>
+<h3 id="Update-x2F-etc-x2F-hosts"><a href="#Update-x2F-etc-x2F-hosts" class="headerlink" title="Update &#x2F;etc&#x2F;hosts"></a>Update &#x2F;etc&#x2F;hosts</h3><p>Here you will configure your external IP followed by your FQDN and your hostname, in that order.<br>If yout dont follow that order, you can&#96;t have your reverse dns working.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 localhost.localdomain localhost</span><br><span class="line">XXX.X.X.X machine-name.domain.tld machine-name</span><br></pre></td></tr></table></figure>
+
             
           </div>
 
           
 
           <footer class="article-footer">
-            <a data-url="http://carlos-algms.github.io/blog/how-to-configure-the-hostname-of-the-server/" data-id="cl1i2mvy9000bcdon4oal0ruv" class="article-share-link">Share</a>
+            <a data-url="http://carlos-algms.github.io/blog/how-to-configure-the-hostname-of-the-server/" data-id="cl1i32reh000bd0oj5mgb92yd" class="article-share-link">Share</a>
             
               <a href="http://carlos-algms.github.io/blog/how-to-configure-the-hostname-of-the-server/#disqus_thread" class="article-comment-link">Comments</a>
             

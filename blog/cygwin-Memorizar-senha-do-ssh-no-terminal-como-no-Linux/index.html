@@ -70,7 +70,7 @@
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es5,es6,es7,fetch,Object.entries,Object.values&flags=gated"></script>
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 <body>
 
   
@@ -168,16 +168,18 @@
             
               <p>O Linux pode memoriza todas as senhas utilizadas no <code>SSH</code> até que o usuário faça logoff ou reinicie o computador.<br>As senhas ficam salvas no sistema de credenciais nativo do Linux.</p>
 <p>O Windows não possui este recurso, sendo necessário alguns passos para conseguir o mesmo efeito.</p>
-<a id="more"></a>
+<span id="more"></span>
 
 
 <p>O <a target="_blank" rel="noopener" href="https://cygwin.com/install.html">cygwin</a> ou o <a target="_blank" rel="noopener" href="https://git-scm.com/downloads">gitbash</a>, possuem um recurso chamado <code>ssh-agent</code> que é iniciado ao fazer uma chamada ao comando <code>ssh</code>.<br>O que vamos fazer é iniciar um único <code>ssh-agent</code> que ficará rodando até que o usuário faça logoff ou reinicie o computador.</p>
 <h2 id="Habilitar-a-pasta-bin-na-home-do-usuario"><a href="#Habilitar-a-pasta-bin-na-home-do-usuario" class="headerlink" title="Habilitar a pasta bin na home do usuário"></a>Habilitar a pasta bin na home do usuário</h2><p>Para armazenarmos os arquivos na pasta do próprio usuário, descomente as seguintes linhas:</p>
 <p><code>$ vim ~/.bash_profile</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set PATH so it includes user&#x27;s private bin if it exists</span></span><br><span class="line"><span class="keyword">if</span> [ -d <span class="string">&quot;<span class="variable">$&#123;HOME&#125;</span>/bin&quot;</span> ] ; <span class="keyword">then</span></span><br><span class="line">  PATH=<span class="string">&quot;<span class="variable">$&#123;HOME&#125;</span>/bin:<span class="variable">$&#123;PATH&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="Criar-script-customizado-para-usar-o-SSH-sem-senha"><a href="#Criar-script-customizado-para-usar-o-SSH-sem-senha" class="headerlink" title="Criar script customizado para usar o SSH sem senha"></a>Criar script customizado para usar o SSH sem senha</h2><p>Nós vamos “enganar” o sistema criando um arquivo com o nome de <code>ssh</code> que fará toda a mágica:</p>
 <p><code>$ vim ~/bin/ssh</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -f <span class="variable">$&#123;HOME&#125;</span>/.ssh-agent ]; <span class="keyword">then</span></span><br><span class="line">   . <span class="variable">$&#123;HOME&#125;</span>/.ssh-agent &gt; /dev/null</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -z <span class="string">&quot;<span class="variable">$SSH_AGENT_PID</span>&quot;</span> -o -z <span class="string">&quot;`/usr/bin/ps -a|/usr/bin/egrep \&quot;^[ ]+<span class="variable">$SSH_AGENT_PID</span>\&quot;`&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">   /usr/bin/ssh-agent &gt; <span class="variable">$&#123;HOME&#125;</span>/.ssh-agent</span><br><span class="line">   . <span class="variable">$&#123;HOME&#125;</span>/.ssh-agent &gt; /dev/null</span><br><span class="line">   ssh-add</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">/bin/ssh <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <p>O que o nosso script faz é bem simples:<br>Na linha <strong>3</strong> ele verifica se existe um arquivo do <code>ssh-agent</code> criado e o executa, na linha <strong>4</strong>, para carregar suas variáveis na memória.</p>
 <p>Na linha <strong>7</strong> é feita uma verificação para garantir que os dados armazenados são realmente do agente que está rodando.<br>Caso não seja, as linhas <strong>8</strong> e <strong>9</strong> iniciam um novo agente e armazenam seus dados no arquivo.</p>
 <p>A linha <strong>10</strong> inicia o processo que vai soliciar a senha e armazenar no agente para utilização futura.</p>
@@ -190,7 +192,7 @@
           
 
           <footer class="article-footer">
-            <a data-url="http://carlos-algms.github.io/blog/cygwin-Memorizar-senha-do-ssh-no-terminal-como-no-Linux/" data-id="cl1i2mvy60008cdon3l1i2oqo" class="article-share-link">Share</a>
+            <a data-url="http://carlos-algms.github.io/blog/cygwin-Memorizar-senha-do-ssh-no-terminal-como-no-Linux/" data-id="cl1i32ree0008d0ojczik21ar" class="article-share-link">Share</a>
             
               <a href="http://carlos-algms.github.io/blog/cygwin-Memorizar-senha-do-ssh-no-terminal-como-no-Linux/#disqus_thread" class="article-comment-link">Comments</a>
             
