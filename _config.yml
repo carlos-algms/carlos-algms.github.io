@@ -70,7 +70,7 @@ exclude_generators:
 
 # We just need pagination, not arquives by year or month
 archive_generator:
-  enabled: false
+  enabled: true
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
