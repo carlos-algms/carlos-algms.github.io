@@ -9,5 +9,8 @@
   "editor.formatOnSave": false,
   "eslint.packageManager": "npm",
   "liveServer.settings.root": "/public/",
-  "npm.packageManager": "npm"
+  "npm.packageManager": "npm",
+  "search.exclude": {
+    "**/source": true,
+  }
 }
