@@ -1,16 +1,16 @@
 {
-  "[js]": {
-    "editor.formatOnSave": true
+  "[ejs]": {
+    "editor.formatOnSave": false
   },
   "cSpell.language": "en,pt-BR",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "eslint.packageManager": "npm",
   "liveServer.settings.root": "/public/",
   "npm.packageManager": "npm",
   "search.exclude": {
-    "**/source": true,
+    "**/source": true
   }
 }

@@ -9,9 +9,29 @@ comments: false
 A clone of the famous snake game before smartphones were a thing.  
 You can play it in the [live-version here](https://carlos-algms.github.io/snake-game/)
 
-<img src="snake-game.png" alt="Snake game screenshot" style="max-height: 600px" />
+<img src="snake-game.png" alt="Snake game screenshot" style="max-height: 600px" loading="lazy" />
 
 [snake-game sources](https://github.com/carlos-algms/snake-game)
+
+## Animated Screen effect with CSS only
+
+<a href="animated-screen/">Check the live version here</a>
+
+<a href="animated-screen/">
+  <figure style="background-color: rgb(15, 15, 15)">
+    <img src="animated-screen/animated-screen.gif" alt="animaged scree with css" loading="lazy" />
+  </figure>
+</a>
+
+## Multiple-clocks
+
+Create an animated clock with different technologies, like with CSS and with SVG + JavaScript
+
+Live version: https://multiple-clocks.vercel.app/
+
+<img src="multiple-clocks.png" alt="multiple clocks with css and svg" style="max-height: 400px" loading="lazy" />
+
+[Multiple-clocks sources](https://github.com/carlos-algms/multiple-clocks)
 
 ## CSS flex-layout
 
@@ -24,7 +44,8 @@ It is published as an npm package [here](https://www.npmjs.com/package/@webdev-t
 npm i @webdev-tools/css-flex-layout
 ```
 
-Usage: 
+Usage:
+
 ```html
 <section class="fl-3-cols-container">
   <aside>001</aside>
@@ -41,12 +62,3 @@ Usage:
 ```
 
 [CSS flex-layout sources](https://github.com/webdev-tools/css-flex-layout)
-
-## Multiple-clocks
-Create an animated clock with different technologies, like with CSS and with SVG + JavaScript
-
-Live version: https://multiple-clocks.vercel.app/
-
-<img src="multiple-clocks.png" alt="multiple clocks with css and svg" style="max-height: 400px" />
-
-[Multiple-clocks sources](https://github.com/carlos-algms/multiple-clocks)

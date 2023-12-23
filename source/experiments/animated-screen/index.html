@@ -1,0 +1,238 @@
+---
+layout: page
+title: Animated Screen with CSS only
+description: Developing an animated screen effect with CSS only with a moving image and linear-gradient overlay
+comments: false
+date: 2023-12-23
+---
+
+<style type="text/css">
+  @keyframes pan-overlay {
+    from {
+      bacground-position: 0 0;
+    }
+    to {
+      background-position: 0 -100%;
+    }
+  }
+
+  @keyframes pan-image {
+    0% {
+      opacity: 0;
+      background-position: 36% 42%;
+      background-size: 250%;
+    }
+
+    5% {
+      opacity: var(--opacity);
+      background-position: 36% 42%;
+      background-size: 250%;
+    }
+
+    18% {
+      opacity: var(--opacity);
+    }
+
+    20% {
+      opacity: 0;
+      background-position: 30% 35%;
+      background-size: 250%;
+    }
+
+    20.0001% {
+      /* -- View 2 -- */
+      background-position: 60% 85%;
+      background-size: 500%;
+    }
+
+    30% {
+      opacity: var(--opacity);
+    }
+
+    38% {
+      opacity: var(--opacity);
+    }
+
+    40% {
+      opacity: 0;
+      background-position: 49% 81%;
+      background-size: 500%;
+    }
+
+    40.0001% {
+      /* -- View 3 -- */
+      background-position: 80% 42%;
+      background-size: 300%;
+    }
+
+    50% {
+      opacity: var(--opacity);
+    }
+
+    58% {
+      opacity: var(--opacity);
+    }
+
+    60% {
+      opacity: 0;
+      background-position: 84% 33%;
+      background-size: 300%;
+    }
+
+    60.0001% {
+      /* -- View 4 -- */
+      background-position: 0% 0%;
+      background-size: 300%;
+    }
+
+    70% {
+      opacity: var(--opacity);
+    }
+
+    78% {
+      opacity: var(--opacity);
+    }
+
+    80% {
+      opacity: 0;
+      background-position: 15% 4%;
+      background-size: 300%;
+    }
+
+    80.0001% {
+      /* -- View 5 -- */
+      background-position: 80% 10%;
+      background-size: 300%;
+    }
+
+    90% {
+      opacity: var(--opacity);
+    }
+
+    98% {
+      opacity: var(--opacity);
+    }
+
+    100% {
+      opacity: 0;
+      background-position: 72% 14%;
+      background-size: 300%;
+    }
+  }
+
+  .stage {
+    --background-rgb: 15 15 15;
+
+    --blue-rgb: 33 150 243;
+    --primary-rgb: var(--blue-rgb);
+
+    --blob-color-1: rgb(var(--blue-rgb));
+    --blob-color-2: dodgerblue;
+
+    width: 100%;
+    background-color: rgb(var(--background-rgb));
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 60px 0;
+
+    font-size: 16px; /* forcing a reset to make to be sure this block is standard */
+  }
+
+  .screen {
+    width: 400px;
+    aspect-ratio: 10/16;
+    border: 1px solid rgb(var(--blue-rgb));
+    border-radius: 1em;
+    background-color: rgb(var(--blue-rgb) / 15%);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .screen:after,
+  .screen:before {
+    content: '';
+    height: 5px;
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    translate: -50% 0%;
+    background-color: white;
+  }
+
+  .screen:before {
+    width: 15%;
+    top: 0rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
+
+  .screen:after {
+    width: 25%;
+    bottom: 0rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+  }
+
+  .screen--overlay {
+    background: linear-gradient(
+      rgb(var(--primary-rgb) / 0.15),
+      rgb(var(--primary-rgb) / 0.15) 3px,
+      transparent 3px,
+      transparent 9px
+    );
+    background-size: 100% 9px;
+
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    animation: pan-overlay 22s infinite linear;
+  }
+
+  .screen > figure {
+    --opacity: 0.6;
+    position: absolute;
+    inset: 0;
+
+    background-image: url(snow-mountain.jpg);
+    background-repeat: no-repeat;
+    background-size: 300%;
+
+    filter: sepia(100%) hue-rotate(160deg);
+    opacity: var(--opacity);
+    animation: pan-image 15s infinite linear;
+
+    margin: 0;
+    padding: 0;
+  }
+
+  .screen--content {
+    position: absolute;
+    inset: 20px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+
+    border: 1px solid rgb(var(--blue-rgb) / 50%);
+    border-radius: 1rem;
+  }
+</style>
+
+<div class="stage">
+  <div class="screen">
+    <figure></figure>
+    <div class="screen--overlay"></div>
+    <div class="screen--content"></div>
+  </div>
+</div>
+
+<p>
+  Thanks for
+  <a href="https://www.youtube.com/watch?v=jMVhxBB3l0w">HyperPlexed</a>
+  for the inspirational video
+</p>
