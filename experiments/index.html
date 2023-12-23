@@ -8,17 +8,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-  <meta name="description" content="Snake GameA clone of the famous snake game before smartphones were a thing.You can play it in the live-version here   snake-game sources CSS flex-layoutThe idea was to create a tiny framework based on">
+  <meta name="description" content="Snake GameA clone of the famous snake game before smartphones were a thing.You can play it in the live-version here   snake-game sources Animated Screen effect with CSS onlyCheck the live version here">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Experiments With CSS, JavaScript and DevOPS">
 <meta property="og:url" content="http://carlos-algms.github.io/experiments/index.html">
 <meta property="og:site_name" content="Carlos A. Gomes">
-<meta property="og:description" content="Snake GameA clone of the famous snake game before smartphones were a thing.You can play it in the live-version here   snake-game sources CSS flex-layoutThe idea was to create a tiny framework based on">
+<meta property="og:description" content="Snake GameA clone of the famous snake game before smartphones were a thing.You can play it in the live-version here   snake-game sources Animated Screen effect with CSS onlyCheck the live version here">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:image" content="http://carlos-algms.github.io/experiments/snake-game.png">
+<meta property="og:image" content="http://carlos-algms.github.io/experiments/animated-screen/animated-screen.gif">
 <meta property="og:image" content="http://carlos-algms.github.io/experiments/multiple-clocks.png">
-<meta property="article:published_time" content="2023-04-14T22:30:01.053Z">
-<meta property="article:modified_time" content="2023-04-14T22:30:01.053Z">
+<meta property="article:published_time" content="2023-12-23T02:35:00.706Z">
+<meta property="article:modified_time" content="2023-12-23T02:35:00.706Z">
 <meta property="article:author" content="Carlos A. Gomes">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://carlos-algms.github.io/experiments/snake-game.png">
@@ -164,22 +165,29 @@
           <div class="article-entry " itemprop="articleBody">
             
               <h2 id="Snake-Game"><a href="#Snake-Game" class="headerlink" title="Snake Game"></a>Snake Game</h2><p>A clone of the famous snake game before smartphones were a thing.<br>You can play it in the <a href="https://carlos-algms.github.io/snake-game/">live-version here</a></p>
-<img src="snake-game.png" alt="Snake game screenshot" style="max-height: 600px" />
+<img src="snake-game.png" alt="Snake game screenshot" style="max-height: 600px" loading="lazy" />
 
 <p><a target="_blank" rel="noopener" href="https://github.com/carlos-algms/snake-game">snake-game sources</a></p>
+<h2 id="Animated-Screen-effect-with-CSS-only"><a href="#Animated-Screen-effect-with-CSS-only" class="headerlink" title="Animated Screen effect with CSS only"></a>Animated Screen effect with CSS only</h2><p><a href="animated-screen/">Check the live version here</a></p>
+<a href="animated-screen/">
+  <figure style="background-color: rgb(15, 15, 15)">
+    <img src="animated-screen/animated-screen.gif" alt="animaged scree with css" loading="lazy" />
+  </figure>
+</a>
+
+<h2 id="Multiple-clocks"><a href="#Multiple-clocks" class="headerlink" title="Multiple-clocks"></a>Multiple-clocks</h2><p>Create an animated clock with different technologies, like with CSS and with SVG + JavaScript</p>
+<p>Live version: <a target="_blank" rel="noopener" href="https://multiple-clocks.vercel.app/">https://multiple-clocks.vercel.app/</a></p>
+<img src="multiple-clocks.png" alt="multiple clocks with css and svg" style="max-height: 400px" loading="lazy" />
+
+<p><a target="_blank" rel="noopener" href="https://github.com/carlos-algms/multiple-clocks">Multiple-clocks sources</a></p>
 <h2 id="CSS-flex-layout"><a href="#CSS-flex-layout" class="headerlink" title="CSS flex-layout"></a>CSS flex-layout</h2><p>The idea was to create a tiny framework based on css flex-box to manage grids without flooding the html.<br>Once one defines a <code>container</code> everything inside it is turn into a column, greatly reducing the amount of tags needed.</p>
 <p>It is published as an npm package <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/@webdev-tools/css-flex-layout">here</a> and can be installed as:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i @webdev-tools/css-flex-layout</span><br></pre></td></tr></table></figure>
 
-<p>Usage: </p>
+<p>Usage:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;fl-3-cols-container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">aside</span>&gt;</span>001<span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">aside</span>&gt;</span>002<span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">aside</span>&gt;</span>003<span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- breaks to next line --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">aside</span>&gt;</span>004<span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">aside</span>&gt;</span>005<span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">aside</span>&gt;</span>006<span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- breaks to next line --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">aside</span>&gt;</span>007<span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- alone on the last line --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p><a target="_blank" rel="noopener" href="https://github.com/webdev-tools/css-flex-layout">CSS flex-layout sources</a></p>
-<h2 id="Multiple-clocks"><a href="#Multiple-clocks" class="headerlink" title="Multiple-clocks"></a>Multiple-clocks</h2><p>Create an animated clock with different technologies, like with CSS and with SVG + JavaScript</p>
-<p>Live version: <a target="_blank" rel="noopener" href="https://multiple-clocks.vercel.app/">https://multiple-clocks.vercel.app/</a></p>
-<img src="multiple-clocks.png" alt="multiple clocks with css and svg" style="max-height: 400px" />
-
-<p><a target="_blank" rel="noopener" href="https://github.com/carlos-algms/multiple-clocks">Multiple-clocks sources</a></p>
 
             
           </div>
@@ -187,7 +195,7 @@
           
 
           <footer class="article-footer">
-            <a data-url="http://carlos-algms.github.io/experiments/index.html" data-id="clgh4h9k60002e9oud4mxe18x" class="article-share-link">Share</a>
+            <a data-url="http://carlos-algms.github.io/experiments/index.html" data-id="clqhg71m50002mkp205lp27th" class="article-share-link">Share</a>
             
             
           </footer>
