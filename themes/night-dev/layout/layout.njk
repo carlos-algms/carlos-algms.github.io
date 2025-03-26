@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="{{ config.language }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>
+    {% set addPipe = false %}
+    {% if is_archive() %}
+      {% set addPipe = true %}
+      {{ __('layout.blog') }}
+      {% if is_month() %}
+        : {{ page.year }}/{{ page.month }}
+      {% elif is_year() %}
+        : {{ page.year }}
+      {% endif %}
+      {% if page.current > 1 %}
+        {{ __('layout.page_n', page.current) }}
+      {% endif %}
+    {% elif is_category() %}
+      {% set addPipe = true %}
+      {{ __('layout.category') }}: {{ page.category }}
+    {% elif is_tag() %}
+      {% set addPipe = true %}
+      {{ __('layout.tag') }}: {{ page.tag }}
+    {% elif page.title %}
+      {% set addPipe = true %}
+      {{ page.title }}
+    {% endif %}
+    {% if addPipe %} | {% endif %}
+    {{ config.title }}
+    </title>
+
+
+    {{ open_graph({
+        twitter_id: getConfig('twitter'),
+        google_plus: getConfig('google_plus'),
+        fb_admins: getConfig('fb_admins'),
+        fb_app_id: getConfig('fb_app_id')
+       })
+    }}
+    {% if getConfig('rss') %}
+      <link rel="alternate"
+        title="{{ config.title }}"
+        href="{{ config.rss }}"
+        type="application/atom+xml"
+      />
+    {% endif %}
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+    {% set ga = getConfig('google_analytics') %}
+    {% if ga and env.env != 'development' %}
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id={{ ga }}"
+      ></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ ga }}');
+      </script>
+      <!-- End Google Analytics -->
+    {% endif %}
+  </head>
+  <body>
+    <pre>{{ env | dump(2) }}</pre>
+    <div>
+      <nav id="main-navbar" role="navigation">
+        <div>
+          <a id="logo-container" href="{{ url_for() }}">
+            <span>{{ config.title }}</span>
+            <sub>{{ config.subtitle }}</sub>
+          </a>
+
+          <ul>
+            {% for item, path in getConfig("menu") %}
+            <li>
+              <a href="{{ url_for(path) }}">
+                {{ item }}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div id="main-container">
+      {{ page.content }}
+    </div>
+
+    <footer >
+      <div >
+        <aside>
+          {{ config.author if config.author else config.title }}
+        </aside>
+        <aside>
+          Powered by
+          <a href="http://hexo.io/" rel="nofollow noopener" target="_blank">
+            Hexo
+          </a>
+        </aside>
+      </div>
+    </footer>
+  </body>
+</html>
