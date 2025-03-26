@@ -9,13 +9,13 @@
   "license": "MIT",
   "private": true,
   "hexo": {
-    "version": "6.3.0"
+    "version": "7.3.0"
   },
   "engines": {
-    "node": "^20"
+    "node": "^22"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=development hexo serve",
+    "start": "cross-env NODE_ENV=development hexo server",
     "build": "npm run clear && cross-env NODE_ENV=production hexo generate",
     "deploy": "hexo deploy",
     "clear": "rimraf public/ db.json"
@@ -23,13 +23,13 @@
   "dependencies": {},
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "hexo": "^6.3.0",
+    "hexo": "^7.3.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-seo-friendly-sitemap": "^0.2.1",
     "hexo-generator-tag": "^2.0.0",
     "hexo-renderer-ejs": "^2.0.0",
-    "hexo-renderer-marked": "^6.0.0",
+    "hexo-renderer-marked": "^7.0.0",
     "hexo-server": "^3.0.0",
-    "rimraf": "^4.4.0"
+    "rimraf": "^6.0.1"
   }
 }
