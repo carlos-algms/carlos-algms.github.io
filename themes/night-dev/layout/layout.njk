@@ -49,7 +49,7 @@
     {% endif %}
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&display=swap" />
     {% set ga = getConfig('google_analytics') %}
     {% if ga and env.env != 'development' %}
       <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -67,7 +67,6 @@
     {% endif %}
   </head>
   <body>
-    <pre>{{ env | dump(2) }}</pre>
     <div>
       <nav id="main-navbar" role="navigation">
         <div>
@@ -90,7 +89,7 @@
     </div>
 
     <div id="main-container">
-      {{ page.content }}
+      {{ body }}
     </div>
 
     <footer >
