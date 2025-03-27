@@ -40,6 +40,7 @@
         fb_app_id: getConfig('fb_app_id')
        })
     }}
+
     {% if getConfig('rss') %}
       <link rel="alternate"
         title="{{ config.title }}"
@@ -47,9 +48,13 @@
         type="application/atom+xml"
       />
     {% endif %}
+
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&display=swap" />
+
+    {{ css('theme.css') }}
+
     {% set ga = getConfig('google_analytics') %}
     {% if ga and env.env != 'development' %}
       <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -66,6 +71,7 @@
       <!-- End Google Analytics -->
     {% endif %}
   </head>
+
   <body>
     <div>
       <nav id="main-navbar" role="navigation">
