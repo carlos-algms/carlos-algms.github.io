@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getBlogPostsSorted } from '../../content.config';
+import type {
+  GetStaticPathsOptions,
+  InferGetStaticParamsType,
+  InferGetStaticPropsType,
+} from 'astro';
+import PostSummary from '../../components/PostSummary.tsx';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const posts = await getBlogPostsSorted();
+  return paginate(posts, {
+    pageSize: 5,
+  });
+}
+
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { page } = Astro.props;
+// FIXIT: add titles to all Layouts usages
+---
+
+<Layout>
+  <ol>
+    {
+      page.data.map((post) => (
+        <li>
+          <PostSummary
+            title={post.data.title}
+            slug={post.data.slug}
+            summary={post.rendered?.html || ''}
+          />
+        </li>
+      ))
+    }
+  </ol>
+</Layout>
