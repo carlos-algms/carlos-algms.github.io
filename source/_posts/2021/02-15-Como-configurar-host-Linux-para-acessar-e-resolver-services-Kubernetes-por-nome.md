@@ -1,14 +1,14 @@
 ---
 title: Como configurar host Linux para acessar e resolver services Kubernetes por nome dns
-date: 2021-02-17 22:10:00
-updated: 2021-02-17 22:10:00
+slug: como-configurar-host-linux-para-acessar-e-resolver-services-kubernetes-por-nome
+date: 2021-02-17T22:10:00-03:00
+updated: 2021-02-17T22:10:00-03:00
 tags: [kubernetes, linux, dns]
 ---
 
 <main lang="pt-BR">
 
 Neste post vou explicar como configurar um host Ubuntu para ter acesso aos serviços de um Cluster Kubernetes instalado utilizando [microk8s](https://microk8s.io/).
-
 
 ### Como funciona o DNS interno do Kubernetes
 
@@ -154,9 +154,8 @@ ping my-db.default
 ping my-db.default.svc
 ```
 
-Caso você tenha vários namespaces e não só o default, basta incluir outro domínio no arquivo `/etc/systemd/resolved.conf.d/00-k8s-dns-resolver.conf`. 
+Caso você tenha vários namespaces e não só o default, basta incluir outro domínio no arquivo `/etc/systemd/resolved.conf.d/00-k8s-dns-resolver.conf`.
 
 Espero que essa post possa te ajudar a configurar um cluster Kubernetes para seu ambiente de trabalhou ou até mesmo para criar um servidor Cloud próprio, quem sabe.
-
 
 </main>

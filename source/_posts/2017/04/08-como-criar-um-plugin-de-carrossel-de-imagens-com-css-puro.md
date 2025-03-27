@@ -1,7 +1,8 @@
 ---
 title: Como criar um plugin de Carrossel de imagens com css puro
-date: 2017-04-08 23:32:59
-updated: 2021-01-25 10:00:00
+slug: como-criar-um-plugin-de-carrossel-de-imagens-com-css-puro
+date: 2017-04-08T23:32:59-03:00
+updated: 2021-01-25T10:00:00-03:00
 tags: [css]
 ---
 
@@ -176,10 +177,22 @@ Nesta etapa temos que fazer um seletor para cada "estado" da animação:
 Para finalizar, vamos fazer a mágica de só mostrar os botões `Próximo / Anterior` referentes ao item atual no stage:
 
 ```css
-#carousel1:checked ~ .carousel__stage .carousel__item:nth-child(1) .carousel__control,
-#carousel2:checked ~ .carousel__stage .carousel__item:nth-child(2) .carousel__control,
-#carousel3:checked ~ .carousel__stage .carousel__item:nth-child(3) .carousel__control,
-#carousel4:checked ~ .carousel__stage .carousel__item:nth-child(4) .carousel__control {
+#carousel1:checked
+  ~ .carousel__stage
+  .carousel__item:nth-child(1)
+  .carousel__control,
+#carousel2:checked
+  ~ .carousel__stage
+  .carousel__item:nth-child(2)
+  .carousel__control,
+#carousel3:checked
+  ~ .carousel__stage
+  .carousel__item:nth-child(3)
+  .carousel__control,
+#carousel4:checked
+  ~ .carousel__stage
+  .carousel__item:nth-child(4)
+  .carousel__control {
   display: block;
 }
 ```
@@ -192,7 +205,6 @@ Para finalizar, vamos fazer a mágica de só mostrar os botões `Próximo / Ante
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
-
 
 Você pode conferir o código fonte do exemplo aqui:  
 https://codesandbox.io/s/carousel-with-css-only-nshhx

@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "How to CHMOD on Multiple Files or Folder at Same Time"
+title: How to CHMOD on Multiple Files or Folder at Same Time
+slug: how-to-chmod-on-multiple-files-or-folder-at-same-time
 date: 2014-11-20T15:11:46-02:00
 updated: 2014-11-20T15:11:46-02:00
-tags: [ Linux, Ubuntu ]
+tags: [Linux, Ubuntu]
 ---
 
 Do chmod on multiple files could be hard if you only use chmod alone.
@@ -23,5 +24,5 @@ Apply CHMOD to every file recursively
 find clients/ -type f -print0 | xargs -0 chmod 644
 ```
 
-The trick is <code>-type -d</code> and <code>-type -f</code> that tell to find command 
+The trick is <code>-type -d</code> and <code>-type -f</code> that tell to find command
 to only find folders and files, respectively.

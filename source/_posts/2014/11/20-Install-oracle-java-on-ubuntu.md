@@ -1,9 +1,10 @@
 ---
 layout: post
 title: Install Oracle java on Ubuntu
+slug: install-oracle-java-on-ubuntu
 date: 2014-11-20T15:30:00-02:00
 updated: 2014-11-20T15:30:00-02:00
-tags: [ Linux, Ubuntu, Java ]
+tags: [Linux, Ubuntu, Java]
 ---
 
 Ubuntu comes with an opensource java installed. To use the oracle's java,

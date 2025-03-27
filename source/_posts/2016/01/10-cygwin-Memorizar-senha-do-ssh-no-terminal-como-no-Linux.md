@@ -1,8 +1,9 @@
 ---
 title: cygwin - Memorizar senha do ssh no terminal como no Linux
-date: 2016-01-10 18:55:56
-updated: 2016-01-10 18:55:56
-tags: [ windows, cygwin, ssh ]
+slug: cygwin-memorizar-senha-do-ssh-no-terminal-como-no-linux
+date: 2016-01-10T18:55:56-03:00
+updated: 2016-01-10T18:55:56-03:00
+tags: [windows, cygwin, ssh]
 ---
 
 O Linux pode memoriza todas as senhas utilizadas no `SSH` até que o usuário faça logoff ou reinicie o computador.
@@ -11,7 +12,6 @@ As senhas ficam salvas no sistema de credenciais nativo do Linux.
 O Windows não possui este recurso, sendo necessário alguns passos para conseguir o mesmo efeito.
 
 <!-- more -->
-
 
 O [cygwin][0] ou o [gitbash][1], possuem um recurso chamado `ssh-agent` que é iniciado ao fazer uma chamada ao comando `ssh`.
 O que vamos fazer é iniciar um único `ssh-agent` que ficará rodando até que o usuário faça logoff ou reinicie o computador.
@@ -30,6 +30,7 @@ fi
 ```
 
 ## Criar script customizado para usar o SSH sem senha
+
 Nós vamos "enganar" o sistema criando um arquivo com o nome de `ssh` que fará toda a mágica:
 
 `$ vim ~/bin/ssh`
@@ -58,13 +59,12 @@ Na linha **7** é feita uma verificação para garantir que os dados armazenados
 Caso não seja, as linhas **8** e **9** iniciam um novo agente e armazenam seus dados no arquivo.
 
 A linha **10** inicia o processo que vai soliciar a senha e armazenar no agente para utilização futura.
- 
-O legal desse script é que só será solicitado a senha na primeira vez que o comando `ssh` for utilizado. 
+
+O legal desse script é que só será solicitado a senha na primeira vez que o comando `ssh` for utilizado.
 Encontrei outros scripts que solicitavam a senha da private.key mesmo que o `ssh` não fosse utilizado.
 O agente também não será iniciado antes do comando `ssh` ser chamado.
 
 Na linha **13** vamos chamar o verdadeiro `SSH` do sistema passando todos os parametros.
-
 
 [0]: https://cygwin.com/install.html
 [1]: https://git-scm.com/downloads
