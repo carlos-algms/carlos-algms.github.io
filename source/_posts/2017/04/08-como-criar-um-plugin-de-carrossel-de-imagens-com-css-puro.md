@@ -10,7 +10,7 @@ Existem vários plugins para jQuery, React e até mesmo Angular para criar um ca
 
 ## Elementos de um carrossel
 
-{% asset_img carrossel-elements.png Elementos de um carrossel %}
+![Elementos de um carrossel](./carrossel-elements.png)
 
 - **Stage**: A área disponível para o carrossel
 - **Item**: O item visível atualmente pelo usuário

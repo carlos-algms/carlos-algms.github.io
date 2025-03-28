@@ -6,7 +6,7 @@ updated: 2016-01-25T23:28:06-03:00
 tags: [docker]
 ---
 
-{% asset_img docker.png docker logo %}
+![docker logo](docker.png)
 
 ## Rodando imagens
 
@@ -62,7 +62,7 @@ Cada vez que você executa o comando `run`, o Docker vai criar um novo container
 $ docker ps -a
 ```
 
-{% asset_img docker-ps-a.jpg $ docker ps -a %}
+![docker ps -a](./docker-ps-a.jpg)
 
 O Docker cria automaticamente um nome aleatório para cada container criado a partir do comando `run`, através deste nome você pode continuar a utilizar um container sem perder os dados a cada inicialização
 

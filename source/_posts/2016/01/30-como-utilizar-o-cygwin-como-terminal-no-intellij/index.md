@@ -26,11 +26,11 @@ set CHERE_INVOKING=1 & c:\cygwin\bin\bash.exe --login -i
 
 No intelliJ, `File -> Setting -> Tools -> Terminal`, e altere o terminal para o arquivo que você criou:
 
-{% asset_img intellij-config-terminal.jpg Print configuração do terminal intelliJ %}
+![Print configuração do terminal intelliJ](./intellij-config-terminal.jpg)
 
 Pronto, feche o terminal do intelliJ e abra novamente que já será o terminal bash.
 
-{% asset_img print-terminal-intellij.jpg Print do terminal intelliJ %}
+![Print do terminal intelliJ](print-terminal-intellij.jpg)
 
 ## Bonus
 

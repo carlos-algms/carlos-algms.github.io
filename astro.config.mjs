@@ -8,10 +8,13 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   trailingSlash: 'always',
 
+  build: {
+    assets: 'assets',
+  },
+
   integrations: [react()],
 
   vite: {
     plugins: [tailwindcss()],
   },
 });
-
