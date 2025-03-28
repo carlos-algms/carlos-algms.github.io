@@ -24,7 +24,7 @@ const { page } = Astro.props;
 <Layout
   title={`Blog${page.currentPage > 1 ? ` - Page ${page.currentPage}` : ''}`}
 >
-  <ol>
+  <ol class="container mx-auto">
     {
       page.data.map((post) => (
         <li>
