@@ -6,7 +6,7 @@ import type {
   InferGetStaticParamsType,
   InferGetStaticPropsType,
 } from 'astro';
-import PostSummary from '../../components/PostSummary.tsx';
+import Post from '../../components/Post.astro';
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const posts = await getBlogPostsSorted();
@@ -28,11 +28,7 @@ const { page } = Astro.props;
     {
       page.data.map((post) => (
         <li>
-          <PostSummary
-            title={post.data.title}
-            slug={post.data.slug}
-            summary={post.rendered?.html || ''}
-          />
+          <Post limitToExcerpt={true} post={post} />
         </li>
       ))
     }

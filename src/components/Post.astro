@@ -1,0 +1,76 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+
+type Props = {
+  limitToExcerpt?: boolean;
+  post: CollectionEntry<'blog'>;
+};
+
+// FIXIT: Add translations to time's tags titles
+const { limitToExcerpt, post } = Astro.props;
+const {
+  data: { title, slug, date: createdAt, updated: updatedAt },
+} = post;
+const body = post.rendered?.html || '';
+
+const { Content } = await render({
+  ...post,
+  rendered: {
+    ...post.rendered,
+    html: !limitToExcerpt ? body : body.split('<!-- more -->')[0],
+  },
+});
+
+// FIXIT: Add meta tags, canonical and hreflang for multi-language and SEO
+---
+
+<article itemscope itemprop="blogPost">
+  {
+    !limitToExcerpt ? (
+      <h2>{title}</h2>
+    ) : (
+      <a href={`/blog/${slug}/`}>
+        <h2>{title}</h2>
+      </a>
+    )
+  }
+
+  {
+    updatedAt.getTime() !== createdAt.getTime() && (
+      <time
+        datetime={updatedAt.toISOString()}
+        itemprop="dateModified"
+        title="Date updated"
+      />
+    )
+  }
+
+  <time
+    datetime={createdAt.toISOString()}
+    itemprop="datePublished"
+    title="Date published"></time>
+
+  <Content />
+
+  {limitToExcerpt && <a href={`/blog/${slug}/`}>Read more</a>}
+</article>
+
+<script>
+  // run on client to format on user's locale
+  const timeTags = document.querySelectorAll('time');
+
+  timeTags.forEach((timeTag) => {
+    const date = new Date(timeTag.getAttribute('datetime') || '');
+    timeTag.textContent = date.toLocaleDateString(navigator.language, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+
+    timeTag.setAttribute(
+      'title',
+      timeTag.getAttribute('title') + `: ${date.toLocaleString()}`,
+    );
+  });
+</script>

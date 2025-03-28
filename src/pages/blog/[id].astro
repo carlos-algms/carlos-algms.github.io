@@ -1,9 +1,10 @@
 ---
-import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { getBlogPostsSorted } from '../../content.config';
+import Post from '../../components/Post.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = await getBlogPostsSorted();
   return posts.map((post) => ({
     params: { id: post.data.slug },
     props: { post },
@@ -11,9 +12,8 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
 ---
 
 <Layout title={post.data.title}>
-  <Content />
+  <Post post={post} />
 </Layout>
