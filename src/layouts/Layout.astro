@@ -8,6 +8,8 @@ type Props = {
 const { title } = Astro.props;
 const name = 'Carlos A. Gomes';
 const fullTitle = title ? `${title} | ${name}` : name;
+// FIXIT: Fix header in light mode
+// FIXIT: Add Footer styles
 ---
 
 <!doctype html>
@@ -27,7 +29,28 @@ const fullTitle = title ? `${title} | ${name}` : name;
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&display=swap"
     />
   </head>
-  <body class="relative">
+  <body class="relative pt-16">
+    <header
+      class="fixed top-0 left-0 right-0 z-10 h-16 bg-neutral-950/50 backdrop-blur-xl"
+    >
+      <div class="container mx-auto flex h-full items-center justify-between">
+        <a href="/"> Carlos A. Gomes </a>
+        <nav>
+          <ul class="flex gap-4">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/blog/">Blog</a>
+            </li>
+            <li>
+              <a href="/experiments/">Experiments</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
     <slot />
 
     <footer>
