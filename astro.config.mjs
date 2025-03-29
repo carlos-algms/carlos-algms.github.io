@@ -14,6 +14,10 @@ export default defineConfig({
     assets: 'assets',
   },
 
+  experimental: {
+    svg: true,
+  },
+
   integrations: [react()],
 
   vite: {

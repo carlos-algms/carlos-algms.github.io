@@ -27,7 +27,7 @@ const fullTitle = title ? `${title} | ${name}` : name;
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&display=swap"
     />
   </head>
-  <body>
+  <body class="relative">
     <slot />
 
     <footer>
@@ -53,43 +53,3 @@ const fullTitle = title ? `${title} | ${name}` : name;
     </div>
   </body>
 </html>
-
-<style>
-  :root {
-    color-scheme: light dark;
-
-    font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    font-display: swap;
-    -wekbit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
-    --background: 0 0% 100%;
-    --foreground: 240 5% 30%;
-
-    @media (prefers-color-scheme: dark) {
-      --background: 20 14.3% 4.1%;
-      --foreground: 0 0% 95%;
-    }
-
-    color: hsl(var(--foreground));
-  }
-
-  /* Preferred box-sizing value */
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-
-  /* Font smoothing */
-  * {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  /* For images to not be able to exceed their container */
-  img {
-    max-width: 100%;
-  }
-</style>

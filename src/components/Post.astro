@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
+import CalendarIcon from '../assets/icons/calendar.svg';
 
 type Props = {
   limitToExcerpt?: boolean;
@@ -25,35 +26,55 @@ const { Content } = await render({
 // FIXIT: Add meta tags, canonical and hreflang for multi-language and SEO
 ---
 
-<article itemscope itemprop="blogPost">
+<article class="article-entry" itemscope itemprop="blogPost">
+  <header>
+    <h2 class="text-clamp-l mb-1">
+      {!limitToExcerpt ? title : <a href={`/blog/${slug}/`}>{title}</a>}
+    </h2>
+
+    <div class="border-y-1 border-gray-600 mt-4 py-2 flex gap-1">
+      <CalendarIcon width={20} height={20} />
+
+      {
+        updatedAt.getTime() !== createdAt.getTime() && (
+          <>
+            <time
+              datetime={updatedAt.toISOString()}
+              itemprop="dateModified"
+              title="Date updated"
+            />
+            -
+          </>
+        )
+      }
+
+      <time
+        datetime={createdAt.toISOString()}
+        itemprop="datePublished"
+        title="Date published"></time>
+    </div>
+  </header>
+
+  <div itemprop="articleBody">
+    <Content />
+  </div>
+
   {
-    !limitToExcerpt ? (
-      <h2>{title}</h2>
-    ) : (
-      <a href={`/blog/${slug}/`}>
-        <h2>{title}</h2>
+    limitToExcerpt && (
+      <a
+        class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg px-5 py-2.5 my-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 inline-flex items-center"
+        href={`/blog/${slug}/`}
+      >
+        Read more
+        <span
+          class="rounded-full bg-white size-5 inline-block text-purple-700 text-center ml-1 text-3xl font-bold leading-5"
+          aria-hidden="true"
+        >
+          +
+        </span>
       </a>
     )
   }
-
-  {
-    updatedAt.getTime() !== createdAt.getTime() && (
-      <time
-        datetime={updatedAt.toISOString()}
-        itemprop="dateModified"
-        title="Date updated"
-      />
-    )
-  }
-
-  <time
-    datetime={createdAt.toISOString()}
-    itemprop="datePublished"
-    title="Date published"></time>
-
-  <Content />
-
-  {limitToExcerpt && <a href={`/blog/${slug}/`}>Read more</a>}
 </article>
 
 <script>

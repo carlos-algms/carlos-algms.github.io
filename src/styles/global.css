@@ -1,1 +1,100 @@
 @import 'tailwindcss';
+
+@theme {
+  --text-clamp-s: clamp(1.2rem, 5vw, 1.5rem);
+  --text-clamp-s--line-height: clamp(1.2rem, 5vw, 1.5rem);
+
+  --text-clamp-m: clamp(1.5rem, 5vw, 1.8rem);
+  --text-clamp-m--line-height: clamp(1.6rem, 5vw, 1.8rem);
+
+  --text-clamp-l: clamp(2rem, 5vw, 2.2rem);
+  --text-clamp-l--line-height: clamp(2.1rem, 5vw, 2.3rem);
+}
+
+:root {
+  color-scheme: light dark;
+
+  font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-display: swap;
+  -wekbit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --background: 0 0% 100%;
+  --foreground: 240 5% 30%;
+
+  @media (prefers-color-scheme: dark) {
+    --background: 20 14.3% 4.1%;
+    --foreground: 0 0% 95%;
+  }
+
+  color: hsl(var(--foreground));
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Font smoothing */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-width: 100%;
+}
+
+svg {
+  display: inline-block;
+}
+
+.article-entry {
+  p,
+  pre,
+  iframe {
+    @apply my-3;
+  }
+
+  h2 {
+    @apply text-clamp-m mt-5 mb-3;
+  }
+
+  h3 {
+    @apply text-clamp-s mt-4 mb-3;
+  }
+
+  pre {
+    @apply p-3;
+  }
+
+  img {
+    @apply mx-auto;
+  }
+
+  ul,
+  ol,
+  dl {
+    @apply my-7 mx-5;
+
+    li > & {
+      @apply my-0;
+    }
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  code:not(:is(pre code)) {
+    @apply bg-neutral-700 text-red-400 px-1;
+  }
+}

@@ -27,7 +27,7 @@ const { page } = Astro.props;
   <ol class="container mx-auto">
     {
       page.data.map((post) => (
-        <li>
+        <li class="mb-9">
           <Post limitToExcerpt={true} post={post} />
         </li>
       ))
