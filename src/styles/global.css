@@ -68,8 +68,27 @@ svg {
     @apply text-clamp-s mt-4 mb-3;
   }
 
+  code:not(:is(pre code)) {
+    @apply bg-neutral-200 dark:bg-neutral-700 text-red-600 dark:text-red-400 px-1;
+  }
+
   pre {
     @apply p-3;
+
+    code {
+      counter-reset: code-line-number;
+      counter-increment: code-line-number calc(var(--start, 1) - 1);
+
+      .line::before {
+        content: counter(code-line-number);
+        counter-increment: code-line-number;
+        width: 1rem;
+        margin-right: 1.5rem;
+        display: inline-block;
+        text-align: right;
+        color: rgba(115, 138, 148, 0.4);
+      }
+    }
   }
 
   img {
@@ -92,9 +111,5 @@ svg {
 
   ul {
     @apply list-disc;
-  }
-
-  code:not(:is(pre code)) {
-    @apply bg-neutral-700 text-red-400 px-1;
   }
 }
