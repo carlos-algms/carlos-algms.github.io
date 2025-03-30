@@ -5,16 +5,25 @@ import Post from '../../components/Post.astro';
 
 export async function getStaticPaths() {
   const posts = await getBlogPostsSorted();
-  return posts.map((post) => ({
-    params: { id: post.data.slug },
-    props: { post },
-  }));
+  return [
+    ...posts.map((post) => ({
+      params: {
+        id: post.data.slug,
+        blogPath: 'blog',
+      },
+      props: {
+        post,
+        // FIXIT: add all locales
+        lang: 'pt-br' as const,
+      },
+    })),
+  ];
 }
 
-const { post } = Astro.props;
+const { post, lang } = Astro.props;
 ---
 
-<Layout title={post.data.title}>
+<Layout title={post.data.title} lang={lang}>
   <div class="container mx-auto">
     <Post post={post} />
   </div>

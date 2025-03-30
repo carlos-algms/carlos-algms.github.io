@@ -1,28 +1,32 @@
 ---
+import type { GetStaticPathsOptions } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { getBlogPostsSorted } from '../../content.config';
-import type { GetStaticPathsOptions } from 'astro';
 import Post from '../../components/Post.astro';
-import type { CollectionEntry } from 'astro:content';
 import type { TranslationsLang } from '../../lang/translations';
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const posts = await getBlogPostsSorted();
-  const val = paginate<CollectionEntry<'blog'>, {}, { lang: TranslationsLang }>(
-    posts,
-    {
+  return [
+    ...paginate<
+      CollectionEntry<'blog'>,
+      { lang: TranslationsLang },
+      { blogPath: string }
+    >(posts, {
       pageSize: 5,
       params: {
-        lang: 'en',
+        blogPath: 'blog',
       },
-    },
-  );
-
-  return val;
+      props: {
+        // FIXIT: add all locales
+        lang: 'pt-br',
+      },
+    }),
+  ];
 }
 
-const { page } = Astro.props;
-const { lang } = Astro.params;
+const { page, lang } = Astro.props;
 ---
 
 <Layout
