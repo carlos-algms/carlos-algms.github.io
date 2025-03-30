@@ -1,0 +1,32 @@
+---
+import type { TranslationsLang } from '../lang/translations';
+import Layout from '../layouts/Layout.astro';
+
+type Params = {
+  locale: TranslationsLang | undefined;
+};
+
+type Paths = {
+  params: Params;
+}[];
+
+export function getStaticPaths(): Paths {
+  return [
+    {
+      params: { locale: 'de' },
+    },
+    {
+      params: { locale: 'en' },
+    },
+    {
+      params: { locale: undefined },
+    },
+  ];
+}
+
+const { locale = 'pt-br' } = Astro.params;
+---
+
+<Layout lang={locale}>
+  <div class="container mx-auto"></div>
+</Layout>
