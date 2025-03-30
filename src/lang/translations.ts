@@ -25,10 +25,6 @@ export const translations = {
 
 export type TranslationsLang = keyof typeof translations;
 
-export function t(
-  key: keyof typeof translations.en,
-  // FIXIT: make lang param mandatory
-  lang: TranslationsLang = 'pt-br',
-) {
+export function t(key: keyof typeof translations.en, lang: TranslationsLang) {
   return translations[lang][key];
 }

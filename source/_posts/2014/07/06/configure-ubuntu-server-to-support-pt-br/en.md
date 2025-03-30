@@ -6,6 +6,7 @@ date: 2014-07-06T20:01:32-03:00
 updated: 2014-07-06T20:01:32-03:00
 comments: true
 tags: [Ubuntu, Linux, cloud, VM]
+lang: en
 ---
 
 Every cloud that you use outside Brazil, does not come with pt-br support installed.

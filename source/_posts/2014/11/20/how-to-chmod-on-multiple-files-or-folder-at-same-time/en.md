@@ -5,6 +5,7 @@ slug: how-to-chmod-on-multiple-files-or-folder-at-same-time
 date: 2014-11-20T15:11:46-02:00
 updated: 2014-11-20T15:11:46-02:00
 tags: [Linux, Ubuntu]
+lang: en
 ---
 
 Do chmod on multiple files could be hard if you only use chmod alone.

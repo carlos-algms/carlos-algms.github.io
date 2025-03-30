@@ -15,14 +15,11 @@
     "node": "^22"
   },
   "scripts": {
-    "hexo:start": "cross-env NODE_ENV=development hexo server",
-    "hexo:build": "npm run clear && cross-env NODE_ENV=production hexo generate",
-    "hexo:deploy": "hexo deploy",
-    "hexo:clear": "rimraf public/ db.json",
     "dev": "astro dev",
     "build": "rimraf dist && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "typecheck": "astro check"
   },
   "dependencies": {
     "astro": "^5.5.5",
@@ -31,6 +28,7 @@
     "tailwindcss": "^4.0.17"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.4",
     "@astrojs/react": "^4.2.2",
     "@rollup/plugin-yaml": "^4.1.2",
     "@tailwindcss/vite": "^4.0.17",
@@ -38,17 +36,11 @@
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
     "cross-env": "^7.0.3",
-    "hexo": "^7.3.0",
-    "hexo-generator-archive": "^2.0.0",
-    "hexo-generator-seo-friendly-sitemap": "^0.2.1",
-    "hexo-generator-tag": "^2.0.0",
-    "hexo-renderer-ejs": "^2.0.0",
-    "hexo-renderer-marked": "^7.0.0",
-    "hexo-server": "^3.0.0",
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",
     "rimraf": "^6.0.1",
-    "sharp": "^0.33.5"
+    "sharp": "^0.33.5",
+    "typescript": "^5.8.2"
   },
   "packageManager": "pnpm@10.6.5"
 }

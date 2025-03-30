@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import { render } from 'astro:content';
 import CalendarIcon from '../assets/icons/calendar.svg';
 import { t } from '../lang/translations';
@@ -13,7 +14,7 @@ type Props = {
 // FIXIT: Add translations to time's tags titles
 const { limitToExcerpt, post } = Astro.props;
 const {
-  data: { title, slug, date: createdAt, updated: updatedAt },
+  data: { title, slug, date: createdAt, updated: updatedAt, lang },
 } = post;
 const body = post.rendered?.html || '';
 
@@ -39,7 +40,7 @@ const { Content } = await render({
         !limitToExcerpt ? (
           title
         ) : (
-          <a href={`/blog/${slug}/`} itemprop="url">
+          <a href={getRelativeLocaleUrl(lang, `/blog/${slug}/`)} itemprop="url">
             {title}
           </a>
         )
@@ -54,22 +55,22 @@ const { Content } = await render({
       {
         updatedAt.getTime() !== createdAt.getTime() && (
           <>
-            {t('updated')}
+            {t('updated', lang)}
             <time
               datetime={updatedAt.toISOString()}
               itemprop="dateModified"
-              title={t('updated')}
+              title={t('updated', lang)}
             />
             -
           </>
         )
       }
 
-      {t('published')}
+      {t('published', lang)}
       <time
         datetime={createdAt.toISOString()}
         itemprop="datePublished"
-        title={t('published')}></time>
+        title={t('published', lang)}></time>
     </div>
   </header>
 
@@ -81,9 +82,9 @@ const { Content } = await render({
     limitToExcerpt && (
       <a
         class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg px-5 py-2.5 my-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 inline-flex items-center"
-        href={`/blog/${slug}/`}
+        href={getRelativeLocaleUrl(lang, `/blog/${slug}/`)}
       >
-        {t('read_more')}
+        {t('read_more', lang)}
         <span
           class="rounded-full bg-white size-5 inline-block text-purple-700 text-center ml-1 text-3xl font-bold leading-5"
           aria-hidden="true"

@@ -2,22 +2,35 @@
 import Layout from '../../layouts/Layout.astro';
 import { getBlogPostsSorted } from '../../content.config';
 import Post from '../../components/Post.astro';
+import type { CollectionEntry } from 'astro:content';
+import type { TranslationsLang } from '../../lang/translations';
 
 export async function getStaticPaths() {
-  const posts = await getBlogPostsSorted();
-  return [
-    ...posts.map((post) => ({
+  const allPosts = await getBlogPostsSorted();
+  const groupedByLang = allPosts.reduce(
+    (acc, post) => {
+      const lang = post.data.lang as TranslationsLang;
+      acc[lang] ??= [];
+      acc[lang].push(post);
+      return acc;
+    },
+    {} as Record<TranslationsLang, CollectionEntry<'blog'>[]>,
+  );
+
+  const paths = Object.entries(groupedByLang).flatMap(([lang, posts]) => {
+    return posts.map((post) => ({
       params: {
         id: post.data.slug,
-        blogPath: 'blog',
+        blogPath: lang === 'pt-br' ? 'blog' : `${lang}/blog`,
       },
       props: {
         post,
-        // FIXIT: add all locales
-        lang: 'pt-br' as const,
+        lang: lang as TranslationsLang,
       },
-    })),
-  ];
+    }));
+  });
+
+  return paths;
 }
 
 const { post, lang } = Astro.props;

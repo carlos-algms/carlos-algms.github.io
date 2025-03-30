@@ -4,6 +4,7 @@ slug: tutorial-docker-iniciando-e-como-rodar-containers
 date: 2016-01-25T23:28:06-03:00
 updated: 2016-01-25T23:28:06-03:00
 tags: [docker]
+lang: pt-br
 ---
 
 ![docker logo](docker.png)

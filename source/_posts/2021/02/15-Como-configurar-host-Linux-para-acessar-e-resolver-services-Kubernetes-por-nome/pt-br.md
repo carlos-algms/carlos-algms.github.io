@@ -4,6 +4,7 @@ slug: como-configurar-host-linux-para-acessar-e-resolver-services-kubernetes-por
 date: 2021-02-17T22:10:00-03:00
 updated: 2021-02-17T22:10:00-03:00
 tags: [kubernetes, linux, dns]
+lang: pt-br
 ---
 
 <main lang="pt-BR">
