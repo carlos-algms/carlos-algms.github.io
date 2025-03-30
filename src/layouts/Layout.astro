@@ -1,12 +1,14 @@
 ---
 import '../styles/global.css';
-import { t } from '../lang/translations';
+import { t, type TranslationsLang } from '../lang/translations';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
 type Props = {
   title?: string;
+  lang: TranslationsLang;
 };
 
-const { title } = Astro.props;
+const { title, lang = 'pt-br' } = Astro.props;
 const name = 'Carlos A. Gomes';
 const fullTitle = title ? `${title} | ${name}` : name;
 // FIXIT: Fix header in light mode
@@ -14,7 +16,7 @@ const fullTitle = title ? `${title} | ${name}` : name;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -36,17 +38,19 @@ const fullTitle = title ? `${title} | ${name}` : name;
       class="fixed top-0 left-0 right-0 z-10 h-16 bg-neutral-950/50 backdrop-blur-xl"
     >
       <div class="container mx-auto flex h-full items-center justify-between">
-        <a href="/"> Carlos A. Gomes </a>
+        <a href={getRelativeLocaleUrl(lang, '/')}> Carlos A. Gomes </a>
         <nav>
           <ul class="flex gap-4">
             <li>
-              <a href="/">{t('home')}</a>
+              <a href={getRelativeLocaleUrl(lang, '/')}>{t('home', lang)}</a>
             </li>
             <li>
-              <a href="/blog/">{t('blog')}</a>
+              <a href={getRelativeLocaleUrl(lang, 'blog')}>{t('blog', lang)}</a>
             </li>
             <li>
-              <a href="/experiments/">{t('experiments')}</a>
+              <a href={getRelativeLocaleUrl(lang, 'experiments')}
+                >{t('experiments', lang)}</a
+              >
             </li>
           </ul>
         </nav>

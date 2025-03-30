@@ -18,14 +18,17 @@ const langSchema = z.object({
 });
 
 export const translations = {
-  pt: langSchema.parse(pt),
   en: langSchema.parse(en),
+  'pt-br': langSchema.parse(pt),
   de: langSchema.parse(de),
 };
 
+export type TranslationsLang = keyof typeof translations;
+
 export function t(
-  key: keyof typeof translations.pt,
-  lang: keyof typeof translations = 'pt',
+  key: keyof typeof translations.en,
+  // FIXIT: make lang param mandatory
+  lang: TranslationsLang = 'pt-br',
 ) {
   return translations[lang][key];
 }
