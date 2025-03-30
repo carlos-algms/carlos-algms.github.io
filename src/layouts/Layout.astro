@@ -59,20 +59,22 @@ const fullTitle = title ? `${title} | ${name}` : name;
         <aside>Powered by Astro</aside>
       </div>
     </footer>
-
-    <div itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="gender" content="Male" />
-      <meta itemprop="jobTitle" content="Frontend Engineer" />
-      <meta itemprop="email" content="carlos.algms@gmail.com" />
-      <meta itemprop="url" content="http://carlos-algms.github.io" />
-      <meta itemprop="image" content="https://github.com/carlos-algms.png" />
-      <span itemprop="name">
-        <link
-          itemprop="sameAs"
-          href="https://www.linkedin.com/in/carlosalgms/"
-        />
-        <link itemprop="sameAs" href="https://twitter.com/carlos_algms" />
-      </span>
-    </div>
   </body>
 </html>
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Person",
+    "name": "Carlos A. Gomes",
+    "email": "carlos.algms@gmail.com",
+    "jobTitle": "Frontend Engineer",
+    "gender": "Male",
+    "url": "https://github.com/carlos-algms",
+    "image": "https://github.com/carlos-algms.png",
+    "sameAs": [
+      "https://www.linkedin.com/in/carlosalgms/",
+      "https://twitter.com/carlos_algms"
+    ]
+  }
+</script>

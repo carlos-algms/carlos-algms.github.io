@@ -27,10 +27,22 @@ const { Content } = await render({
 // FIXIT: Add meta tags, canonical and hreflang for multi-language and SEO
 ---
 
-<article class="article-entry" itemscope itemprop="blogPost">
+<article
+  class="article-entry"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
   <header>
-    <h2 class="text-clamp-l mb-1">
-      {!limitToExcerpt ? title : <a href={`/blog/${slug}/`}>{title}</a>}
+    <h2 class="text-clamp-l mb-1" itemprop="name">
+      {
+        !limitToExcerpt ? (
+          title
+        ) : (
+          <a href={`/blog/${slug}/`} itemprop="url">
+            {title}
+          </a>
+        )
+      }
     </h2>
 
     <div
