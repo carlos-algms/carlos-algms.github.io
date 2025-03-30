@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { t } from '../lang/translations';
 
 type Props = {
   title?: string;
@@ -28,6 +29,7 @@ const fullTitle = title ? `${title} | ${name}` : name;
       crossorigin="anonymous"
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&display=swap"
     />
+    <slot name="head" />
   </head>
   <body class="relative pt-16">
     <header
@@ -38,13 +40,13 @@ const fullTitle = title ? `${title} | ${name}` : name;
         <nav>
           <ul class="flex gap-4">
             <li>
-              <a href="/">Home</a>
+              <a href="/">{t('home')}</a>
             </li>
             <li>
-              <a href="/blog/">Blog</a>
+              <a href="/blog/">{t('blog')}</a>
             </li>
             <li>
-              <a href="/experiments/">Experiments</a>
+              <a href="/experiments/">{t('experiments')}</a>
             </li>
           </ul>
         </nav>

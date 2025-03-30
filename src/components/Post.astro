@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
 import CalendarIcon from '../assets/icons/calendar.svg';
+import { t } from '../lang/translations';
 
 type Props = {
   limitToExcerpt?: boolean;
@@ -53,20 +54,22 @@ const { Content } = await render({
       {
         updatedAt.getTime() !== createdAt.getTime() && (
           <>
+            {t('updated')}
             <time
               datetime={updatedAt.toISOString()}
               itemprop="dateModified"
-              title="Date updated"
+              title={t('updated')}
             />
             -
           </>
         )
       }
 
+      {t('published')}
       <time
         datetime={createdAt.toISOString()}
         itemprop="datePublished"
-        title="Date published"></time>
+        title={t('published')}></time>
     </div>
   </header>
 
@@ -80,7 +83,7 @@ const { Content } = await render({
         class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg px-5 py-2.5 my-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 inline-flex items-center"
         href={`/blog/${slug}/`}
       >
-        Read more
+        {t('read_more')}
         <span
           class="rounded-full bg-white size-5 inline-block text-purple-700 text-center ml-1 text-3xl font-bold leading-5"
           aria-hidden="true"
