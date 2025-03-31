@@ -12,6 +12,15 @@
 
   --text-clamp-l: clamp(2rem, 5vw, 2.2rem);
   --text-clamp-l--line-height: clamp(2.1rem, 5vw, 2.3rem);
+
+  --color-accent: hsl(265, 89%, 65%);
+  --color-accent-foreground: hsl(0 0% 98%);
+  --color-accent-muted: hsl(265, 89%, 25%);
+
+  --color-border: hsl(240 3.7% 15.9%);
+
+  --color-muted: hsl(240 3.7% 15.9%);
+  --color-muted-foreground: hsl(240 5% 64.9%);
 }
 
 :root {
