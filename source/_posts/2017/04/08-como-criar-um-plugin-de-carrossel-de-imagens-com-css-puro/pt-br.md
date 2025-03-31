@@ -177,26 +177,16 @@ Nesta etapa temos que fazer um seletor para cada "estado" da animação:
 
 Para finalizar, vamos fazer a mágica de só mostrar os botões `Próximo / Anterior` referentes ao item atual no stage:
 
+<!-- prettier-ignore-start -->
 ```css
-#carousel1:checked
-  ~ .carousel__stage
-  .carousel__item:nth-child(1)
-  .carousel__control,
-#carousel2:checked
-  ~ .carousel__stage
-  .carousel__item:nth-child(2)
-  .carousel__control,
-#carousel3:checked
-  ~ .carousel__stage
-  .carousel__item:nth-child(3)
-  .carousel__control,
-#carousel4:checked
-  ~ .carousel__stage
-  .carousel__item:nth-child(4)
-  .carousel__control {
+#carousel1:checked ~ .carousel__stage .carousel__item:nth-child(1) .carousel__control,
+#carousel2:checked ~ .carousel__stage .carousel__item:nth-child(2) .carousel__control,
+#carousel3:checked ~ .carousel__stage .carousel__item:nth-child(3) .carousel__control,
+#carousel4:checked ~ .carousel__stage .carousel__item:nth-child(4) .carousel__control {
   display: block;
 }
 ```
+<!-- prettier-ignore-end -->
 
 ## Resultado final
 
