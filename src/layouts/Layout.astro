@@ -65,14 +65,12 @@ const fullTitle = title ? `${title} | ${name}` : name;
     <link
       rel="stylesheet"
       crossorigin="anonymous"
-      href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&display=swap"
     />
     <slot name="head" />
   </head>
-  <body class="relative pt-16">
-    <header
-      class="fixed top-0 left-0 right-0 z-10 h-16 bg-neutral-950/50 backdrop-blur-xl"
-    >
+  <body class="relative flex flex-col min-h-dvh">
+    <header class="sticky top-0 z-10 h-16 bg-neutral-950/50 backdrop-blur-xl">
       <div class="container mx-auto flex h-full items-center justify-between">
         <a href={getRelativeLocaleUrl(lang, '/')}> Carlos A. Gomes </a>
         <nav>
@@ -93,7 +91,9 @@ const fullTitle = title ? `${title} | ${name}` : name;
       </div>
     </header>
 
-    <slot />
+    <main class="flex-1">
+      <slot />
+    </main>
 
     <footer>
       <div class="container mx-auto mt-5">

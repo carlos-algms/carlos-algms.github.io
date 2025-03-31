@@ -1,6 +1,8 @@
 ---
 import type { TranslationsLang } from '../lang/translations';
 import Layout from '../layouts/Layout.astro';
+import LinkedInIcon from '../assets/icons/linkedin.svg';
+import GitHubIcon from '../assets/icons/github.svg';
 
 type Params = {
   locale: TranslationsLang | undefined;
@@ -25,8 +27,42 @@ export function getStaticPaths(): Paths {
 }
 
 const { locale = 'pt-br' } = Astro.params;
+
+// FIXIT: Translate the home page
 ---
 
 <Layout lang={locale}>
-  <div class="container mx-auto"></div>
+  <div class="container mx-auto">
+    <section class="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-16">
+      <div
+        class="flex max-w-[980px] flex-col items-center text-center mx-auto gap-4"
+      >
+        <h1
+          class="text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]"
+        >
+          Welcome to DevBlog
+        </h1>
+        <p class="max-w-[750px] text-lg text-muted-foreground sm:text-xl">
+          Thoughts, stories and ideas about web development, programming, and
+          technology.
+        </p>
+        <div class="flex gap-4 mt-4">
+          <a
+            href="https://linkedin.com"
+            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-[#0077B5] hover:bg-[#0077B5]/90 text-white h-10 px-4 py-2"
+          >
+            <LinkedInIcon class="mr-2 h-5 w-5" />
+            LinkedIn
+          </a>
+          <a
+            href="https://github.com"
+            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-[#24292e] hover:bg-[#24292e]/90 text-white h-10 px-4 py-2"
+          >
+            <GitHubIcon class="mr-2 h-5 w-5" />
+            GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
 </Layout>
