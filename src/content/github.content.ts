@@ -1,5 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 
+const limit = 6;
+
 const issueSchema = z.object({
   html_url: z.string(),
   state: z.enum(['open', 'closed']),
@@ -66,7 +68,7 @@ export const githubPrs = defineCollection({
 function searchGitHub(type: 'pr' | 'issue') {
   return async () => {
     const url = [
-      'https://api.github.com/search/issues?sort=created&order=desc&per_page=10&q=',
+      `https://api.github.com/search/issues?sort=created&order=desc&per_page=${limit}&q=`,
       `is:${type}`,
       'author:carlos-algms',
       '-org:carlos-algms',
