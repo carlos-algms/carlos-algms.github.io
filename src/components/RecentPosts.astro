@@ -4,6 +4,7 @@ import Title from './Title.astro';
 import ArrowIcon from '../assets/icons/arrow.svg';
 import { cn } from '../styles/classes';
 import type { TranslationsLang } from '../lang/translations';
+import { getBlogPostsSorted } from '../content.config';
 
 type Props = {
   class?: string;
@@ -12,6 +13,8 @@ type Props = {
 
 // FIXIT: Translate recent posts
 const { class: classes = '', lang = 'pt-br' } = Astro.props;
+
+const posts = (await getBlogPostsSorted()).slice(0, 4);
 ---
 
 <section class={cn('flex flex-col gap-4', classes)}>
@@ -28,7 +31,18 @@ const { class: classes = '', lang = 'pt-br' } = Astro.props;
     </Fragment>
   </Title>
 
-  <ul class="grid gap-4"></ul>
+  <ul class="flex flex-wrap gap-4">
+    {
+      posts.map(({ data: post }) => (
+        <li class="flex flex-col gap-2">
+          <h2>{post.title}</h2>
+          <div>TAG</div>
+          <div>Description</div>
+          <div>localized link</div>
+        </li>
+      ))
+    }
+  </ul>
 
   <div class="flex justify-center">
     <a
