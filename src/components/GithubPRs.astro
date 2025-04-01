@@ -4,6 +4,7 @@ import Title from './Title.astro';
 import ArrowIcon from '../assets/icons/arrow.svg';
 import PRsOpenIcon from '../assets/icons/pr-open.svg';
 import PRsClosedIcon from '../assets/icons/pr-closed.svg';
+import { cn } from '../styles/classes';
 
 type Props = {
   class?: string;
@@ -25,8 +26,20 @@ const prs = await getCollection('githubPrs');
 const { class: classes = '' } = Astro.props;
 ---
 
-<section class={classes}>
-  <Title>Github PRs</Title>
+<section class={cn('flex flex-col gap-4', classes)}>
+  <Title>
+    Github PRs
+    <Fragment slot="actions">
+      <a
+        href="https://github.com/search?q=is:pr+author:carlos-algms&type=pullrequests"
+        target="_blank"
+        class="text-muted-foreground hover:underline hover:text-accent"
+      >
+        All my pull requests
+        <ArrowIcon class="size-4" />
+      </a>
+    </Fragment>
+  </Title>
 
   <ul class="grid gap-4">
     {
@@ -84,4 +97,15 @@ const { class: classes = '' } = Astro.props;
       ))
     }
   </ul>
+
+  <div class="flex justify-center">
+    <a
+      href="https://github.com/search?q=is:pr+author:carlos-algms&type=pullrequests"
+      target="_blank"
+      class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg px-5 py-2.5 my-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 inline-flex items-center"
+    >
+      All PRs I opened
+      <ArrowIcon class="size-5 inline-block" />
+    </a>
+  </div>
 </section>

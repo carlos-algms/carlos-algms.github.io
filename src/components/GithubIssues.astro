@@ -1,9 +1,15 @@
 ---
 import { getCollection } from 'astro:content';
 import Title from './Title.astro';
+import ArrowIcon from '../assets/icons/arrow.svg';
 import RepositoryIcon from '../assets/icons/repository.svg';
 import IssueOpenIcon from '../assets/icons/issue-open.svg';
 import IssueClosedIcon from '../assets/icons/issue-closed.svg';
+import { cn } from '../styles/classes';
+
+type Props = {
+  class?: string;
+};
 
 const formatDate = (dateString: string) => {
   return new Date(dateString).toLocaleDateString(undefined, {
@@ -16,10 +22,24 @@ const formatDate = (dateString: string) => {
 // FIXIT: Translate github issues
 
 const issues = await getCollection('githubIssues');
+
+const { class: classes = '' } = Astro.props;
 ---
 
-<section>
-  <Title>Github Issues</Title>
+<section class={cn('flex flex-col gap-4', classes)}>
+  <Title>
+    Github Issues
+    <Fragment slot="actions">
+      <a
+        href="https://github.com/search?q=is:issue+author:carlos-algms&type=issues"
+        target="_blank"
+        class="text-muted-foreground hover:underline hover:text-accent"
+      >
+        All my issues
+        <ArrowIcon class="size-4" />
+      </a>
+    </Fragment>
+  </Title>
 
   <ul class="grid gap-4">
     {
@@ -86,4 +106,15 @@ const issues = await getCollection('githubIssues');
       ))
     }
   </ul>
+
+  <div class="flex justify-center">
+    <a
+      href="https://github.com/search?q=is:issue+author:carlos-algms&type=issues"
+      target="_blank"
+      class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg px-5 py-2.5 my-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 inline-flex items-center"
+    >
+      All issues I opened
+      <ArrowIcon class="size-5 inline-block" />
+    </a>
+  </div>
 </section>
