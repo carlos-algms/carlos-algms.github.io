@@ -1,5 +1,6 @@
 import { defineCollection, getCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { githubIssues, githubPrs } from './content/github.content';
 
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './source/_posts' }),
@@ -14,7 +15,7 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+export const collections = { blog, githubIssues, githubPrs };
 
 export async function getBlogPostsSorted() {
   const posts = await getCollection('blog');

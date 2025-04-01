@@ -1,9 +1,9 @@
 ---
+import { getCollection } from 'astro:content';
 import Title from './Title.astro';
 import RepositoryIcon from '../assets/icons/repository.svg';
 import PRsOpenIcon from '../assets/icons/pr-open.svg';
 import PRsClosedIcon from '../assets/icons/pr-closed.svg';
-import prsJson from '../content/github_prs.json';
 
 type Props = {
   class?: string;
@@ -18,24 +18,9 @@ const formatDate = (dateString: string) => {
   });
 };
 
-// FIXIT: use Zod to validate the schema from Github API
 // FIXIT: Translate github PRs
 
-// const issues: GitHubIssue[] = await fetch(
-//   [
-//     'https://api.github.com/search/issues?q=author:carlos-algms&sort=created&order=desc&per_page=10',
-//     'is:issue',
-//     '-org:carlos-algms',
-//     '-user:carlos-algms',
-//     '-user:webdev-tools',
-//     '-user:talesprates',
-//   ].join('+'),
-//   {},
-// )
-//   .then((res) => res.json())
-//   .then((data) => data.items);
-
-const prs = prsJson.items;
+const prs = await getCollection('githubPrs');
 
 const { class: classes = '' } = Astro.props;
 ---
@@ -45,55 +30,53 @@ const { class: classes = '' } = Astro.props;
 
   <ul class="grid gap-4">
     {
-      prs.map((issue) => (
+      prs.map(({ data: pr }) => (
         <li class="border rounded-sm p-2 border-zinc-700 flex flex-col gap-2">
           <a
             class="inline-flex items-center gap-2"
-            href={issue.html_url}
+            href={pr.html_url}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {issue.state === 'open' ? (
+            {pr.state === 'open' ? (
               <PRsOpenIcon aria-hidden class="size-5 shrink-0 text-green-600" />
             ) : (
               <PRsClosedIcon aria-hidden class="size-5 shrink-0 text-accent" />
             )}
 
-            <span class="font-medium">{issue.title}</span>
+            <span class="font-medium">{pr.title}</span>
 
             <span aria-hidden class="text-xs text-muted-foreground">
-              #{issue.number}
+              #{pr.number}
             </span>
           </a>
 
           <div class="ml-7">
             <a
-              href={issue.repository_url
-                .replace('api.', '')
-                .replace('repos/', '')}
+              href={pr.repository_url.replace('api.', '').replace('repos/', '')}
               target="_blank"
               class="text-muted-foreground bg-muted px-1.5 py-0.5 rounded hover:underline hover:text-white"
             >
               <RepositoryIcon class="size-4 shrink-0 " />
-              {issue.repository_url.split('repos/')[1]}
+              {pr.repository_url.split('repos/')[1]}
             </a>
           </div>
 
           <div class="text-xs text-muted-foreground pl-7">
             Opened
-            <time datetime={new Date(issue.created_at).toISOString()}>
-              {formatDate(issue.created_at)}
+            <time datetime={new Date(pr.created_at).toISOString()}>
+              {formatDate(pr.created_at)}
             </time>
-            {issue.assignee && (
+            {pr.assignee && (
               <>
                 • Assigned to{' '}
                 <a
                   class="text-muted-foreground hover:underline hover:text-white"
-                  href={issue.assignee.html_url}
+                  href={pr.assignee.html_url}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  @{issue.assignee.login}
+                  @{pr.assignee.login}
                 </a>
               </>
             )}
