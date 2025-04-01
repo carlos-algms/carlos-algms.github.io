@@ -50,9 +50,14 @@ export const githubPrs = defineCollection({
     pull_request: z.object({
       head: z.object({
         label: z.string(),
+        ref: z.string(),
       }),
       base: z.object({
         label: z.string(),
+        ref: z.string(),
+        repo: z.object({
+          full_name: z.string(),
+        }),
       }),
     }),
   }),
