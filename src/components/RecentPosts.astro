@@ -1,0 +1,42 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import Title from './Title.astro';
+import ArrowIcon from '../assets/icons/arrow.svg';
+import { cn } from '../styles/classes';
+import type { TranslationsLang } from '../lang/translations';
+
+type Props = {
+  class?: string;
+  lang: TranslationsLang;
+};
+
+// FIXIT: Translate recent posts
+const { class: classes = '', lang = 'pt-br' } = Astro.props;
+---
+
+<section class={cn('flex flex-col gap-4', classes)}>
+  <Title>
+    Recent Posts
+    <Fragment slot="actions">
+      <a
+        href={getRelativeLocaleUrl(lang, '/blog')}
+        class="text-muted-foreground hover:underline hover:text-accent"
+      >
+        All my posts
+        <ArrowIcon class="size-4" />
+      </a>
+    </Fragment>
+  </Title>
+
+  <ul class="grid gap-4"></ul>
+
+  <div class="flex justify-center">
+    <a
+      href={getRelativeLocaleUrl(lang, '/blog')}
+      class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg px-5 py-2.5 my-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 inline-flex items-center"
+    >
+      All my posts
+      <ArrowIcon class="size-5 inline-block" />
+    </a>
+  </div>
+</section>

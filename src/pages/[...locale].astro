@@ -5,6 +5,7 @@ import LinkedInIcon from '../assets/icons/linkedin.svg';
 import GitHubIcon from '../assets/icons/github.svg';
 import GithubIssues from '../components/GithubIssues.astro';
 import GithubPRs from '../components/GithubPRs.astro';
+import RecentPosts from '../components/RecentPosts.astro';
 
 type Params = {
   locale: TranslationsLang | undefined;
@@ -66,6 +67,8 @@ const { locale = 'pt-br' } = Astro.params;
         </div>
       </div>
     </section>
+
+    <RecentPosts lang={locale} />
 
     <GithubPRs class="mb-7" />
 
