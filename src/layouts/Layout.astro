@@ -3,6 +3,10 @@ import '../styles/global.css';
 import { t, type TranslationsLang } from '../lang/translations';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
+import LinkedInIcon from '../assets/icons/linkedin.svg';
+import GitHubIcon from '../assets/icons/github.svg';
+import { cn } from '../styles/classes';
+
 type Props = {
   title?: string;
   lang: TranslationsLang;
@@ -105,9 +109,68 @@ const fullTitle = title ? `${title} | ${name}` : name;
       <slot />
     </main>
 
-    <footer>
-      <div class="container mx-auto mt-5">
-        <aside></aside>
+    <footer class="border-t border-zinc-700 bg-muted/40 mt-10 pb-15 pt-10">
+      <div class="container mx-auto flex flex-col gap-10 sm:flex-row">
+        <aside class="flex flex-col gap-2">
+          <h3 class="font-bold">Carlos A. Gomes</h3>
+          <div class="flex flex-row gap-3">
+            <a
+              href="https://github.com/carlos-algms"
+              target="_blank"
+              class={cn(
+                'inline-flex items-center justify-center rounded-full w-8 h-8 text-sm font-medium transition-colors',
+                'border border-zinc-700 border-input bg-background',
+                'hover:bg-accent hover:text-accent-foreground',
+              )}
+            >
+              <GitHubIcon class="h-4 w-4" />
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/carlosalgms/"
+              target="_blank"
+              class={cn(
+                'inline-flex items-center justify-center rounded-full w-8 h-8 text-sm font-medium transition-colors',
+                'border border-zinc-700 border-input bg-background',
+                'hover:bg-accent hover:text-accent-foreground',
+              )}
+            >
+              <LinkedInIcon class="h-4 w-4" />
+            </a>
+          </div>
+        </aside>
+        <aside class="flex flex-col gap-2">
+          <h4 class="font-bold">Links</h4>
+
+          <ul class="flex flex-col gap-1 text-muted-foreground">
+            <li>
+              <a
+                class="hover:text-accent"
+                href={getRelativeLocaleUrl(lang, '/')}>{t('home', lang)}</a
+              >
+            </li>
+            <li>
+              <a
+                class="hover:text-accent"
+                href={getRelativeLocaleUrl(lang, 'blog')}>{t('blog', lang)}</a
+              >
+            </li>
+            <li>
+              <a
+                class="hover:text-accent"
+                href={getRelativeLocaleUrl(lang, 'experiments')}
+                >{t('experiments', lang)}</a
+              >
+            </li>
+          </ul>
+        </aside>
+      </div>
+      <div
+        class="container mx-auto mt-10 text-muted-foreground flex justify-between border-t border-zinc-800 pt-4"
+      >
+        <aside class="text-muted-foreground">
+          © 2025 All rights reserved.
+        </aside>
         <aside>Powered by Astro</aside>
       </div>
     </footer>
