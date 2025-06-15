@@ -15,7 +15,7 @@ type Props = {
 // FIXIT: Translate recent posts
 const { class: classes = '', lang = 'pt-br' } = Astro.props;
 
-const posts = (await getBlogPostsSorted()).slice(0, 4);
+const posts = (await getBlogPostsSorted()).slice(0, 6);
 ---
 
 <section class={cn('flex flex-col gap-4', classes)}>
