@@ -5,6 +5,7 @@ import ArrowIcon from '../assets/icons/arrow.svg';
 import { cn } from '../styles/classes';
 import type { TranslationsLang } from '../lang/translations';
 import { getBlogPostsSorted } from '../content.config';
+import { formatDate } from '../helpers/dateFormat';
 
 type Props = {
   class?: string;
@@ -38,6 +39,12 @@ const posts = (await getBlogPostsSorted()).slice(0, 4);
           <h2 class="font-semibold tracking-tight text-xl" title={post.title}>
             {post.title}
           </h2>
+          <time
+            class="text-xs text-muted-foreground"
+            datetime={post.date.toISOString()}
+          >
+            {formatDate(post.date)}
+          </time>
           <a
             class="text-accent hover:underline self-end"
             href={`/blog/${post.slug}/`}

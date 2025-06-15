@@ -6,17 +6,10 @@ import RepositoryIcon from '../assets/icons/repository.svg';
 import IssueOpenIcon from '../assets/icons/issue-open.svg';
 import IssueClosedIcon from '../assets/icons/issue-closed.svg';
 import { cn } from '../styles/classes';
+import { formatDate } from '../helpers/dateFormat';
 
 type Props = {
   class?: string;
-};
-
-const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString(undefined, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
 };
 
 // FIXIT: Translate github issues

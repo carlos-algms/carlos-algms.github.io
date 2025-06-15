@@ -5,18 +5,10 @@ import ArrowIcon from '../assets/icons/arrow.svg';
 import PRsOpenIcon from '../assets/icons/pr-open.svg';
 import PRsClosedIcon from '../assets/icons/pr-closed.svg';
 import { cn } from '../styles/classes';
+import { formatDate } from '../helpers/dateFormat';
 
 type Props = {
   class?: string;
-};
-
-// FIXIT: deduplicate the formatDate function
-const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString(undefined, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
 };
 
 // FIXIT: Translate github PRs
