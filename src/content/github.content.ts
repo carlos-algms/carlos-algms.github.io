@@ -32,7 +32,7 @@ export const githubPrs = defineCollection({
       prs.map(async (pr: { pull_request: { url: string } }) => {
         const prData = await fetch(pr.pull_request.url, {
           headers: {
-            Authorization: `token ${import.meta.env.GH_TOKEN}`,
+            Authorization: `token ${import.meta.env.GH_PERSONAL_TOKEN}`,
           },
         }).then((res) => res.json());
 
@@ -81,7 +81,7 @@ function searchGitHub(type: 'pr' | 'issue') {
 
     const issues = await fetch(url, {
       headers: {
-        Authorization: `token ${import.meta.env.GH_TOKEN}`,
+        Authorization: `token ${import.meta.env.GH_PERSONAL_TOKEN}`,
       },
     })
       .then((res) => res.json())
