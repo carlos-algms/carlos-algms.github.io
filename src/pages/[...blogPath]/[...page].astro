@@ -4,7 +4,8 @@ import type { CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { getBlogPostsSorted } from '../../content.config';
 import Post from '../../components/Post.astro';
-import type { TranslationsLang } from '../../lang/translations';
+import { t, type TranslationsLang } from '../../lang/translations';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const allPosts = await getBlogPostsSorted();
@@ -12,7 +13,8 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     (acc, post) => {
       const lang = post.data.lang as TranslationsLang;
       acc[lang] ??= [];
-      acc[lang].push(post);
+      // FIXIT: use lang instead of hardcoded 'pt-br' after I translate the posts
+      acc['pt-br'].push(post);
       return acc;
     },
     {} as Record<TranslationsLang, CollectionEntry<'blog'>[]>,
@@ -41,7 +43,7 @@ const { page, lang } = Astro.props;
 ---
 
 <Layout
-  title={`Blog${page.currentPage > 1 ? ` - Page ${page.currentPage}` : ''}`}
+  title={`Blog${page.currentPage > 1 ? ` - ${t('page', lang)} ${page.currentPage}` : ''}`}
   lang={lang}
 >
   <ol class="container mx-auto">
@@ -53,4 +55,65 @@ const { page, lang } = Astro.props;
       ))
     }
   </ol>
+
+  <nav class="mt-12 flex justify-center">
+    <ul class="inline-flex items-center gap-2" role="list">
+      {
+        page.currentPage > 1 && (
+          <li>
+            <a
+              href={page.url.prev}
+              class="inline-flex items-center px-3 py-1 rounded border border-zinc-700 bg-background hover:bg-accent hover:text-accent-foreground"
+              aria-label={t('go_to_previous_page', lang)}
+            >
+              ‹ {t('previous', lang)}
+            </a>
+          </li>
+        )
+      }
+      {
+        // TODO: Someday, truncate the number of pages shown if there are too many
+        Array.from({ length: page.lastPage }, (_, i) => {
+          const pageNum = i + 1;
+          const isCurrent = pageNum === page.currentPage;
+          return (
+            <li>
+              {isCurrent ? (
+                <span
+                  class="inline-flex items-center px-3 py-1 rounded border border-zinc-700 bg-accent text-accent-foreground font-semibold"
+                  aria-current="page"
+                >
+                  {pageNum}
+                </span>
+              ) : (
+                <a
+                  href={getRelativeLocaleUrl(
+                    lang,
+                    pageNum === 1 ? 'blog' : `/blog/${pageNum}/`,
+                  )}
+                  class="inline-flex items-center px-3 py-1 rounded border border-zinc-700 bg-background hover:bg-accent hover:text-accent-foreground"
+                  aria-label={`${t('go_to_page', lang)} ${pageNum}`}
+                >
+                  {pageNum}
+                </a>
+              )}
+            </li>
+          );
+        })
+      }
+      {
+        page.currentPage < page.lastPage && (
+          <li>
+            <a
+              href={page.url.next}
+              class="inline-flex items-center px-3 py-1 rounded border border-zinc-700 bg-background hover:bg-accent hover:text-accent-foreground"
+              aria-label={t('go_to_next_page', lang)}
+            >
+              {t('next', lang)} ›
+            </a>
+          </li>
+        )
+      }
+    </ul>
+  </nav>
 </Layout>

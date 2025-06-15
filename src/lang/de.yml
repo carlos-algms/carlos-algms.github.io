@@ -6,5 +6,9 @@ home: Startseite
 next: Weiter
 previous: Zurück
 read_more: Weiterlesen
+page: Seite
+go_to_previous_page: Gehe zur vorherigen Seite
+go_to_next_page: Gehe zur nächsten Seite
+go_to_page: Gehe zur Seite
 share: Teilen
 updated: Aktualisiert

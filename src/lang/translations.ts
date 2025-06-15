@@ -15,6 +15,10 @@ const langSchema = z.object({
   read_more: z.string(),
   share: z.string(),
   updated: z.string(),
+  page: z.string(),
+  go_to_previous_page: z.string(),
+  go_to_next_page: z.string(),
+  go_to_page: z.string(),
 });
 
 export const translations = {

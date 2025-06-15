@@ -6,5 +6,9 @@ home: Home
 next: Next
 previous: Previous
 read_more: Read more
+page: Page
+go_to_previous_page: Go to previous page
+go_to_next_page: Go to next page
+go_to_page: Go to page
 share: Share
 updated: Updated
