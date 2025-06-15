@@ -1,5 +1,6 @@
 ---
 import type { TranslationsLang } from '../lang/translations';
+import { cn } from '../styles/classes';
 import Layout from '../layouts/Layout.astro';
 import LinkedInIcon from '../assets/icons/linkedin.svg';
 import GitHubIcon from '../assets/icons/github.svg';
@@ -51,15 +52,29 @@ const { locale = 'pt-br' } = Astro.params;
         </p>
         <div class="flex gap-4 mt-4">
           <a
-            href="https://linkedin.com"
-            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-[#0077B5] hover:bg-[#0077B5]/90 text-white h-10 px-4 py-2"
+            href="https://www.linkedin.com/in/carlosalgms/"
+            class={cn(
+              'inline-flex items-center justify-center',
+              'rounded-md text-sm font-medium',
+              'ring-offset-background transition-colors',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+              'disabled:pointer-events-none disabled:opacity-50',
+              'bg-[#0077B5] hover:bg-[#0077B5]/90 text-white h-10 px-4 py-2'
+            )}
           >
             <LinkedInIcon class="mr-2 h-5 w-5" />
             LinkedIn
           </a>
           <a
-            href="https://github.com"
-            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-[#24292e] hover:bg-[#24292e]/90 text-white h-10 px-4 py-2"
+            href="https://github.com/carlos-algms"
+            class={cn(
+              'inline-flex items-center justify-center',
+              'rounded-md text-sm font-medium',
+              'ring-offset-background transition-colors',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+              'disabled:pointer-events-none disabled:opacity-50',
+              'bg-[#24292e] hover:bg-[#24292e]/90 text-white h-10 px-4 py-2'
+            )}
           >
             <GitHubIcon class="mr-2 h-5 w-5" />
             GitHub
@@ -70,9 +85,8 @@ const { locale = 'pt-br' } = Astro.params;
 
     <RecentPosts lang={locale} />
 
-    <GithubIssues class="mb-7"/>
+    <GithubIssues class="mb-7" />
 
     <GithubPRs />
-
   </div>
 </Layout>

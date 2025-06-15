@@ -60,7 +60,13 @@ const posts = (await getBlogPostsSorted()).slice(0, 4);
   <div class="flex justify-center">
     <a
       href={getRelativeLocaleUrl(lang, '/blog')}
-      class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg px-5 py-2.5 my-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 inline-flex items-center"
+      class={cn(
+        'hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300',
+        'text-white bg-purple-700 ',
+        'rounded-lg px-5 py-2.5 my-2',
+        'inline-flex items-center',
+        'dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900',
+      )}
     >
       All my posts
       <ArrowIcon class="size-5 inline-block" />
