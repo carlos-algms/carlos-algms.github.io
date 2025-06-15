@@ -4,6 +4,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import { render } from 'astro:content';
 import CalendarIcon from '../assets/icons/calendar.svg';
 import { t } from '../lang/translations';
+import { cn } from '../styles/classes';
 
 type Props = {
   limitToExcerpt?: boolean;
@@ -34,7 +35,7 @@ const { Content } = await render({
   itemtype="https://schema.org/BlogPosting"
 >
   <header>
-    <h2 class="text-clamp-l mb-1" itemprop="name">
+    <h2 class="text-clamp-l mb-1 font-bold" itemprop="name">
       {
         !limitToExcerpt ? (
           title
@@ -47,7 +48,10 @@ const { Content } = await render({
     </h2>
 
     <div
-      class="border-y-1 border-neutral-200 dark:border-gray-600 mt-4 py-2 flex gap-1"
+      class={cn(
+        'border-y-1 border-neutral-200 dark:border-gray-600 py-2 flex gap-1',
+        !limitToExcerpt ? 'my-8' : 'my-4',
+      )}
     >
       <CalendarIcon width={20} height={20} />
 
@@ -85,10 +89,10 @@ const { Content } = await render({
       >
         {t('read_more', lang)}
         <span
-          class="rounded-full bg-white size-5 inline-block text-purple-700 text-center ml-1 text-3xl font-bold leading-5"
+          class="rounded-full bg-white size-6 inline-flex justify-center items-center text-purple-700 text-center ml-2 text-3xl font-bold leading-0"
           aria-hidden="true"
         >
-          +
+          <span class="-mt-1">+</span>
         </span>
       </a>
     )
