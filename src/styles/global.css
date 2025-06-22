@@ -64,6 +64,10 @@ svg {
   display: inline-block;
 }
 
+a {
+  @apply transition-colors duration-200;
+}
+
 .article-entry {
   p,
   pre,

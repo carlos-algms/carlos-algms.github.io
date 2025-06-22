@@ -16,7 +16,6 @@ const { title, lang = 'pt-br' } = Astro.props;
 const name = 'Carlos A. Gomes';
 const fullTitle = title ? `${title} | ${name}` : name;
 // FIXIT: Fix header in light mode
-// FIXIT: Add Footer styles
 ---
 
 <!doctype html>
@@ -122,6 +121,7 @@ const fullTitle = title ? `${title} | ${name}` : name;
                 'border border-zinc-700 border-input bg-background',
                 'hover:bg-accent hover:text-accent-foreground',
               )}
+              aria-label="Carlos Gomes GitHub Profile"
             >
               <GitHubIcon class="h-4 w-4" />
             </a>
@@ -134,6 +134,7 @@ const fullTitle = title ? `${title} | ${name}` : name;
                 'border border-zinc-700 border-input bg-background',
                 'hover:bg-accent hover:text-accent-foreground',
               )}
+              aria-label="Carlos Gomes LinkedIn Profile"
             >
               <LinkedInIcon class="h-4 w-4" />
             </a>

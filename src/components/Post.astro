@@ -22,7 +22,7 @@ const { Content } = await render({
   ...post,
   rendered: {
     ...post.rendered,
-    html: !limitToExcerpt ? body : body.split('<!-- more -->')[0],
+    html: !limitToExcerpt ? body : body.split('<!-- more -->')[0] || '',
   },
 });
 
