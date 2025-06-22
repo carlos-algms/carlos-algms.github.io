@@ -75,18 +75,32 @@ const { post, lang, next, prev } = Astro.props;
 
     <hr class="my-10 border-t-2 border-muted" />
 
-    <div id="disqus_thread" class="text-accent"></div>
+    <div id="disqus_thread" class="text-accent">
+      {
+        import.meta.env.MODE !== 'production' && (
+          <div>
+            <p class="text-center text-white font-bold uppercase">
+              Disqus disabled in non-production mode.
+            </p>
+          </div>
+        )
+      }
+    </div>
   </div>
 </Layout>
 
 <script>
-  window.addEventListener('load', () => {
-    const dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.setAttribute('data-timestamp', String(+new Date()));
-    dsq.src = `https://${import.meta.env.PUBLIC_DISQUS_SHORT_NAME}.disqus.com/embed.js`;
+  const shortName = import.meta.env.PUBLIC_DISQUS_SHORT_NAME;
 
-    (document.head || document.body).appendChild(dsq);
-  });
+  if (import.meta.env.MODE === 'production') {
+    window.addEventListener('load', () => {
+      const dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.setAttribute('data-timestamp', String(+new Date()));
+      dsq.src = `https://${shortName}.disqus.com/embed.js`;
+
+      (document.head || document.body).appendChild(dsq);
+    });
+  }
 </script>
