@@ -72,5 +72,21 @@ const { post, lang, next, prev } = Astro.props;
         )
       }
     </nav>
+
+    <hr class="my-10 border-t-2 border-muted" />
+
+    <div id="disqus_thread" class="text-accent"></div>
   </div>
 </Layout>
+
+<script>
+  window.addEventListener('load', () => {
+    const dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.setAttribute('data-timestamp', String(+new Date()));
+    dsq.src = `https://${import.meta.env.PUBLIC_DISQUS_SHORT_NAME}.disqus.com/embed.js`;
+
+    (document.head || document.body).appendChild(dsq);
+  });
+</script>
