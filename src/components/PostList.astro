@@ -1,0 +1,93 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { t, type TranslationsLang } from '../lang/translations';
+import Layout from '../layouts/Layout.astro';
+import Post from './Post.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+interface Props {
+  currentPage: number;
+  lastPage: number;
+  prevUrl: string | undefined;
+  nextUrl: string | undefined;
+  lang: TranslationsLang;
+  posts: CollectionEntry<'blog'>[];
+}
+
+const { currentPage, lang, posts, prevUrl, nextUrl, lastPage } = Astro.props;
+---
+
+<Layout
+  title={`Blog${currentPage > 1 ? ` - ${t('page', lang)} ${currentPage}` : ''}`}
+  lang={lang}
+>
+  <ol class="container mx-auto">
+    {
+      posts.map((post) => (
+        <li class="mb-20">
+          <Post limitToExcerpt={true} post={post} />
+        </li>
+      ))
+    }
+  </ol>
+  {
+    lastPage > 1 && (
+      <nav class="mt-12 flex justify-center">
+        <ul class="inline-flex items-center gap-2" role="list">
+          {currentPage > 1 && (
+            <li>
+              <a
+                href={prevUrl}
+                class="inline-flex items-center px-3 py-1 rounded border border-zinc-700 bg-background hover:bg-accent hover:text-accent-foreground"
+                aria-label={t('go_to_previous_page', lang)}
+              >
+                ‹ {t('previous', lang)}
+              </a>
+            </li>
+          )}
+          {
+            // TODO: Someday, truncate the number of pages shown if there are too many
+            Array.from({ length: lastPage }, (_, i) => {
+              const pageNum = i + 1;
+              const isCurrent = pageNum === currentPage;
+              return (
+                <li>
+                  {isCurrent ? (
+                    <span
+                      class="inline-flex items-center px-3 py-1 rounded border border-zinc-700 bg-accent text-accent-foreground font-semibold"
+                      aria-current="page"
+                    >
+                      {pageNum}
+                    </span>
+                  ) : (
+                    <a
+                      href={getRelativeLocaleUrl(
+                        lang,
+                        pageNum === 1 ? 'blog' : `/blog/${pageNum}/`,
+                      )}
+                      class="inline-flex items-center px-3 py-1 rounded border border-zinc-700 bg-background hover:bg-accent hover:text-accent-foreground"
+                      aria-label={`${t('go_to_page', lang)} ${pageNum}`}
+                    >
+                      {pageNum}
+                    </a>
+                  )}
+                </li>
+              );
+            })
+          }
+          {currentPage < lastPage && (
+            <li>
+              <a
+                href={nextUrl}
+                class="inline-flex items-center px-3 py-1 rounded border border-zinc-700 bg-background hover:bg-accent hover:text-accent-foreground"
+                aria-label={t('go_to_next_page', lang)}
+              >
+                {t('next', lang)} ›
+              </a>
+            </li>
+          )}
+        </ul>
+      </nav>
+    )
+  }
+</Layout>
