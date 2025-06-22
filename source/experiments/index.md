@@ -59,7 +59,7 @@ Once one defines a `container` everything inside it is turn into a column, great
 
 It is published as an npm package [here](https://www.npmjs.com/package/@webdev-tools/css-flex-layout) and can be installed as:
 
-```shell
+```bash
 npm i @webdev-tools/css-flex-layout
 ```
 

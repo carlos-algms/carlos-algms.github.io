@@ -56,11 +56,11 @@ const { class: classes = '' } = Astro.props;
             </span>
           </a>
 
-          <div class="ml-7 flex items-center gap-1 flex-wrap">
+          <div class="text-xs ml-7 flex items-center gap-1 flex-wrap">
             <span class="text-muted-foreground bg-muted px-1.5 py-0.5 rounded">
               {pr.pull_request.head.label}
             </span>
-            <ArrowIcon class="size-5 text-muted-foreground" />
+            <ArrowIcon class="size-4 text-muted-foreground" />
             <span class="text-muted-foreground bg-muted px-1.5 py-0.5 rounded">
               {pr.pull_request.base.repo.full_name}:{pr.pull_request.base.ref}
             </span>

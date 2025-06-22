@@ -69,7 +69,7 @@ const { class: classes = '' } = Astro.props;
                 .replace('api.', '')
                 .replace('repos/', '')}
               target="_blank"
-              class="text-muted-foreground bg-muted px-1.5 py-0.5 rounded hover:underline hover:text-white"
+              class="text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded hover:underline hover:text-white"
             >
               <RepositoryIcon class="size-4 shrink-0 " />
               {issue.repository_url.split('repos/')[1]}
