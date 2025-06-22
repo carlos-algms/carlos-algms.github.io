@@ -5,7 +5,7 @@ slug: how-to-configure-the-hostname-of-the-server
 date: 2014-07-06T13:27:40-03:00
 updated: 2014-07-06T13:27:40-03:00
 comments: true
-tags: [Linux, Ubuntu, Cloud]
+tags: [linux, ubuntu, cloud]
 lang: en
 ---
 

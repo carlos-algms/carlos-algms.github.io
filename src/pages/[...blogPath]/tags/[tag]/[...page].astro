@@ -19,8 +19,6 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 
         // FIXIT: use lang instead of hardcoded 'pt-br' after I translate the posts
         acc['pt-br'][tag] ??= [];
-
-        acc[lang][tag].push(post);
         acc['pt-br'][tag].push(post);
       });
 

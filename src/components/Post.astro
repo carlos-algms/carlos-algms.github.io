@@ -103,6 +103,24 @@ const { Content } = await render({
   }
 </article>
 
+<nav class="mt-6 border-t border-neutral-200 dark:border-gray-600 pt-5">
+  <ol class="flex">
+    {
+      post.data.tags.map((tag) => (
+        <li class="mr-2">
+          <a
+            href={getRelativeLocaleUrl(lang, `/blog/tags/${tag}/`)}
+            title={`List all posts with tag ${tag}`}
+            class="text-muted-foreground hover:text-accent hover:underline"
+          >
+            #{tag}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
 <script>
   // run on client to format on user's locale
   const timeTags = document.querySelectorAll('time');
