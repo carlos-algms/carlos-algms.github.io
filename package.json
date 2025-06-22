@@ -8,11 +8,8 @@
   },
   "license": "MIT",
   "private": true,
-  "hexo": {
-    "version": "7.3.0"
-  },
   "engines": {
-    "node": "^22"
+    "node": "^24"
   },
   "scripts": {
     "dev": "astro dev",

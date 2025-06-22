@@ -1,15 +1,32 @@
 ---
-layout: page
 title: Experiments with CSS, JavaScript and DevOPS
 comments: false
 ---
+
+<div class="article-entry experiments-page">
+
+  <style>
+    .experiments-page {
+      img {
+        width: auto;
+        height: auto;
+        margin: 0 auto;
+      }
+
+      img[alt="Snake game screenshot"] {
+        max-height: 600px;
+      }
+    }
+  </style>
+
+# Experiments With CSS, JavaScript and DevOPS
 
 ## Snake Game
 
 A clone of the famous snake game before smartphones were a thing.  
 You can play it in the [live-version here](https://carlos-algms.github.io/snake-game/)
 
-<img src="snake-game.png" alt="Snake game screenshot" style="max-height: 600px" loading="lazy" />
+![Snake game screenshot](./snake-game.png)
 
 [snake-game sources](https://github.com/carlos-algms/snake-game)
 
@@ -19,7 +36,9 @@ You can play it in the [live-version here](https://carlos-algms.github.io/snake-
 
 <a href="animated-screen/">
   <figure style="background-color: rgb(15, 15, 15)">
-    <img src="animated-screen/animated-screen.gif" alt="animaged scree with css" loading="lazy" />
+
+![Animated screen with CSS](./animated-screen/animated-screen.gif)
+
   </figure>
 </a>
 
@@ -29,7 +48,7 @@ Create an animated clock with different technologies, like with CSS and with SVG
 
 Live version: https://multiple-clocks.vercel.app/
 
-<img src="multiple-clocks.png" alt="multiple clocks with css and svg" style="max-height: 400px" loading="lazy" />
+![multiple clocks with css and svg](./multiple-clocks.png)
 
 [Multiple-clocks sources](https://github.com/carlos-algms/multiple-clocks)
 
@@ -62,3 +81,5 @@ Usage:
 ```
 
 [CSS flex-layout sources](https://github.com/webdev-tools/css-flex-layout)
+
+</div>
