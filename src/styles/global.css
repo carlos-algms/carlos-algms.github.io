@@ -84,7 +84,7 @@ svg {
   }
 
   code:not(:is(pre code)) {
-    @apply bg-neutral-200 dark:bg-neutral-700 text-red-600 dark:text-red-400 px-1;
+    @apply bg-neutral-200 dark:bg-neutral-800 text-red-600 dark:text-red-400 px-1;
   }
 
   a:not(.rounded-lg, h2 > *) {
