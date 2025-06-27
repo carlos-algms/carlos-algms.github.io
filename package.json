@@ -8,9 +8,6 @@
   },
   "license": "MIT",
   "private": true,
-  "engines": {
-    "node": "^24"
-  },
   "scripts": {
     "dev": "astro dev",
     "build": "rimraf dist && astro build",
@@ -29,6 +26,7 @@
     "@astrojs/check": "^0.9.4",
     "@astrojs/partytown": "^2.1.4",
     "@astrojs/react": "^4.2.2",
+    "@astrojs/sitemap": "^3.4.1",
     "@rollup/plugin-yaml": "^4.1.2",
     "@tailwindcss/vite": "^4.0.17",
     "@types/node": "^22.0.0",
@@ -40,6 +38,9 @@
     "rimraf": "^6.0.1",
     "sharp": "^0.33.5",
     "typescript": "^5.8.2"
+  },
+  "engines": {
+    "node": "^24"
   },
   "packageManager": "pnpm@10.12.1"
 }
