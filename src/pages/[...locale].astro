@@ -44,12 +44,14 @@ const { locale = 'pt-br' } = Astro.params;
         <h1
           class="text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]"
         >
-          Welcome to DevBlog
+          Welcome
         </h1>
-        <p class="max-w-[750px] text-lg text-muted-foreground sm:text-xl">
-          Thoughts, stories and ideas about web development, programming, and
-          technology.
-        </p>
+        <div class="max-w-[750px] text-muted-foreground text-lg sm:text-xl">
+          <p>
+            I'm Carlos A. Gomes, a software engineer with a passion for web
+            development and open source.
+          </p>
+        </div>
         <div class="flex gap-4 mt-4">
           <a
             href="https://www.linkedin.com/in/carlosalgms/"
@@ -59,7 +61,7 @@ const { locale = 'pt-br' } = Astro.params;
               'ring-offset-background transition-colors',
               'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
               'disabled:pointer-events-none disabled:opacity-50',
-              'bg-[#0077B5] hover:bg-[#0077B5]/90 text-white h-10 px-4 py-2'
+              'bg-[#0077B5] hover:bg-[#0077B5]/90 text-white h-10 px-4 py-2',
             )}
           >
             <LinkedInIcon class="mr-2 h-5 w-5" />
@@ -73,7 +75,7 @@ const { locale = 'pt-br' } = Astro.params;
               'ring-offset-background transition-colors',
               'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
               'disabled:pointer-events-none disabled:opacity-50',
-              'bg-[#24292e] hover:bg-[#24292e]/90 text-white h-10 px-4 py-2'
+              'bg-[#24292e] hover:bg-[#24292e]/90 text-white h-10 px-4 py-2',
             )}
           >
             <GitHubIcon class="mr-2 h-5 w-5" />
