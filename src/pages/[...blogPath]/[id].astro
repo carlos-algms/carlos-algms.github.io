@@ -54,7 +54,7 @@ const { post, lang, next, prev } = Astro.props;
         prev && (
           <a
             href={getRelativeLocaleUrl(lang, `/blog/${prev.data.slug}/`)}
-            class="hover:hover:bg-purple-800 px-4 py-2 rounded-md border border-muted"
+            class="hover:bg-purple-800 hover:text-accent-foreground px-4 py-2 rounded-md border border-zinc-300 dark:border-muted"
           >
             ← {prev.data.title}
           </a>
@@ -65,7 +65,7 @@ const { post, lang, next, prev } = Astro.props;
         next && (
           <a
             href={getRelativeLocaleUrl(lang, `/blog/${next.data.slug}/`)}
-            class="hover:hover:bg-purple-800 px-4 py-2 rounded-md border border-muted text-right"
+            class="hover:bg-purple-800 hover:text-accent-foreground px-4 py-2 rounded-md border border-zinc-300 dark:border-muted text-right"
           >
             {next.data.title} →
           </a>

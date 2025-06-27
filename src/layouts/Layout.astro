@@ -15,7 +15,6 @@ type Props = {
 const { title, lang = 'pt-br' } = Astro.props;
 const name = 'Carlos A. Gomes';
 const fullTitle = title ? `${title} | ${name}` : name;
-// FIXIT: Fix header in light mode
 ---
 
 <!doctype html>
@@ -118,7 +117,9 @@ const fullTitle = title ? `${title} | ${name}` : name;
     </script>
   </head>
   <body class="relative flex flex-col min-h-dvh">
-    <header class="sticky top-0 z-10 h-16 bg-neutral-950/50 backdrop-blur-xl">
+    <header
+      class="sticky top-0 z-10 h-16 dark:bg-neutral-950/50 backdrop-blur-xl"
+    >
       <div class="container mx-auto flex h-full items-center justify-between">
         <a class="hover:text-accent" href={getRelativeLocaleUrl(lang, '/')}>
           Carlos A. Gomes
@@ -153,7 +154,9 @@ const fullTitle = title ? `${title} | ${name}` : name;
       <slot />
     </main>
 
-    <footer class="border-t border-zinc-700 bg-muted/40 mt-10 pb-15 pt-10">
+    <footer
+      class="border-t border-zinc-300 dark:border-zinc-700 dark:bg-muted/40 mt-10 pb-15 pt-10"
+    >
       <div class="container mx-auto flex flex-col gap-10 sm:flex-row">
         <aside class="flex flex-col gap-2">
           <h3 class="font-bold">Carlos A. Gomes</h3>
@@ -163,7 +166,7 @@ const fullTitle = title ? `${title} | ${name}` : name;
               target="_blank"
               class={cn(
                 'inline-flex items-center justify-center rounded-full w-8 h-8 text-sm font-medium transition-colors',
-                'border border-zinc-700 border-input bg-background',
+                'border border-zinc-300 dark:border-zinc-700 border-input bg-background',
                 'hover:bg-accent hover:text-accent-foreground',
               )}
               aria-label="Carlos Gomes GitHub Profile"
@@ -176,7 +179,7 @@ const fullTitle = title ? `${title} | ${name}` : name;
               target="_blank"
               class={cn(
                 'inline-flex items-center justify-center rounded-full w-8 h-8 text-sm font-medium transition-colors',
-                'border border-zinc-700 border-input bg-background',
+                'border border-zinc-300 dark:border-zinc-700 border-input bg-background',
                 'hover:bg-accent hover:text-accent-foreground',
               )}
               aria-label="Carlos Gomes LinkedIn Profile"
@@ -188,7 +191,7 @@ const fullTitle = title ? `${title} | ${name}` : name;
         <aside class="flex flex-col gap-2">
           <h4 class="font-bold">Links</h4>
 
-          <ul class="flex flex-col gap-1 text-muted-foreground">
+          <ul class="flex flex-col gap-1 dark:text-muted-foreground">
             <li>
               <a
                 class="hover:text-accent"
@@ -212,11 +215,9 @@ const fullTitle = title ? `${title} | ${name}` : name;
         </aside>
       </div>
       <div
-        class="container mx-auto mt-10 text-muted-foreground flex justify-between border-t border-zinc-800 pt-4"
+        class="container mx-auto mt-10 dark:text-muted-foreground flex justify-between border-t border-zinc-300 dark:border-zinc-800 pt-4"
       >
-        <aside class="text-muted-foreground">
-          © 2025 All rights reserved.
-        </aside>
+        <aside>© 2025 All rights reserved.</aside>
         <aside>Powered by Astro</aside>
       </div>
     </footer>

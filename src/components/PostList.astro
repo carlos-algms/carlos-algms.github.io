@@ -38,7 +38,7 @@ const { currentPage, lang, posts, prevUrl, nextUrl, lastPage } = Astro.props;
             <li>
               <a
                 href={prevUrl}
-                class="inline-flex items-center px-3 py-1 rounded border border-zinc-700 bg-background hover:bg-accent hover:text-accent-foreground"
+                class="inline-flex items-center px-3 py-1 rounded border border-zinc-300 dark:border-zinc-700 bg-background hover:bg-accent hover:text-accent-foreground"
                 aria-label={t('go_to_previous_page', lang)}
               >
                 ‹ {t('previous', lang)}
@@ -54,7 +54,7 @@ const { currentPage, lang, posts, prevUrl, nextUrl, lastPage } = Astro.props;
                 <li>
                   {isCurrent ? (
                     <span
-                      class="inline-flex items-center px-3 py-1 rounded border border-zinc-700 bg-accent text-accent-foreground font-semibold"
+                      class="inline-flex items-center px-3 py-1 rounded border border-zinc-300 dark:border-zinc-700 bg-accent text-accent-foreground font-semibold"
                       aria-current="page"
                     >
                       {pageNum}
@@ -65,7 +65,7 @@ const { currentPage, lang, posts, prevUrl, nextUrl, lastPage } = Astro.props;
                         lang,
                         pageNum === 1 ? 'blog' : `/blog/${pageNum}/`,
                       )}
-                      class="inline-flex items-center px-3 py-1 rounded border border-zinc-700 bg-background hover:bg-accent hover:text-accent-foreground"
+                      class="inline-flex items-center px-3 py-1 rounded border border-zinc-300 dark:border-zinc-700 bg-background hover:bg-accent hover:text-accent-foreground"
                       aria-label={`${t('go_to_page', lang)} ${pageNum}`}
                     >
                       {pageNum}
@@ -79,7 +79,7 @@ const { currentPage, lang, posts, prevUrl, nextUrl, lastPage } = Astro.props;
             <li>
               <a
                 href={nextUrl}
-                class="inline-flex items-center px-3 py-1 rounded border border-zinc-700 bg-background hover:bg-accent hover:text-accent-foreground"
+                class="inline-flex items-center px-3 py-1 rounded border border-zinc-300 dark:border-zinc-700 bg-background hover:bg-accent hover:text-accent-foreground"
                 aria-label={t('go_to_next_page', lang)}
               >
                 {t('next', lang)} ›
