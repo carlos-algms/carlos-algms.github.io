@@ -70,7 +70,50 @@ const fullTitle = title ? `${title} | ${name}` : name;
       crossorigin="anonymous"
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&display=swap"
     />
+
     <slot name="head" />
+
+    <script
+      is:inline
+      type="text/partytown"
+      async
+      src={`https://www.googletagmanager.com/gtag/js?id=G-ZNQ41VTYXZ`}></script>
+
+    <script is:inline type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      // Initialize as Anonymous until we have a proper consent management
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+      });
+
+      gtag('config', 'G-ZNQ41VTYXZ');
+    </script>
+
+    <script is:inline data-category="analytics">
+      function updateConsents() {
+        if (typeof gtag !== 'function') {
+          console.warn('gtag is not defined');
+          return;
+        }
+
+        gtag('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+          analytics_storage: 'granted',
+        });
+      }
+    </script>
   </head>
   <body class="relative flex flex-col min-h-dvh">
     <header class="sticky top-0 z-10 h-16 bg-neutral-950/50 backdrop-blur-xl">

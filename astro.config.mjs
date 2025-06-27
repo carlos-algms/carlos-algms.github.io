@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import partytown from '@astrojs/partytown';
 
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
@@ -27,7 +28,16 @@ export default defineConfig({
     svg: true,
   },
 
-  integrations: [react()],
+  integrations: [
+    react(),
+
+    process.env.NODE_ENV === 'production' &&
+      partytown({
+        config: {
+          forward: ['dataLayer.push', 'gtag'],
+        },
+      }),
+  ],
 
   vite: {
     plugins: [tailwindcss(), yaml()],
