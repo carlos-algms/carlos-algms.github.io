@@ -30,7 +30,7 @@
   -moz-osx-font-smoothing: grayscale;
 
   --background: 0 0% 100%;
-  --foreground: 240 5% 30%;
+  --foreground: 0 0 22%;
 
   @media (prefers-color-scheme: dark) {
     --background: 20 14.3% 4.1%;
