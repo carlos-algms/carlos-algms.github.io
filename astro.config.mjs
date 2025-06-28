@@ -3,7 +3,6 @@ import { defineConfig } from 'astro/config';
 import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
 
-import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import yaml from '@rollup/plugin-yaml';
 
@@ -30,8 +29,6 @@ export default defineConfig({
   },
 
   integrations: [
-    react(),
-
     sitemap({
       // FIXIT: remove the en and de filters after the pages are translated
       filter: (page) => !(page.includes('/en/') || page.includes('/de/')),
