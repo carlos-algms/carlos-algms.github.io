@@ -19,41 +19,32 @@ const posts = (await getBlogPostsSorted()).slice(0, 6);
 ---
 
 <section class={cn('flex flex-col gap-4', classes)}>
-  <Title>
-    Recent Posts
-    <Fragment slot="actions">
-      <a
-        href={getRelativeLocaleUrl(lang, '/blog')}
-        class="text-muted-foreground hover:underline hover:text-accent"
-      >
-        All my posts
-        <ArrowIcon class="size-4" />
-      </a>
-    </Fragment>
-  </Title>
+  <Title>Recent Posts</Title>
 
   <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
     {
       posts.map(({ data: post }) => (
-        <li class="flex flex-col gap-2 justify-between border border-zinc-300 dark:border-zinc-700 rounded-lg p-4">
+        <li class="flex flex-col gap-2 justify-between card-bordered p-4">
           <h2 class="font-semibold tracking-tight text-xl" title={post.title}>
             <a href={`/blog/${post.slug}/`} class="hover:text-accent">
               {post.title}
             </a>
           </h2>
-          <time
-            class="text-xs text-muted-foreground"
-            datetime={post.date.toISOString()}
-          >
-            {formatDate(post.date)}
-          </time>
-          <a
-            class="text-accent hover:underline self-end"
-            href={`/blog/${post.slug}/`}
-          >
-            Read more
-            <ArrowIcon class="size-4" />
-          </a>
+          <div class="flex justify-between items-center">
+            <time
+              class="text-xs text-muted-foreground"
+              datetime={post.date.toISOString()}
+            >
+              {formatDate(post.date)}
+            </time>
+            <a
+              class="text-accent hover:underline "
+              href={`/blog/${post.slug}/`}
+            >
+              Read more
+              <ArrowIcon class="size-4" />
+            </a>
+          </div>
         </li>
       ))
     }
