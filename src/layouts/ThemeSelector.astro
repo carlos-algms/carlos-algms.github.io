@@ -1,0 +1,73 @@
+---
+import SunIcon from '../assets/icons/sun.svg';
+import MoonIcon from '../assets/icons/moon.svg';
+import { cn } from '../styles/classes';
+---
+
+<div>
+  <label
+    class="inline-flex items-center cursor-pointer group"
+    title="Toggle light and dark Theme"
+  >
+    <input type="checkbox" value="" class="sr-only" name="theme-selector" />
+    <span
+      class={cn(
+        'relative w-13 h-6 bg-blue-400 rounded-full',
+        'dark:bg-gray-700 dark:group-has-checked:bg-blue-600',
+      )}
+    >
+      <SunIcon
+        aria-hidden="true"
+        class={cn(
+          'absolute w-5 h-5 transition-opacity duration-300',
+          'z-10 translate-x-0 text-yellow-400',
+          'top-[2px] start-[4px]',
+          'opacity-0 group-has-checked:opacity-100',
+        )}
+      />
+
+      <span
+        aria-hidden="true"
+        class={cn(
+          'h-5 w-5 absolute top-[2px] start-[2px] z-20',
+          'bg-white border-gray-300 rounded-full transition-all',
+          'group-has-checked:translate-x-7 dark:border-gray-600',
+        )}></span>
+
+      <MoonIcon
+        aria-hidden="true"
+        class={cn(
+          'absolute z-10 translate-x-7 w-5 h-5 transition-opacity duration-300',
+          'top-[2px] start-[0px]',
+          'opacity-100 group-has-checked:opacity-0',
+        )}
+      />
+    </span>
+  </label>
+
+  <script>
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeSelector = document.querySelector(
+        'input[name="theme-selector"]',
+      ) as HTMLInputElement;
+
+      if (!themeSelector) {
+        return;
+      }
+
+      if (currentTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        themeSelector.checked = true;
+      }
+
+      themeSelector.addEventListener('change', () => {
+        const newTheme = themeSelector.checked ? 'light' : 'dark';
+        localStorage.setItem('theme', newTheme);
+        document.documentElement.classList.toggle('dark', newTheme === 'dark');
+      });
+    });
+  </script>
+</div>

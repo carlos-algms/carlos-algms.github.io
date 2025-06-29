@@ -6,6 +6,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import LinkedInIcon from '../assets/icons/linkedin.svg';
 import GitHubIcon from '../assets/icons/github.svg';
 import { cn } from '../styles/classes';
+import ThemeSelector from './ThemeSelector.astro';
 
 type Props = {
   title?: string;
@@ -120,36 +121,43 @@ const fullTitle = title ? `${title} | ${name}` : name;
     <header
       class="sticky top-0 z-10 h-16 bg-neutral-200/50 dark:bg-neutral-900/50 backdrop-blur-xl"
     >
-      <div class="container mx-auto flex h-full items-center justify-between">
+      <div
+        class="container mx-auto flex h-full items-center justify-between flex-col sm:flex-row"
+      >
         <a
           class="hover:text-accent font-bold text-lg"
           href={getRelativeLocaleUrl(lang, '/')}
         >
           Carlos A. Gomes
         </a>
-        <nav>
-          <ul class="flex gap-4">
-            <li>
-              <a
-                class="hover:text-accent"
-                href={getRelativeLocaleUrl(lang, '/')}>{t('home', lang)}</a
-              >
-            </li>
-            <li>
-              <a
-                class="hover:text-accent"
-                href={getRelativeLocaleUrl(lang, 'blog')}>{t('blog', lang)}</a
-              >
-            </li>
-            <li>
-              <a
-                class="hover:text-accent"
-                href={getRelativeLocaleUrl(lang, 'experiments')}
-                >{t('experiments', lang)}</a
-              >
-            </li>
-          </ul>
-        </nav>
+
+        <aside class="flex gap-4">
+          <ThemeSelector />
+
+          <nav>
+            <ul class="flex gap-4">
+              <li>
+                <a
+                  class="hover:text-accent"
+                  href={getRelativeLocaleUrl(lang, '/')}>{t('home', lang)}</a
+                >
+              </li>
+              <li>
+                <a
+                  class="hover:text-accent"
+                  href={getRelativeLocaleUrl(lang, 'blog')}>{t('blog', lang)}</a
+                >
+              </li>
+              <li>
+                <a
+                  class="hover:text-accent"
+                  href={getRelativeLocaleUrl(lang, 'experiments')}
+                  >{t('experiments', lang)}</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </aside>
       </div>
     </header>
 
