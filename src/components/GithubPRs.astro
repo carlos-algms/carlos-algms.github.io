@@ -6,16 +6,16 @@ import PRsOpenIcon from '../assets/icons/pr-open.svg';
 import PRsClosedIcon from '../assets/icons/pr-closed.svg';
 import { cn } from '../styles/classes';
 import { formatDate } from '../helpers/dateFormat';
+import { t, type TranslationsLang } from '../lang/translations';
 
 type Props = {
   class?: string;
+  lang: TranslationsLang;
 };
-
-// FIXIT: Translate github PRs
 
 const prs = await getCollection('githubPrs');
 
-const { class: classes = '' } = Astro.props;
+const { class: classes = '', lang } = Astro.props;
 ---
 
 <section class={cn('flex flex-col gap-4', classes)}>
@@ -55,7 +55,7 @@ const { class: classes = '' } = Astro.props;
           </div>
 
           <div class="text-xs text-muted-foreground pl-7">
-            Opened
+            {t('opened', lang)}
             <time datetime={new Date(pr.created_at).toISOString()}>
               {formatDate(pr.created_at)}
             </time>
@@ -84,7 +84,7 @@ const { class: classes = '' } = Astro.props;
       target="_blank"
       class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg px-5 py-2.5 my-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 inline-flex items-center"
     >
-      All PRs I opened
+      {t('gh_prs_all_i_opened', lang)}
       <ArrowIcon class="size-5 inline-block" />
     </a>
   </div>

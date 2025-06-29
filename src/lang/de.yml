@@ -12,3 +12,14 @@ go_to_next_page: Gehe zur nächsten Seite
 go_to_page: Gehe zur Seite
 share: Teilen
 updated: Aktualisiert
+opened: Geöffnet
+home_welcome: Willkommen
+home_welcome_text: |
+  Ich bin Carlos A. Gomes, ein Softwareentwickler mit einer Leidenschaft für Webentwicklung
+  und Open Source.
+gh_issues_all_i_opened: Alle von mir geöffneten Issues
+gh_prs_all_i_opened: Alle von mir geöffneten PRs
+recent_posts: Neueste Beiträge
+all_my_posts: Alle meine Beiträge
+toggle_theme_title: Wechseln Sie zwischen hellem und dunklem Thema
+all_posts_with_tag: Liste aller Beiträge mit Tag

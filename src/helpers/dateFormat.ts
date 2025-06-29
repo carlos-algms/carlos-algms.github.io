@@ -1,8 +1,11 @@
-export function formatDate(possibleDate: string | Date): string {
+export function formatDate(
+  possibleDate: string | Date,
+  locale?: string,
+): string {
   const date =
     typeof possibleDate === 'string' ? new Date(possibleDate) : possibleDate;
 
-  return date.toLocaleDateString(undefined, {
+  return date.toLocaleDateString(locale, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',

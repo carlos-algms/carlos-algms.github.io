@@ -113,7 +113,7 @@ const lang = 'pt-br';
         <li class="mr-2">
           <a
             href={getRelativeLocaleUrl(lang, `/blog/tags/${tag}/`)}
-            title={`List all posts with tag ${tag}`}
+            title={t('all_posts_with_tag', lang) + ` ${tag}`}
             class="text-muted-foreground hover:text-accent hover:underline"
           >
             #{tag}

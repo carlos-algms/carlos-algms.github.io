@@ -12,3 +12,14 @@ go_to_next_page: Go to next page
 go_to_page: Go to page
 share: Share
 updated: Updated
+opened: Opened
+home_welcome: Welcome
+home_welcome_text: |
+  I'm Carlos A. Gomes, a software engineer with a passion for web
+  development and open source.
+gh_issues_all_i_opened: All issues I opened
+gh_prs_all_i_opened: All PRs I opened
+recent_posts: Recent posts
+all_my_posts: All my posts
+toggle_theme_title: Toggle light and dark theme
+all_posts_with_tag: List all posts with tag

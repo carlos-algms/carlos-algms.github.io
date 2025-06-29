@@ -15,10 +15,19 @@ const langSchema = z.object({
   read_more: z.string(),
   share: z.string(),
   updated: z.string(),
+  opened: z.string(),
   page: z.string(),
   go_to_previous_page: z.string(),
   go_to_next_page: z.string(),
   go_to_page: z.string(),
+  home_welcome: z.string(),
+  home_welcome_text: z.string(),
+  gh_issues_all_i_opened: z.string(),
+  gh_prs_all_i_opened: z.string(),
+  recent_posts: z.string(),
+  all_my_posts: z.string(),
+  toggle_theme_title: z.string(),
+  all_posts_with_tag: z.string(),
 });
 
 export const translations = {

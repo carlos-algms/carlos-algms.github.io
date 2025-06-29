@@ -1,5 +1,5 @@
 ---
-import type { TranslationsLang } from '../lang/translations';
+import { t, type TranslationsLang } from '../lang/translations';
 import { cn } from '../styles/classes';
 import Layout from '../layouts/Layout.astro';
 import LinkedInIcon from '../assets/icons/linkedin.svg';
@@ -31,8 +31,6 @@ export function getStaticPaths(): Paths {
 }
 
 const { locale = 'pt-br' } = Astro.params;
-
-// FIXIT: Translate the home page
 ---
 
 <Layout lang={locale}>
@@ -44,13 +42,10 @@ const { locale = 'pt-br' } = Astro.params;
         <h1
           class="text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]"
         >
-          Welcome
+          {t('home_welcome', locale)}
         </h1>
         <div class="max-w-[750px] text-muted-foreground text-lg sm:text-xl">
-          <p>
-            I'm Carlos A. Gomes, a software engineer with a passion for web
-            development and open source.
-          </p>
+          <p>{t('home_welcome_text', locale)}</p>
         </div>
         <div class="flex gap-4 mt-4">
           <a
@@ -87,8 +82,8 @@ const { locale = 'pt-br' } = Astro.params;
 
     <RecentPosts lang={locale} />
 
-    <GithubIssues class="my-10" />
+    <GithubIssues class="my-10" lang={locale} />
 
-    <GithubPRs />
+    <GithubPRs lang={locale} />
   </div>
 </Layout>

@@ -132,7 +132,7 @@ const fullTitle = title ? `${title} | ${name}` : name;
         </a>
 
         <aside class="flex gap-4">
-          <ThemeSelector />
+          <ThemeSelector lang={lang} />
 
           <nav>
             <ul class="flex gap-4">
@@ -182,7 +182,7 @@ const fullTitle = title ? `${title} | ${name}` : name;
               )}
               aria-label="Carlos Gomes GitHub Profile"
             >
-              <GitHubIcon class="h-4 w-4" />
+              <GitHubIcon aria-hidden class="h-4 w-4" />
             </a>
 
             <a
@@ -195,7 +195,7 @@ const fullTitle = title ? `${title} | ${name}` : name;
               )}
               aria-label="Carlos Gomes LinkedIn Profile"
             >
-              <LinkedInIcon class="h-4 w-4" />
+              <LinkedInIcon aria-hidden class="h-4 w-4" />
             </a>
           </div>
         </aside>
