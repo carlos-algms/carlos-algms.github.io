@@ -12,6 +12,9 @@ jobs:
     permissions:
       contents: write
 
+    env:
+      GH_PERSONAL_TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}
+
     steps:
       - uses: actions/checkout@v4
         with:
