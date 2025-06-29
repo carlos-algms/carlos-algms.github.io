@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
 
@@ -25,6 +25,19 @@ export default defineConfig({
   },
 
   experimental: {},
+
+  env: {
+    schema: {
+      PUBLIC_DISQUS_SHORT_NAME: envField.string({
+        context: 'client',
+        access: 'public',
+      }),
+      GH_PERSONAL_TOKEN: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+    },
+  },
 
   integrations: [
     sitemap({

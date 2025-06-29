@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { GH_PERSONAL_TOKEN } from 'astro:env/server';
 
 const limit = 6;
 
@@ -32,7 +33,7 @@ export const githubPrs = defineCollection({
       prs.map(async (pr: { pull_request: { url: string } }) => {
         const prData = await fetch(pr.pull_request.url, {
           headers: {
-            Authorization: `token ${import.meta.env.GH_PERSONAL_TOKEN}`,
+            Authorization: `token ${GH_PERSONAL_TOKEN}`,
           },
         }).then((res) => res.json());
 
@@ -81,7 +82,7 @@ function searchGitHub(type: 'pr' | 'issue') {
 
     const issues = await fetch(url, {
       headers: {
-        Authorization: `token ${import.meta.env.GH_PERSONAL_TOKEN}`,
+        Authorization: `token ${GH_PERSONAL_TOKEN}`,
       },
     })
       .then((res) => res.json())
