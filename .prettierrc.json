@@ -1,0 +1,19 @@
+{
+  "printWidth": 80,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "all",
+
+  "plugins": ["prettier-plugin-astro"],
+
+  "overrides": [
+    {
+      "files": ["*.ejs", "*.njk", "*.xml"],
+      "options": { "parser": "html" }
+    },
+    {
+      "files": ["*.svg"],
+      "options": { "parser": "html" }
+    }
+  ]
+}

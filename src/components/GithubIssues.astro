@@ -1,0 +1,101 @@
+---
+import { getCollection } from 'astro:content';
+import Title from './Title.astro';
+import ArrowIcon from '../assets/icons/arrow.svg';
+import RepositoryIcon from '../assets/icons/repository.svg';
+import IssueOpenIcon from '../assets/icons/issue-open.svg';
+import IssueClosedIcon from '../assets/icons/issue-closed.svg';
+import { cn } from '../styles/classes';
+import { formatDate } from '../helpers/dateFormat';
+
+type Props = {
+  class?: string;
+};
+
+// FIXIT: Translate github issues
+
+const issues = await getCollection('githubIssues');
+
+const { class: classes = '' } = Astro.props;
+---
+
+<section class={cn('flex flex-col gap-4', classes)}>
+  <Title>Github Issues</Title>
+
+  <ul class="grid gap-4">
+    {
+      issues.map(({ data: issue }) => (
+        <li class="card-bordered p-4 flex flex-col gap-2">
+          <a
+            class="inline-flex items-center gap-2 hover:text-accent"
+            href={issue.html_url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {issue.state === 'open' ? (
+              <IssueOpenIcon
+                aria-hidden
+                class="size-5 shrink-0 text-green-600"
+              />
+            ) : (
+              <IssueClosedIcon
+                aria-hidden
+                class="size-5 shrink-0 text-accent"
+              />
+            )}
+
+            <span class="font-medium">{issue.title}</span>
+
+            <span aria-hidden class="text-xs text-muted-foreground">
+              #{issue.number}
+            </span>
+          </a>
+
+          <div class="ml-7">
+            <a
+              href={issue.repository_url
+                .replace('api.', '')
+                .replace('repos/', '')}
+              target="_blank"
+              class="text-xs bg-zinc-200 dark:text-muted-foreground dark:bg-zinc-700 px-1.5 py-0.5 rounded hover:underline dark:hover:text-white"
+            >
+              <RepositoryIcon class="size-4 shrink-0 " />
+              {issue.repository_url.split('repos/')[1]}
+            </a>
+          </div>
+
+          <div class="text-xs text-muted-foreground pl-7">
+            Opened
+            <time datetime={new Date(issue.created_at).toISOString()}>
+              {formatDate(issue.created_at)}
+            </time>
+            {issue.assignee && (
+              <>
+                • Assigned to{' '}
+                <a
+                  class="text-muted-foreground hover:underline hover:text-white"
+                  href={issue.assignee.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  @{issue.assignee.login}
+                </a>
+              </>
+            )}
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="flex justify-center">
+    <a
+      href="https://github.com/search?q=is:issue+author:carlos-algms&type=issues"
+      target="_blank"
+      class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg px-5 py-2.5 my-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 inline-flex items-center"
+    >
+      All issues I opened
+      <ArrowIcon class="size-5 inline-block" />
+    </a>
+  </div>
+</section>

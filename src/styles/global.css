@@ -1,0 +1,144 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --default-font-family: Inter, 'Helvetica Neue', Helvetica;
+  --default-mono-font-family: 'Source Code Pro';
+
+  --text-clamp-s: clamp(1.2rem, 5vw, 1.5rem);
+  --text-clamp-s--line-height: clamp(1.2rem, 5vw, 1.5rem);
+
+  --text-clamp-m: clamp(1.5rem, 5vw, 1.8rem);
+  --text-clamp-m--line-height: clamp(1.6rem, 5vw, 1.8rem);
+
+  --text-clamp-l: clamp(2rem, 5vw, 2.2rem);
+  --text-clamp-l--line-height: clamp(2.1rem, 5vw, 2.3rem);
+
+  --color-accent: hsl(265, 89%, 65%);
+  --color-accent-foreground: hsl(0, 0%, 98%);
+  --color-accent-muted: hsl(265, 89%, 25%);
+
+  --color-border: hsl(240, 3.7%, 15.9%);
+
+  --color-muted: hsl(0, 0%, 10%);
+  --color-muted-foreground: hsl(0, 0%, 40%);
+}
+
+:root {
+  font-size: 16px;
+  font-display: swap;
+  -wekbit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --background: 0 0% 100%;
+  --foreground: 0 0 22%;
+
+  &.dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 0 0% 95%;
+    --color-muted-foreground: hsl(0, 0%, 65%);
+  }
+
+  color: hsl(var(--foreground));
+  background-color: hsl(var(--background));
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Font smoothing */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-width: 100%;
+}
+
+svg {
+  display: inline-block;
+}
+
+a {
+  @apply transition-colors duration-200;
+}
+
+.article-entry {
+  p,
+  pre,
+  iframe {
+    @apply my-3;
+  }
+
+  h1 {
+    @apply text-clamp-l mt-5 mb-4 font-bold;
+  }
+
+  h2 {
+    @apply text-clamp-m mt-5 mb-3 font-bold;
+  }
+
+  h3 {
+    @apply text-clamp-s mt-4 mb-3 font-bold;
+  }
+
+  code:not(:is(pre code)) {
+    @apply bg-neutral-200 dark:bg-neutral-800 text-red-600 dark:text-red-400 px-1;
+  }
+
+  a:not(.rounded-lg, h2 > *) {
+    @apply underline hover:text-accent;
+  }
+
+  pre {
+    @apply p-3;
+
+    code {
+      counter-reset: code-line-number;
+      counter-increment: code-line-number calc(var(--start, 1) - 1);
+
+      .line::before {
+        content: counter(code-line-number);
+        counter-increment: code-line-number;
+        width: 1rem;
+        margin-right: 1.5rem;
+        display: inline-block;
+        text-align: right;
+        color: rgba(115, 138, 148, 0.4);
+      }
+    }
+  }
+
+  img {
+    @apply mx-auto;
+  }
+
+  ul,
+  ol,
+  dl {
+    @apply my-7 mx-5;
+
+    li > & {
+      @apply my-0;
+    }
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+}
+
+.card-bordered {
+  @apply border border-zinc-300 dark:border-zinc-700 rounded-lg bg-neutral-50 dark:bg-muted;
+}

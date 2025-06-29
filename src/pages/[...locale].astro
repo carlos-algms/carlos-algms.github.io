@@ -1,0 +1,94 @@
+---
+import type { TranslationsLang } from '../lang/translations';
+import { cn } from '../styles/classes';
+import Layout from '../layouts/Layout.astro';
+import LinkedInIcon from '../assets/icons/linkedin.svg';
+import GitHubIcon from '../assets/icons/github.svg';
+import GithubIssues from '../components/GithubIssues.astro';
+import GithubPRs from '../components/GithubPRs.astro';
+import RecentPosts from '../components/RecentPosts.astro';
+
+type Params = {
+  locale: TranslationsLang | undefined;
+};
+
+type Paths = {
+  params: Params;
+}[];
+
+export function getStaticPaths(): Paths {
+  return [
+    {
+      params: { locale: 'de' },
+    },
+    {
+      params: { locale: 'en' },
+    },
+    {
+      params: { locale: undefined },
+    },
+  ];
+}
+
+const { locale = 'pt-br' } = Astro.params;
+
+// FIXIT: Translate the home page
+---
+
+<Layout lang={locale}>
+  <div class="container mx-auto">
+    <section class="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-16">
+      <div
+        class="flex max-w-[980px] flex-col items-center text-center mx-auto gap-4"
+      >
+        <h1
+          class="text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]"
+        >
+          Welcome
+        </h1>
+        <div class="max-w-[750px] text-muted-foreground text-lg sm:text-xl">
+          <p>
+            I'm Carlos A. Gomes, a software engineer with a passion for web
+            development and open source.
+          </p>
+        </div>
+        <div class="flex gap-4 mt-4">
+          <a
+            href="https://www.linkedin.com/in/carlosalgms/"
+            class={cn(
+              'inline-flex items-center justify-center',
+              'rounded-md text-sm font-medium',
+              'ring-offset-background transition-colors',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+              'disabled:pointer-events-none disabled:opacity-50',
+              'bg-[#0077B5] hover:bg-[#0077B5]/90 text-white h-10 px-4 py-2',
+            )}
+          >
+            <LinkedInIcon class="mr-2 h-5 w-5" />
+            LinkedIn
+          </a>
+          <a
+            href="https://github.com/carlos-algms"
+            class={cn(
+              'inline-flex items-center justify-center',
+              'rounded-md text-sm font-medium',
+              'ring-offset-background transition-colors',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+              'disabled:pointer-events-none disabled:opacity-50',
+              'bg-[#24292e] hover:bg-[#24292e]/90 text-white h-10 px-4 py-2',
+            )}
+          >
+            <GitHubIcon class="mr-2 h-5 w-5" />
+            GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <RecentPosts lang={locale} />
+
+    <GithubIssues class="my-10" />
+
+    <GithubPRs />
+  </div>
+</Layout>

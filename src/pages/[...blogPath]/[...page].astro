@@ -1,0 +1,52 @@
+---
+import type { GetStaticPathsOptions } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import { getBlogPostsSorted } from '../../content.config';
+import { type TranslationsLang } from '../../lang/translations';
+import PostList from '../../components/PostList.astro';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const allPosts = await getBlogPostsSorted();
+  const groupedByLang = allPosts.reduce(
+    (acc, post) => {
+      const lang = post.data.lang as TranslationsLang;
+      acc[lang] ??= [];
+      acc['pt-br'] ??= [];
+
+      // FIXIT: use lang instead of hardcoded 'pt-br' after I translate the posts
+      acc['pt-br'].push(post);
+      return acc;
+    },
+    {} as Record<TranslationsLang, CollectionEntry<'blog'>[]>,
+  );
+
+  const paths = Object.entries(groupedByLang).flatMap(([lang, posts]) => {
+    return paginate<
+      CollectionEntry<'blog'>,
+      { lang: TranslationsLang },
+      { blogPath: string }
+    >(posts, {
+      pageSize: 5,
+      params: {
+        blogPath: lang === 'pt-br' ? 'blog' : `${lang}/blog`,
+      },
+      props: {
+        lang: lang as TranslationsLang,
+      },
+    });
+  });
+
+  return paths;
+}
+
+const { page, lang } = Astro.props;
+---
+
+<PostList
+  currentPage={page.currentPage}
+  lastPage={page.lastPage}
+  prevUrl={page.url.prev}
+  nextUrl={page.url.next}
+  lang={lang}
+  posts={page.data}
+/>

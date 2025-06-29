@@ -1,0 +1,144 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { render } from 'astro:content';
+import CalendarIcon from '../assets/icons/calendar.svg';
+import { t } from '../lang/translations';
+import { cn } from '../styles/classes';
+
+type Props = {
+  limitToExcerpt?: boolean;
+  post: CollectionEntry<'blog'>;
+};
+
+// FIXIT: Add zoom on image click
+const { limitToExcerpt, post } = Astro.props;
+const {
+  data: { title, slug, date: createdAt, updated: updatedAt, lang: _lang },
+} = post;
+const body = post.rendered?.html || '';
+
+const { Content } = await render({
+  ...post,
+  rendered: {
+    ...post.rendered,
+    html: !limitToExcerpt ? body : body.split('<!-- more -->')[0] || '',
+  },
+});
+
+const lang = 'pt-br';
+
+// FIXIT: Add meta tags, canonical and hreflang for multi-language and SEO
+---
+
+<article
+  class="article-entry"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+  lang={_lang}
+>
+  <header>
+    <h2 class="text-clamp-l mb-1 font-bold" itemprop="name">
+      {
+        !limitToExcerpt ? (
+          title
+        ) : (
+          <a
+            href={getRelativeLocaleUrl(lang, `/blog/${slug}/`)}
+            class="hover:text-accent"
+            itemprop="url"
+          >
+            {title}
+          </a>
+        )
+      }
+    </h2>
+
+    <div
+      class={cn(
+        'border-y-1 border-neutral-200 dark:border-gray-600 py-2 flex gap-1',
+        !limitToExcerpt ? 'my-8' : 'my-4',
+      )}
+    >
+      <CalendarIcon width={20} height={20} />
+
+      {
+        updatedAt.getTime() !== createdAt.getTime() && (
+          <>
+            {t('updated', lang)}
+            <time
+              datetime={updatedAt.toISOString()}
+              itemprop="dateModified"
+              title={t('updated', lang)}
+            />
+            -
+          </>
+        )
+      }
+
+      {t('published', lang)}
+      <time
+        datetime={createdAt.toISOString()}
+        itemprop="datePublished"
+        title={t('published', lang)}></time>
+    </div>
+  </header>
+
+  <div itemprop="articleBody">
+    <Content />
+  </div>
+
+  {
+    limitToExcerpt && (
+      <a
+        class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg px-5 py-2.5 my-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 inline-flex items-center"
+        href={getRelativeLocaleUrl(lang, `/blog/${slug}/`)}
+      >
+        {t('read_more', lang)}
+        <span
+          class="rounded-full bg-white size-6 inline-flex justify-center items-center text-purple-700 text-center ml-2 text-3xl font-bold leading-0"
+          aria-hidden="true"
+        >
+          <span class="-mt-1">+</span>
+        </span>
+      </a>
+    )
+  }
+</article>
+
+<nav class="mt-6 border-t border-neutral-200 dark:border-gray-600 pt-5">
+  <ol class="flex">
+    {
+      post.data.tags.map((tag) => (
+        <li class="mr-2">
+          <a
+            href={getRelativeLocaleUrl(lang, `/blog/tags/${tag}/`)}
+            title={`List all posts with tag ${tag}`}
+            class="text-muted-foreground hover:text-accent hover:underline"
+          >
+            #{tag}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<script>
+  // run on client to format on user's locale
+  const timeTags = document.querySelectorAll('time');
+
+  timeTags.forEach((timeTag) => {
+    const date = new Date(timeTag.getAttribute('datetime') || '');
+    timeTag.textContent = date.toLocaleDateString(navigator.language, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+
+    timeTag.setAttribute(
+      'title',
+      timeTag.getAttribute('title') + `: ${date.toLocaleString()}`,
+    );
+  });
+</script>

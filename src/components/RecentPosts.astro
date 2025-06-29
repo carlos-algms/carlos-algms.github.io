@@ -1,0 +1,68 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import Title from './Title.astro';
+import ArrowIcon from '../assets/icons/arrow.svg';
+import { cn } from '../styles/classes';
+import type { TranslationsLang } from '../lang/translations';
+import { getBlogPostsSorted } from '../content.config';
+import { formatDate } from '../helpers/dateFormat';
+
+type Props = {
+  class?: string;
+  lang: TranslationsLang;
+};
+
+// FIXIT: Translate recent posts
+const { class: classes = '', lang = 'pt-br' } = Astro.props;
+
+const posts = (await getBlogPostsSorted()).slice(0, 6);
+---
+
+<section class={cn('flex flex-col gap-4', classes)}>
+  <Title>Recent Posts</Title>
+
+  <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      posts.map(({ data: post }) => (
+        <li class="flex flex-col gap-2 justify-between card-bordered p-4">
+          <h2 class="font-semibold tracking-tight text-xl" title={post.title}>
+            <a href={`/blog/${post.slug}/`} class="hover:text-accent">
+              {post.title}
+            </a>
+          </h2>
+          <div class="flex justify-between items-center">
+            <time
+              class="text-xs text-muted-foreground"
+              datetime={post.date.toISOString()}
+            >
+              {formatDate(post.date)}
+            </time>
+            <a
+              class="text-accent hover:underline "
+              href={`/blog/${post.slug}/`}
+            >
+              Read more
+              <ArrowIcon class="size-4" />
+            </a>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="flex justify-center">
+    <a
+      href={getRelativeLocaleUrl(lang, '/blog')}
+      class={cn(
+        'hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300',
+        'text-white bg-purple-700 ',
+        'rounded-lg px-5 py-2.5 my-2',
+        'inline-flex items-center',
+        'dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900',
+      )}
+    >
+      All my posts
+      <ArrowIcon class="size-5 inline-block" />
+    </a>
+  </div>
+</section>
