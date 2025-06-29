@@ -38,7 +38,10 @@ export async function getStaticPaths() {
   return paths;
 }
 
-const { post, lang, next, prev } = Astro.props;
+const { post, lang: _lang, next, prev } = Astro.props;
+
+// FIXIT: Remove hardcoded language when translations are implemented
+const lang = 'pt-br';
 ---
 
 <Layout title={post.data.title} lang={lang}>
