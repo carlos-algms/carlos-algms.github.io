@@ -22,7 +22,9 @@ export async function getStaticPaths() {
     return posts.map((post, i) => ({
       params: {
         id: post.data.slug,
-        blogPath: lang === 'pt-br' ? 'blog' : `${lang}/blog`,
+        blogPath: 'blog',
+        // FIXIT: fix blog path for multi-language after translations
+        // blogPath: lang === 'pt-br' ? 'blog' : `${lang}/blog`,
       },
       props: {
         post,

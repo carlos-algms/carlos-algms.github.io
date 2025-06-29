@@ -14,7 +14,7 @@ type Props = {
 // FIXIT: Add zoom on image click
 const { limitToExcerpt, post } = Astro.props;
 const {
-  data: { title, slug, date: createdAt, updated: updatedAt, lang },
+  data: { title, slug, date: createdAt, updated: updatedAt, lang: _lang },
 } = post;
 const body = post.rendered?.html || '';
 
@@ -25,6 +25,8 @@ const { Content } = await render({
     html: !limitToExcerpt ? body : body.split('<!-- more -->')[0] || '',
   },
 });
+
+const lang = 'pt-br';
 
 // FIXIT: Add meta tags, canonical and hreflang for multi-language and SEO
 ---
