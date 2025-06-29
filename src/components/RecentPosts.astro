@@ -3,7 +3,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import Title from './Title.astro';
 import ArrowIcon from '../assets/icons/arrow.svg';
 import { cn } from '../styles/classes';
-import type { TranslationsLang } from '../lang/translations';
+import { t, type TranslationsLang } from '../lang/translations';
 import { getBlogPostsSorted } from '../content.config';
 import { formatDate } from '../helpers/dateFormat';
 
@@ -12,14 +12,13 @@ type Props = {
   lang: TranslationsLang;
 };
 
-// FIXIT: Translate recent posts
 const { class: classes = '', lang = 'pt-br' } = Astro.props;
 
 const posts = (await getBlogPostsSorted()).slice(0, 6);
 ---
 
 <section class={cn('flex flex-col gap-4', classes)}>
-  <Title>Recent Posts</Title>
+  <Title>{t('recent_posts', lang)}</Title>
 
   <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
     {
@@ -41,7 +40,7 @@ const posts = (await getBlogPostsSorted()).slice(0, 6);
               class="text-accent hover:underline "
               href={`/blog/${post.slug}/`}
             >
-              Read more
+              {t('read_more', lang)}
               <ArrowIcon class="size-4" />
             </a>
           </div>
@@ -61,7 +60,7 @@ const posts = (await getBlogPostsSorted()).slice(0, 6);
         'dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900',
       )}
     >
-      All my posts
+      {t('all_my_posts', lang)}
       <ArrowIcon class="size-5 inline-block" />
     </a>
   </div>

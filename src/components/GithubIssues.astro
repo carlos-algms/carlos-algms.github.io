@@ -7,16 +7,16 @@ import IssueOpenIcon from '../assets/icons/issue-open.svg';
 import IssueClosedIcon from '../assets/icons/issue-closed.svg';
 import { cn } from '../styles/classes';
 import { formatDate } from '../helpers/dateFormat';
+import { t, type TranslationsLang } from '../lang/translations';
 
 type Props = {
   class?: string;
+  lang: TranslationsLang;
 };
-
-// FIXIT: Translate github issues
 
 const issues = await getCollection('githubIssues');
 
-const { class: classes = '' } = Astro.props;
+const { class: classes = '', lang } = Astro.props;
 ---
 
 <section class={cn('flex flex-col gap-4', classes)}>
@@ -65,23 +65,10 @@ const { class: classes = '' } = Astro.props;
           </div>
 
           <div class="text-xs text-muted-foreground pl-7">
-            Opened
+            {t('opened', lang)}
             <time datetime={new Date(issue.created_at).toISOString()}>
-              {formatDate(issue.created_at)}
+              {formatDate(issue.created_at, lang)}
             </time>
-            {issue.assignee && (
-              <>
-                • Assigned to{' '}
-                <a
-                  class="text-muted-foreground hover:underline hover:text-white"
-                  href={issue.assignee.html_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  @{issue.assignee.login}
-                </a>
-              </>
-            )}
           </div>
         </li>
       ))
@@ -94,7 +81,7 @@ const { class: classes = '' } = Astro.props;
       target="_blank"
       class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg px-5 py-2.5 my-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 inline-flex items-center"
     >
-      All issues I opened
+      {t('gh_issues_all_i_opened', lang)}
       <ArrowIcon class="size-5 inline-block" />
     </a>
   </div>
