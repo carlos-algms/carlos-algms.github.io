@@ -46,12 +46,12 @@ import { cn } from '../styles/classes';
   </label>
 
   <script>
-    const currentTheme = localStorage.getItem('theme') || 'dark';
-
     document.addEventListener('DOMContentLoaded', () => {
+      const currentTheme = localStorage.getItem('theme') || 'dark';
+
       const themeSelector = document.querySelector(
         'input[name="theme-selector"]',
-      ) as HTMLInputElement;
+      ) as HTMLInputElement | null;
 
       if (!themeSelector) {
         return;
