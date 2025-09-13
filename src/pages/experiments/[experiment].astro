@@ -1,0 +1,24 @@
+---
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allExperiments = await getCollection('experiments');
+
+  const paths = allExperiments.map((experiment) => ({
+    params: { experiment: experiment.data.slug },
+    props: {
+      experiment,
+    },
+  }));
+
+  console.log(paths);
+
+  return paths;
+}
+
+const { experiment } = Astro.props;
+
+const { Content } = await render(experiment);
+---
+
+<Content />

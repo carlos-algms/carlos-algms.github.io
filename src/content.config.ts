@@ -15,7 +15,22 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog, githubIssues, githubPrs };
+const experiments = defineCollection({
+  loader: glob({ pattern: '*/*.md', base: './source/experiments' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    date: z.date(),
+    updated: z.date(),
+  }),
+});
+
+export const collections = {
+  blog,
+  experiments,
+  githubIssues,
+  githubPrs,
+};
 
 export async function getBlogPostsSorted() {
   const posts = await getCollection('blog');

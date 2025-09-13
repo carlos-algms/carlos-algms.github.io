@@ -1,15 +1,17 @@
 ---
 layout: page
+slug: animated-screen
 title: Animated Screen with CSS only
 description: Developing an animated screen effect with CSS only with a moving image and linear-gradient overlay
-comments: false
 date: 2023-12-23
+updated: 2023-12-23
+# 🚨 Images used in CSS must be in the public folder, Astro don't process them
 ---
 
 <style type="text/css">
   @keyframes pan-overlay {
     from {
-      bacground-position: 0 0;
+      background-position: 0 0;
     }
     to {
       background-position: 0 -100%;
