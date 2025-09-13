@@ -1,8 +1,6 @@
 :root {
   --w: 300px;
   --h: 300px;
-  --w2: calc(var(--w) * 0.2);
-  --h2: calc(var(--h) * 0.35);
 }
 
 body,
@@ -41,8 +39,8 @@ main {
 .cuber,
 .cuber-stage,
 .cuber-item {
-  width: var(--w2);
-  height: var(--h2);
+  width: calc(var(--w) * 0.2);
+  height: calc(var(--h) * 0.35);
 }
 
 .cuber-item {
@@ -55,7 +53,7 @@ main {
   text-align: center;
   color: #fff;
   font-size: calc(var(--h) / 4);
-  line-height: var(--h2);
+  line-height: calc(var(--h) * 0.35);
   font-weight: bold;
   border: calc(var(--w) * 0.01) solid white;
 }
