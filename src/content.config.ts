@@ -16,7 +16,11 @@ const blog = defineCollection({
 });
 
 const experiments = defineCollection({
-  loader: glob({ pattern: '*/*.md', base: './source/experiments' }),
+  loader: glob({
+    // I don't want index.md, it's being sourced manually somewhere else
+    pattern: ['**/*.md', '!index.md'],
+    base: './source/experiments',
+  }),
   schema: z.object({
     title: z.string(),
     slug: z.string(),
