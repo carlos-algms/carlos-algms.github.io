@@ -7,20 +7,19 @@ updated: 2025-09-13
 
 <link rel="stylesheet" href="./piao-da-casa-propria.css"/>
 
-<main>
-    <div id="circle"></div>
-    <section class="cuber">
-        <ul class="cuber-stage">
-            <li class="cuber-item">1</li>
-            <li class="cuber-item">2</li>
-            <li class="cuber-item">3</li>
-            <li class="cuber-item">4</li>
-            <li class="cuber-item">5</li>
-            <li class="cuber-item">6</li>
+<main class="piao-da-casa-propria">
+    <section class="container">
+        <ul class="stage">
+            <li class="item" style="--item-index: 0">1</li>
+            <li class="item" style="--item-index: 1">2</li>
+            <li class="item" style="--item-index: 2">3</li>
+            <li class="item" style="--item-index: 3">4</li>
+            <li class="item" style="--item-index: 4">5</li>
+            <li class="item" style="--item-index: 5">6</li>
         </ul>
     </section>
     <p>
-        <button id="play">Play</button>
+        <button class="play">Play</button>
     </p>
 </main>
 
