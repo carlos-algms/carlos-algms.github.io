@@ -1,86 +1,73 @@
 /**
  * @param {HTMLElement} element
  */
-function createCuber(element) {
+function initSpinner(element) {
+  const animationDuration = 20;
+  const spins = 60;
+  let animating = false;
+  let currentIndex = 0;
+
   /** @type {HTMLElement | null} */
   const stage = element.querySelector('.stage');
 
   if (!stage) {
-    throw new Error('Cuber stage element not found');
+    throw new Error('Stage element not found');
   }
 
-  let playing = false;
-  let actualIndex = 0;
+  const audio = new Audio('piao.mp3');
+  audio.volume = 0.2;
 
-  const audio = new Audio('/experiments/piao-da-casa-propria/piao.mp3');
-
-  function init() {
-    rotate();
-    setupPlayButton();
+  if (!stage) {
+    return;
   }
 
-  function rotate() {
-    if (stage) {
-      stage.style.setProperty('--rotation-index', String(actualIndex));
-    }
+  stage.style.setProperty('--rotation-index', String(currentIndex));
+
+  /** @type {HTMLElement | null} */
+  const playButton = element.querySelector('.play');
+
+  if (!playButton) {
+    return;
   }
 
-  function setupPlayButton() {
-    if (!stage) {
+  playButton.addEventListener('click', () => {
+    if (animating) {
       return;
     }
 
-    /** @type {HTMLElement | null} */
-    const playButton = element.querySelector('.play');
+    animating = true;
 
-    if (!playButton) {
-      return;
-    }
+    // Pick a random number between 1 and 6
+    const targetNumber = Math.floor(Math.random() * 6) + 1;
+    const finalIndex = spins * 6 + (targetNumber - 1);
 
-    playButton.addEventListener('click', () => {
-      if (!playing) {
-        playing = true;
-        playButton.style.display = 'none';
+    element.classList.remove('animating');
+    stage.style.setProperty('--rotation-index', String(currentIndex));
 
-        // Pick a random number between 1 and 6
-        const targetNumber = Math.floor(Math.random() * 6) + 1;
-        const animationDuration = 20;
+    // Force reflow to avoid queuing
+    void stage.offsetHeight;
 
-        const currentRotation = actualIndex || 0;
-        const spins = 60;
-        const finalIndex = spins * 6 + (targetNumber - 1);
+    stage.style.setProperty('--animation-duration', `${animationDuration}s`);
+    stage.style.setProperty('--rotation-index', String(finalIndex));
+    element.classList.add('animating');
 
-        // Reset animation by setting duration to 0
-        stage.style.setProperty('--animation-duration', '0s');
-        stage.style.setProperty('--rotation-index', String(currentRotation));
+    currentIndex = targetNumber - 1;
 
-        // Force reflow
-        void stage.offsetHeight;
-
-        // Set animation duration and final rotation
-        stage.style.setProperty(
-          '--animation-duration',
-          `${animationDuration}s`,
-        );
-        stage.style.setProperty('--rotation-index', String(finalIndex));
-
-        actualIndex = targetNumber - 1;
-
-        // audio.play().catch((err) => {
-        //   console.error('Audio playback failed:', err);
-        // });
-
-        setTimeout(() => {
-          audio.pause();
-          playButton.style.display = '';
-          playing = false;
-          stage.style.setProperty('--animation-duration', '0s');
-        }, animationDuration * 1000);
-      }
+    audio.currentTime = 0;
+    audio.play().catch((err) => {
+      console.error('Audio playback failed:', err);
     });
-  }
 
-  init();
+    stage.addEventListener(
+      'transitionend',
+      () => {
+        audio.pause();
+        element.classList.remove('animating');
+        animating = false;
+      },
+      { once: true },
+    );
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -88,5 +75,5 @@ document.addEventListener('DOMContentLoaded', () => {
    * @type {NodeListOf<HTMLElement>}
    */
   const cuberElements = document.querySelectorAll('.piao-da-casa-propria');
-  cuberElements.forEach((element) => createCuber(element));
+  cuberElements.forEach((element) => initSpinner(element));
 });
