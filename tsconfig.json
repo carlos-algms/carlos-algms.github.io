@@ -11,6 +11,10 @@
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "allowJs": true,
+    "checkJs": true,
+    "noErrorTruncation": true,
+    "forceConsistentCasingInFileNames": true
   }
 }

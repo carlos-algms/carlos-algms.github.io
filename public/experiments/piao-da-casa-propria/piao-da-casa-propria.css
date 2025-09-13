@@ -1,0 +1,80 @@
+:root {
+  --w: 300px;
+  --h: 300px;
+  --w2: calc(var(--w) * 0.2);
+  --h2: calc(var(--h) * 0.35);
+}
+
+body,
+html,
+main {
+  width: var(--w);
+  height: var(--h);
+  font-family: helvetica, arial, tahoma;
+}
+
+main {
+  position: relative;
+  border: calc(var(--w) * 0.01) solid #000;
+  box-sizing: border-box;
+}
+
+.cuber {
+  position: relative;
+  margin: calc(var(--w) * 0.15) auto 0 auto;
+  perspective: 100%;
+  overflow: visible;
+}
+
+.cuber-stage {
+  transform-style: preserve-3d;
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cuber-stage.timing {
+  transition: all 3s ease-in-out;
+}
+
+.cuber,
+.cuber-stage,
+.cuber-item {
+  width: var(--w2);
+  height: var(--h2);
+}
+
+.cuber-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: #000;
+  text-align: center;
+  color: #fff;
+  font-size: calc(var(--h) / 4);
+  line-height: var(--h2);
+  font-weight: bold;
+  border: calc(var(--w) * 0.01) solid white;
+}
+
+#circle {
+  --myW: calc(var(--w) * 0.515);
+  box-sizing: border-box;
+  border: calc(var(--w) * 0.052) solid red;
+  width: var(--myW);
+  height: var(--myW);
+  position: absolute;
+  top: calc(var(--h) * 0.07);
+  left: calc(var(--w) * 0.232);
+  z-index: 1000;
+  border-radius: var(--myW);
+}
+
+p {
+  width: 100%;
+  text-align: center;
+  margin-top: 20%;
+}
