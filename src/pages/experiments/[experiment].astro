@@ -1,0 +1,25 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseHtml from '../../layouts/BaseHtml.astro';
+
+export async function getStaticPaths() {
+  const allExperiments = await getCollection('experiments');
+
+  const paths = allExperiments.map((experiment) => ({
+    params: { experiment: experiment.data.slug },
+    props: {
+      experiment,
+    },
+  }));
+
+  return paths;
+}
+
+const { experiment } = Astro.props;
+
+const { Content } = await render(experiment);
+---
+
+<BaseHtml title={experiment.data.title} lang={'en'}>
+  <Content />
+</BaseHtml>

@@ -1,15 +1,16 @@
 ---
-layout: page
+slug: animated-screen
 title: Animated Screen with CSS only
 description: Developing an animated screen effect with CSS only with a moving image and linear-gradient overlay
-comments: false
 date: 2023-12-23
+updated: 2023-12-23
+# 🚨 Images used in CSS must be in the public folder, Astro don't process them
 ---
 
 <style type="text/css">
   @keyframes pan-overlay {
     from {
-      bacground-position: 0 0;
+      background-position: 0 0;
     }
     to {
       background-position: 0 -100%;
@@ -126,9 +127,6 @@ date: 2023-12-23
     --blue-rgb: 33 150 243;
     --primary-rgb: var(--blue-rgb);
 
-    --blob-color-1: rgb(var(--blue-rgb));
-    --blob-color-2: dodgerblue;
-
     width: 100%;
     background-color: rgb(var(--background-rgb));
     color: #fff;
@@ -164,14 +162,14 @@ date: 2023-12-23
 
   .screen:before {
     width: 15%;
-    top: 0rem;
+    top: 0;
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
   }
 
   .screen:after {
     width: 25%;
-    bottom: 0rem;
+    bottom: 0;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
   }
@@ -196,7 +194,7 @@ date: 2023-12-23
     position: absolute;
     inset: 0;
 
-    background-image: url(snow-mountain.jpg);
+    background-image: url(/experiments/animated-screen/snow-mountain.jpg);
     background-repeat: no-repeat;
     background-size: 300%;
 
@@ -225,7 +223,7 @@ date: 2023-12-23
 
 <div class="stage">
   <div class="screen">
-    <figure></figure>
+    <figure role="img"></figure>
     <div class="screen--overlay"></div>
     <div class="screen--content"></div>
   </div>
