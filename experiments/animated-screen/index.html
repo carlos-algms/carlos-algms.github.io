@@ -1,0 +1,273 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><meta http-equiv="X-UA-Compatible" content="ie=edge"><link rel="icon" sizes="256x256" type="image/png" href="/images/favicon.png"><link rel="icon" sizes="16x16" type="image/x-icon" href="/images/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><title>Animated Screen with CSS only | Carlos A. Gomes</title><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="anonymous"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="stylesheet" crossorigin="anonymous" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&display=swap"><link rel="sitemap" href="/sitemap-index.xml"><script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-ZNQ41VTYXZ"></script><script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      // Initialize as Anonymous until we have a proper consent management
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+      });
+
+      gtag('config', 'G-ZNQ41VTYXZ');
+    </script><script data-category="analytics">
+      function updateConsents() {
+        if (typeof gtag !== 'function') {
+          console.warn('gtag is not defined');
+          return;
+        }
+
+        gtag('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+          analytics_storage: 'granted',
+        });
+      }
+    </script><link rel="stylesheet" href="/assets/_page_.BJQNcX8h.css"><script>!(function(w,p,f,c){if(!window.crossOriginIsolated && !navigator.serviceWorker) return;c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push","gtag"])})(window,'partytown','forward');/* Partytown 0.11.1 - MIT QwikDev */
+const t={preserveBehavior:!1},e=e=>{if("string"==typeof e)return[e,t];const[n,r=t]=e;return[n,{...t,...r}]},n=Object.freeze((t=>{const e=new Set;let n=[];do{Object.getOwnPropertyNames(n).forEach((t=>{"function"==typeof n[t]&&e.add(t)}))}while((n=Object.getPrototypeOf(n))!==Object.prototype);return Array.from(e)})());!function(t,r,o,i,a,s,c,l,d,p,u=t,f){function h(){f||(f=1,"/"==(c=(s.lib||"/~partytown/")+(s.debug?"debug/":""))[0]&&(d=r.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(l=setTimeout(v,(null==s?void 0:s.fallbackTimeout)||1e4),r.addEventListener("pt0",w),a?y(1):o.serviceWorker?o.serviceWorker.register(c+(s.swPath||"partytown-sw.js"),{scope:c}).then((function(t){t.active?y():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&y()}))}),console.error):v())))}function y(e){p=r.createElement(e?"script":"iframe"),t._pttab=Date.now(),e||(p.style.display="block",p.style.width="0",p.style.height="0",p.style.border="0",p.style.visibility="hidden",p.setAttribute("aria-hidden",!0)),p.src=c+"partytown-"+(e?"atomics.js?v=0.11.1":"sandbox-sw.html?"+t._pttab),r.querySelector(s.sandboxParent||"body").appendChild(p)}function v(n,o){for(w(),i==t&&(s.forward||[]).map((function(n){const[r]=e(n);delete t[r.split(".")[0]]})),n=0;n<d.length;n++)(o=r.createElement("script")).innerHTML=d[n].innerHTML,o.nonce=s.nonce,r.head.appendChild(o);p&&p.parentNode.removeChild(p)}function w(){clearTimeout(l)}s=t.partytown||{},i==t&&(s.forward||[]).map((function(r){const[o,{preserveBehavior:i}]=e(r);u=t,o.split(".").map((function(e,r,o){var a;u=u[o[r]]=r+1<o.length?u[o[r]]||(a=o[r+1],n.includes(a)?[]:{}):(()=>{let e=null;if(i){const{methodOrProperty:n,thisObject:r}=((t,e)=>{let n=t;for(let t=0;t<e.length-1;t+=1)n=n[e[t]];return{thisObject:n,methodOrProperty:e.length>0?n[e[e.length-1]]:void 0}})(t,o);"function"==typeof n&&(e=(...t)=>n.apply(r,...t))}return function(){let n;return e&&(n=e(arguments)),(t._ptf=t._ptf||[]).push(o,arguments),n}})()}))})),"complete"==r.readyState?h():(t.addEventListener("DOMContentLoaded",h),t.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated);;(e=>{e.addEventListener("astro:before-swap",e=>{let r=document.body.querySelector("iframe[src*='/~partytown/']");if(r)e.newDocument.body.append(r)})})(document);</script></head> <body class="relative flex flex-col min-h-dvh">  <style type="text/css">
+  @keyframes pan-overlay {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 0 -100%;
+    }
+  }
+
+  @keyframes pan-image {
+    0% {
+      opacity: 0;
+      background-position: 36% 42%;
+      background-size: 250%;
+    }
+
+    5% {
+      opacity: var(--opacity);
+      background-position: 36% 42%;
+      background-size: 250%;
+    }
+
+    18% {
+      opacity: var(--opacity);
+    }
+
+    20% {
+      opacity: 0;
+      background-position: 30% 35%;
+      background-size: 250%;
+    }
+
+    20.0001% {
+      /* -- View 2 -- */
+      background-position: 60% 85%;
+      background-size: 500%;
+    }
+
+    30% {
+      opacity: var(--opacity);
+    }
+
+    38% {
+      opacity: var(--opacity);
+    }
+
+    40% {
+      opacity: 0;
+      background-position: 49% 81%;
+      background-size: 500%;
+    }
+
+    40.0001% {
+      /* -- View 3 -- */
+      background-position: 80% 42%;
+      background-size: 300%;
+    }
+
+    50% {
+      opacity: var(--opacity);
+    }
+
+    58% {
+      opacity: var(--opacity);
+    }
+
+    60% {
+      opacity: 0;
+      background-position: 84% 33%;
+      background-size: 300%;
+    }
+
+    60.0001% {
+      /* -- View 4 -- */
+      background-position: 0% 0%;
+      background-size: 300%;
+    }
+
+    70% {
+      opacity: var(--opacity);
+    }
+
+    78% {
+      opacity: var(--opacity);
+    }
+
+    80% {
+      opacity: 0;
+      background-position: 15% 4%;
+      background-size: 300%;
+    }
+
+    80.0001% {
+      /* -- View 5 -- */
+      background-position: 80% 10%;
+      background-size: 300%;
+    }
+
+    90% {
+      opacity: var(--opacity);
+    }
+
+    98% {
+      opacity: var(--opacity);
+    }
+
+    100% {
+      opacity: 0;
+      background-position: 72% 14%;
+      background-size: 300%;
+    }
+  }
+
+  .stage {
+    --background-rgb: 15 15 15;
+
+    --blue-rgb: 33 150 243;
+    --primary-rgb: var(--blue-rgb);
+
+    width: 100%;
+    background-color: rgb(var(--background-rgb));
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 60px 0;
+
+    font-size: 16px; /* forcing a reset to make to be sure this block is standard */
+  }
+
+  .screen {
+    width: 400px;
+    aspect-ratio: 10/16;
+    border: 1px solid rgb(var(--blue-rgb));
+    border-radius: 1em;
+    background-color: rgb(var(--blue-rgb) / 15%);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .screen:after,
+  .screen:before {
+    content: '';
+    height: 5px;
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    translate: -50% 0%;
+    background-color: white;
+  }
+
+  .screen:before {
+    width: 15%;
+    top: 0;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
+
+  .screen:after {
+    width: 25%;
+    bottom: 0;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+  }
+
+  .screen--overlay {
+    background: linear-gradient(
+      rgb(var(--primary-rgb) / 0.15),
+      rgb(var(--primary-rgb) / 0.15) 3px,
+      transparent 3px,
+      transparent 9px
+    );
+    background-size: 100% 9px;
+
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    animation: pan-overlay 22s infinite linear;
+  }
+
+  .screen > figure {
+    --opacity: 0.6;
+    position: absolute;
+    inset: 0;
+
+    background-image: url(/experiments/animated-screen/snow-mountain.jpg);
+    background-repeat: no-repeat;
+    background-size: 300%;
+
+    filter: sepia(100%) hue-rotate(160deg);
+    opacity: var(--opacity);
+    animation: pan-image 15s infinite linear;
+
+    margin: 0;
+    padding: 0;
+  }
+
+  .screen--content {
+    position: absolute;
+    inset: 20px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+
+    border: 1px solid rgb(var(--blue-rgb) / 50%);
+    border-radius: 1rem;
+  }
+</style>
+<div class="stage">
+  <div class="screen">
+    <figure role="img"></figure>
+    <div class="screen--overlay"></div>
+    <div class="screen--content"></div>
+  </div>
+</div>
+<p>
+  Thanks for
+  <a href="https://www.youtube.com/watch?v=jMVhxBB3l0w">HyperPlexed</a>
+  for the inspirational video
+</p>  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Person",
+    "name": "Carlos A. Gomes",
+    "email": "carlos.algms@gmail.com",
+    "jobTitle": "Frontend Engineer",
+    "gender": "Male",
+    "url": "https://github.com/carlos-algms",
+    "image": "https://github.com/carlos-algms.png",
+    "sameAs": [
+      "https://www.linkedin.com/in/carlosalgms/",
+      "https://twitter.com/carlos_algms"
+    ]
+  }
+</script></body></html>
