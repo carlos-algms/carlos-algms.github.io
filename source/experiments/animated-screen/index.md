@@ -1,5 +1,4 @@
 ---
-layout: page
 slug: animated-screen
 title: Animated Screen with CSS only
 description: Developing an animated screen effect with CSS only with a moving image and linear-gradient overlay

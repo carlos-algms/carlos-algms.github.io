@@ -37,7 +37,7 @@ You can play it in the [live-version here](https://carlos-algms.github.io/snake-
 <a href="animated-screen/">
   <figure style="background-color: rgb(15, 15, 15)">
 
-![Animated screen with CSS](/animated-screen/animated-screen.gif)
+![Animated screen with CSS](/experiments/animated-screen/animated-screen.gif)
 
   </figure>
 </a>
