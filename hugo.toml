@@ -4,3 +4,21 @@ theme = "black-purple-2025"
 defaultContentLanguage = "pt-br"
 defaultContentLanguageInSubdir = false
 enableRobotsTXT = true
+
+[languages]
+  [languages.pt-br]
+    weight = 1
+    label = "Português"
+    locale = "pt-BR"
+    contentDir = "content"
+    disabled = false
+  [languages.en]
+    weight = 2
+    label = "English"
+    locale = "en-US"
+    disabled = true
+  [languages.de]
+    weight = 3
+    label = "Deutsch"
+    locale = "de-DE"
+    disabled = true
