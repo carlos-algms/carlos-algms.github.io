@@ -1,0 +1,6 @@
+baseURL = "https://carlos-algms.github.io/"
+title = "Carlos A. Gomes"
+theme = "black-purple-2025"
+defaultContentLanguage = "pt-br"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
