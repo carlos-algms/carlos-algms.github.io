@@ -40,3 +40,6 @@ disableKinds = ["taxonomy"]
 [pagination]
   pagerSize = 5
   path = ""
+
+[markup.goldmark.renderer]
+  unsafe = true
