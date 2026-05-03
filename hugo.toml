@@ -4,6 +4,7 @@ theme = "black-purple-2025"
 defaultContentLanguage = "pt-br"
 defaultContentLanguageInSubdir = false
 enableRobotsTXT = true
+disableKinds = ["taxonomy"]
 
 [languages]
   [languages.pt-br]
@@ -22,3 +23,20 @@ enableRobotsTXT = true
     label = "Deutsch"
     locale = "de-DE"
     disabled = true
+
+[permalinks.page]
+  blog = '/blog/:slug/'
+  experiments = '/experiments/:slug/'
+
+[taxonomies]
+  tag = "tags"
+
+[permalinks.taxonomy]
+  tags = '/blog/tags/'
+
+[permalinks.term]
+  tags = '/blog/tags/:slug/'
+
+[pagination]
+  pagerSize = 5
+  path = ""
