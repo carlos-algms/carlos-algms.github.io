@@ -5,6 +5,7 @@ defaultContentLanguage = "pt-br"
 defaultContentLanguageInSubdir = false
 enableRobotsTXT = true
 disableKinds = ["taxonomy"]
+disableAliases = true
 
 [params]
   gtag_id = "G-ZNQ41VTYXZ"
@@ -28,8 +29,8 @@ disableKinds = ["taxonomy"]
     disabled = true
 
 [permalinks.page]
-  blog = '/blog/:slug/'
-  experiments = '/experiments/:slug/'
+  blog = '/blog/:filename/'
+  experiments = '/experiments/:filename/'
 
 [taxonomies]
   tag = "tags"
