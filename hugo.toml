@@ -6,6 +6,9 @@ defaultContentLanguageInSubdir = false
 enableRobotsTXT = true
 disableKinds = ["taxonomy"]
 
+[params]
+  gtag_id = "G-ZNQ41VTYXZ"
+
 [languages]
   [languages.pt-br]
     weight = 1

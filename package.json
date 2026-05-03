@@ -13,7 +13,8 @@
     "build": "rimraf dist && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "typecheck": "astro check"
+    "typecheck": "astro check",
+    "build:partytown": "node scripts/copy-partytown.mjs"
   },
   "dependencies": {
     "astro": "^5.10.1",
@@ -24,6 +25,7 @@
     "@astrojs/check": "^0.9.4",
     "@astrojs/partytown": "^2.1.4",
     "@astrojs/sitemap": "^3.4.1",
+    "@builder.io/partytown": "0.10.3",
     "@rollup/plugin-yaml": "^4.1.2",
     "@tailwindcss/vite": "^4.1.11",
     "@types/node": "^24.0.0",

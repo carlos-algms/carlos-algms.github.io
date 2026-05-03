@@ -17,6 +17,7 @@ migration-temp/
 .tools/
 .hugo_build.lock
 public/
+themes/black-purple-2025/static/~partytown/
 
 
 # IDE Files

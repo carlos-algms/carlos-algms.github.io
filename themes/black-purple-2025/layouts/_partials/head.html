@@ -27,7 +27,50 @@
 <link rel="canonical" href="{{ .Permalink }}">
 <link rel="sitemap" href="/sitemap-index.xml">
 
-{{- /* TODO Task 6.5: partytown + gtag scripts go here */ -}}
+<script>
+  partytown = {
+    forward: ['dataLayer.push', 'gtag'],
+  };
+</script>
+<script src="/~partytown/partytown.js"></script>
+
+<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id={{ site.Params.gtag_id }}"></script>
+
+<script type="text/partytown">
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+
+  gtag('js', new Date());
+
+  // Initialize as Anonymous until we have a proper consent management
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+  });
+
+  gtag('config', '{{ site.Params.gtag_id }}');
+</script>
+
+<script data-category="analytics">
+  function updateConsents() {
+    if (typeof gtag !== 'function') {
+      console.warn('gtag is not defined');
+      return;
+    }
+
+    gtag('consent', 'update', {
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+      analytics_storage: 'granted',
+    });
+  }
+</script>
 
 {{- /* TODO Task 11: theme-init.html partial render here */ -}}
 
