@@ -1,0 +1,99 @@
+body,
+html {
+  font-family: helvetica, arial, tahoma;
+}
+
+.piao-da-casa-propria {
+  --w: 300px;
+  --h: 300px;
+  --item-count: 6;
+  --item-width: 60px;
+  --item-angle: calc(360deg / var(--item-count));
+  --carousel-radius: calc(
+    var(--item-width) * 0.866
+  ); /* tan(30°) = 0.577, so 1/(2*tan(30°)) ≈ 0.866 */
+
+  width: var(--w);
+  height: var(--h);
+  position: relative;
+  border: calc(var(--w) * 0.01) solid #000;
+  box-sizing: border-box;
+
+  margin-inline: auto;
+
+  &::before {
+    --myW: calc(var(--w) * 0.515);
+    content: '';
+    box-sizing: border-box;
+    border: calc(var(--w) * 0.052) solid red;
+    width: var(--myW);
+    height: var(--myW);
+    position: absolute;
+    top: calc(var(--h) * 0.07);
+    left: calc(var(--w) * 0.232);
+    z-index: 1000;
+    border-radius: var(--myW);
+  }
+
+  p {
+    text-align: center;
+    margin-top: 20%;
+  }
+}
+
+.container,
+.stage,
+.item {
+  width: var(--item-width);
+  height: calc(var(--h) * 0.35);
+}
+
+.container {
+  position: relative;
+  margin: calc(var(--w) * 0.15) auto 0 auto;
+  perspective: 100%;
+  overflow: visible;
+}
+
+.stage {
+  transform-style: preserve-3d;
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  --rotation-index: 0;
+  --animation-duration: 0s;
+  transform: translateZ(calc(var(--carousel-radius) * -1))
+    rotateY(calc(var(--rotation-index) * var(--item-angle) * -1));
+  transition: none;
+
+  .animating & {
+    transition: transform var(--animation-duration) cubic-bezier(0.6, 0, 0.1, 1);
+  }
+}
+
+.item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: #000;
+  text-align: center;
+  color: #fff;
+  font-size: calc(var(--h) / 4);
+  line-height: calc(var(--h) * 0.35);
+  font-weight: bold;
+  border: calc(var(--w) * 0.01) solid white;
+
+  z-index: calc(var(--item-count) - var(--item-index));
+  transform: rotateY(calc(var(--item-angle) * var(--item-index)))
+    translateZ(var(--carousel-radius));
+}
+
+.play {
+  .animating & {
+    display: none;
+  }
+}

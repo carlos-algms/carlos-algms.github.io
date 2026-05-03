@@ -1,23 +1,10 @@
 ---
 title: Experiments with CSS, JavaScript and DevOPS
 comments: false
+# TODO: en/de translations of experiments landing page
 ---
 
 <div class="article-entry experiments-page">
-
-  <style>
-    .experiments-page {
-      img {
-        width: auto;
-        height: auto;
-        margin: 0 auto;
-      }
-
-      img[alt="Snake game screenshot"] {
-        max-height: 600px;
-      }
-    }
-  </style>
 
 # Experiments With CSS, JavaScript and DevOPS
 

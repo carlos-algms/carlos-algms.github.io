@@ -1,11 +1,10 @@
 ---
-slug: piao-da-casa-propria
 title: Pião da Casa Própria com CSS e JavaScript
 date: 2025-09-13
-updated: 2025-09-13
+lastmod: 2025-09-13
+comments: false
+contentLang: pt-br
 ---
-
-<link rel="stylesheet" href="./piao-da-casa-propria.css"/>
 
 <main class="piao-da-casa-propria">
     <section class="container">
@@ -22,5 +21,3 @@ updated: 2025-09-13
         <button class="play">Play</button>
     </p>
 </main>
-
-<script src="./piao-da-casa-propria.js"></script>
