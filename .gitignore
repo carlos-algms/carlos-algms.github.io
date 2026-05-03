@@ -13,6 +13,7 @@ db.json
 node_modules/
 .deploy*/
 .tmp/
+migration-temp/
 
 
 # IDE Files
