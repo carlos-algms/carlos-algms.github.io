@@ -1,10 +1,10 @@
 ---
 title: Como configurar host Linux para acessar e resolver services Kubernetes por nome dns
-slug: como-configurar-host-linux-para-acessar-e-resolver-services-kubernetes-por-nome
 date: 2021-02-17T22:10:00-03:00
-updated: 2021-02-17T22:10:00-03:00
+lastmod: 2021-02-17T22:10:00-03:00
+comments: true
 tags: [kubernetes, linux, dns]
-lang: pt-br
+contentLang: pt-br
 ---
 
 <main lang="pt-BR">
@@ -15,7 +15,7 @@ Neste post vou explicar como configurar um host Ubuntu para ter acesso aos servi
 
 Todos os <em lang="eng">Pods</em> e <em lang="eng">Services</em> estão conectados em uma mesma rede virtual privada com IPs da faixa `10.x.x.x` e o host aonde o Kubernetes está instalado não está conectado a esta rede, e por isso não tem acesso nem aos services nem aos pods.
 
-<!-- more -->
+<!--more-->
 
 Digamos que você tenha criado um banco de dados qualquer e que tenha exposto este banco de dados através de um serviço chamado simplesmente de `my-db`.
 

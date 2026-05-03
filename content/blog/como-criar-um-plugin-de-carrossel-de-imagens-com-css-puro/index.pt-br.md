@@ -1,10 +1,10 @@
 ---
 title: Como criar um plugin de Carrossel de imagens com css puro
-slug: como-criar-um-plugin-de-carrossel-de-imagens-com-css-puro
 date: 2017-04-08T23:32:59-03:00
-updated: 2021-01-25T10:00:00-03:00
+lastmod: 2021-01-25T10:00:00-03:00
+comments: true
 tags: [css]
-lang: pt-br
+contentLang: pt-br
 ---
 
 Existem vários plugins para jQuery, React e até mesmo Angular para criar um carrossel de imagens, mas é possível criar utilizando apenas CSS puro.
@@ -17,7 +17,7 @@ Existem vários plugins para jQuery, React e até mesmo Angular para criar um ca
 - **Item**: O item visível atualmente pelo usuário
 - **Next/Prev Buttons**: Os botões para passar aos items anteriores/próximos, que normalmente estão ocultos
 
-<!-- more -->
+<!--more-->
 
 ### Updates:
 

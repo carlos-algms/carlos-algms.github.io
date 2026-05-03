@@ -1,10 +1,10 @@
 ---
 title: tutorial docker iniciando e como rodar containers
-slug: tutorial-docker-iniciando-e-como-rodar-containers
 date: 2016-01-25T23:28:06-03:00
-updated: 2016-01-25T23:28:06-03:00
+lastmod: 2016-01-25T23:28:06-03:00
+comments: true
 tags: [docker]
-lang: pt-br
+contentLang: pt-br
 ---
 
 ![docker logo](docker.png)
@@ -29,7 +29,7 @@ $ docker run ubuntu:14.04
 
 O problema do comando run é que ele cria um container e morre, desligando assim a máquina virtual e deixando você sem acesso.
 
-<!-- more -->
+<!--more-->
 
 ## O que é o docker
 

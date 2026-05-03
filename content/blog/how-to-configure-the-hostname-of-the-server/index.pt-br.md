@@ -1,17 +1,16 @@
 ---
-layout: post
+# TODO: rename to index.en.md when en is enabled
 title: How to configure the hostname of the server
-slug: how-to-configure-the-hostname-of-the-server
 date: 2014-07-06T13:27:40-03:00
-updated: 2014-07-06T13:27:40-03:00
+lastmod: 2014-07-06T13:27:40-03:00
 comments: true
 tags: [linux, ubuntu, cloud]
-lang: en
+contentLang: en
 ---
 
 ## Hostname X FQDN
 
-<!-- more -->
+<!--more-->
 
 ### Hostname
 

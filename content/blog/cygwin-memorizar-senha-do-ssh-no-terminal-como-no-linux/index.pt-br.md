@@ -1,10 +1,10 @@
 ---
 title: cygwin - Memorizar senha do ssh no terminal como no Linux
-slug: cygwin-memorizar-senha-do-ssh-no-terminal-como-no-linux
 date: 2016-01-10T18:55:56-03:00
-updated: 2016-01-10T18:55:56-03:00
+lastmod: 2016-01-10T18:55:56-03:00
+comments: true
 tags: [windows, cygwin, ssh]
-lang: pt-br
+contentLang: pt-br
 ---
 
 O Linux pode memoriza todas as senhas utilizadas no `SSH` até que o usuário faça logoff ou reinicie o computador.
@@ -12,7 +12,7 @@ As senhas ficam salvas no sistema de credenciais nativo do Linux.
 
 O Windows não possui este recurso, sendo necessário alguns passos para conseguir o mesmo efeito.
 
-<!-- more -->
+<!--more-->
 
 O [cygwin][0] ou o [gitbash][1], possuem um recurso chamado `ssh-agent` que é iniciado ao fazer uma chamada ao comando `ssh`.
 O que vamos fazer é iniciar um único `ssh-agent` que ficará rodando até que o usuário faça logoff ou reinicie o computador.

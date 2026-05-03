@@ -1,17 +1,17 @@
 ---
-layout: post
+# TODO: rename to index.en.md when en is enabled
 title: Install Oracle java on Ubuntu
-slug: install-oracle-java-on-ubuntu
 date: 2014-11-20T15:30:00-02:00
-updated: 2014-11-20T15:30:00-02:00
+lastmod: 2014-11-20T15:30:00-02:00
+comments: true
 tags: [linux, ubuntu, java]
-lang: en
+contentLang: en
 ---
 
 Ubuntu comes with an opensource java installed. To use the oracle's java,
 you need to remove the openjkd and install oracle's.
 
-<!-- more -->
+<!--more-->
 
 First we need to remove the openjdk from Ubuntu.
 

@@ -1,17 +1,17 @@
 ---
-layout: post
+# TODO: rename to index.en.md when en is enabled
 title: How to CHMOD on Multiple Files or Folder at Same Time
-slug: how-to-chmod-on-multiple-files-or-folder-at-same-time
 date: 2014-11-20T15:11:46-02:00
-updated: 2014-11-20T15:11:46-02:00
+lastmod: 2014-11-20T15:11:46-02:00
+comments: true
 tags: [linux, ubuntu]
-lang: en
+contentLang: en
 ---
 
 Do chmod on multiple files could be hard if you only use chmod alone.
 You can use find command to filter files and folder and apply chmod with only one simple line.
 
-<!-- more -->
+<!--more-->
 
 Apply CHMOD to every folder and subfolder recursively
 
