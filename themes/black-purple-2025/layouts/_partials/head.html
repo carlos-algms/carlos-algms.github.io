@@ -14,7 +14,15 @@
 {{- if eq .Kind "home" -}}
   Carlos A. Gomes
 {{- else if .Title -}}
-  {{ .Title }} | Carlos A. Gomes
+  {{- $title := .Title -}}
+  {{- if or (eq .Kind "section") (eq .Kind "term") (eq .Kind "taxonomy") -}}
+    {{- with .Paginator -}}
+      {{- if gt .PageNumber 1 -}}
+        {{- $title = printf "%s - %s %d" $title (i18n "page") .PageNumber -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{ $title }} | Carlos A. Gomes
 {{- else -}}
   Carlos A. Gomes
 {{- end -}}

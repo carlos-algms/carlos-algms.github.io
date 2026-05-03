@@ -1,0 +1,18 @@
+{{- /* Usage: {{ partial "tags.html" . }} where . is the page */ -}}
+{{- with .Params.tags -}}
+<nav class="mt-6 border-t border-neutral-200 dark:border-gray-600 pt-5">
+  <ol class="flex">
+    {{- range . -}}
+      <li class="mr-2">
+        <a
+          href="/blog/tags/{{ . | urlize }}/"
+          title="{{ i18n "all_posts_with_tag" }} {{ . }}"
+          class="text-muted-foreground hover:text-accent hover:underline"
+        >
+          #{{ . }}
+        </a>
+      </li>
+    {{- end -}}
+  </ol>
+</nav>
+{{- end -}}

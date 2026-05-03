@@ -1,0 +1,46 @@
+{{- /* Usage: {{ partial "pagination.html" . }} where . is the page (paginator inferred) */ -}}
+{{- $paginator := .Paginator -}}
+{{- if and $paginator (gt $paginator.TotalPages 1) -}}
+<nav class="mt-12 flex justify-center">
+  <ul class="inline-flex items-center gap-2" role="list">
+    {{- if $paginator.HasPrev -}}
+      <li>
+        <a
+          href="{{ if eq $paginator.Prev.PageNumber 1 }}{{ $paginator.First.URL | replaceRE "//+" "/" | replaceRE "/page/1/?$" "/" }}{{ else }}{{ $paginator.Prev.URL | replaceRE "//+" "/" }}{{ end }}"
+          class="inline-flex items-center px-3 py-1 rounded border border-zinc-300 dark:border-zinc-700 bg-background hover:bg-accent hover:text-accent-foreground"
+          aria-label="{{ i18n "go_to_previous_page" }}"
+        >
+          ‹ {{ i18n "previous" }}
+        </a>
+      </li>
+    {{- end -}}
+
+    {{- range $paginator.Pagers -}}
+      {{- $isCurrent := eq .PageNumber $paginator.PageNumber -}}
+      <li>
+      {{- if $isCurrent -}}
+        <span class="inline-flex items-center px-3 py-1 rounded border border-zinc-300 dark:border-zinc-700 bg-accent text-accent-foreground font-semibold" aria-current="page">{{ .PageNumber }}</span>
+      {{- else -}}
+        {{- $href := .URL | replaceRE "//+" "/" -}}
+        {{- if eq .PageNumber 1 -}}
+          {{- $href = $href | replaceRE "/page/1/?$" "/" -}}
+        {{- end -}}
+        <a href="{{ $href }}"
+           class="inline-flex items-center px-3 py-1 rounded border border-zinc-300 dark:border-zinc-700 bg-background hover:bg-accent hover:text-accent-foreground"
+           aria-label="{{ i18n "go_to_page" }} {{ .PageNumber }}">{{ .PageNumber }}</a>
+      {{- end -}}
+      </li>
+    {{- end -}}
+
+    {{- if $paginator.HasNext -}}
+      <li>
+        <a href="{{ $paginator.Next.URL | replaceRE "//+" "/" }}"
+           class="inline-flex items-center px-3 py-1 rounded border border-zinc-300 dark:border-zinc-700 bg-background hover:bg-accent hover:text-accent-foreground"
+           aria-label="{{ i18n "go_to_next_page" }}">
+          {{ i18n "next" }} ›
+        </a>
+      </li>
+    {{- end -}}
+  </ul>
+</nav>
+{{- end -}}

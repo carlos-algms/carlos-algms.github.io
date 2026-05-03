@@ -1,0 +1,102 @@
+{{ define "main" }}
+<div class="container mx-auto">
+  <article class="article-entry"
+           itemscope
+           itemtype="https://schema.org/BlogPosting"
+           lang="{{ default .Lang .Params.contentLang }}">
+    <header>
+      <h1 class="text-clamp-l mb-1 font-bold" itemprop="name">{{ .Title }}</h1>
+
+      <div class="border-y-1 border-neutral-200 dark:border-gray-600 py-2 flex gap-1 my-8">
+        {{ partial "icon.html" (dict "name" "calendar" "class" "size-5") }}
+
+        {{- if and .Lastmod (ne .Lastmod.Unix .Date.Unix) -}}
+          {{ i18n "updated" }}
+          <time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}"
+                itemprop="dateModified"
+                title="{{ i18n "updated" }}">{{ .Lastmod.Format "2006-01-02" }}</time>
+          -
+        {{- end -}}
+
+        {{ i18n "published" }}
+        <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}"
+              itemprop="datePublished"
+              title="{{ i18n "published" }}">{{ .Date.Format "2006-01-02" }}</time>
+      </div>
+    </header>
+
+    <div itemprop="articleBody">
+      {{ .Content }}
+    </div>
+  </article>
+
+  {{- /* Tag list — only for blog posts (experiments have no tags frontmatter) */ -}}
+  {{- if eq .Section "blog" -}}
+    {{ partial "tags.html" . }}
+  {{- end -}}
+
+  {{- /* Per-post JSON-LD BlogPosting */ -}}
+  {{- if eq .Section "blog" -}}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": {{ .Title | jsonify }},
+    "datePublished": {{ .Date.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
+    "dateModified": {{ (default .Date .Lastmod).Format "2006-01-02T15:04:05Z07:00" | jsonify }},
+    "author": {
+      "@type": "Person",
+      "name": "Carlos A. Gomes",
+      "url": "https://github.com/carlos-algms"
+    },
+    "url": {{ .Permalink | jsonify }},
+    "inLanguage": {{ default .Lang .Params.contentLang | jsonify }}
+  }
+  </script>
+  {{- end -}}
+
+  {{- /* Prev/next navigation for blog posts */ -}}
+  {{- if eq .Section "blog" -}}
+    <p class="font-bold text-2xl border-b-1 mt-15 mb-8 text-center max-w-6xl mx-auto pb-2 border-b-accent">
+      Continue lendo:
+    </p>
+    <nav id="article-nav" class="flex flex-col mx-auto gap-2 w-max">
+      {{- with .PrevInSection -}}
+        <a href="{{ .RelPermalink }}"
+           class="hover:bg-purple-800 hover:text-accent-foreground px-4 py-2 rounded-md border border-zinc-300 dark:border-muted">
+          ← {{ .Title }}
+        </a>
+      {{- end -}}
+      {{- with .NextInSection -}}
+        <a href="{{ .RelPermalink }}"
+           class="hover:bg-purple-800 hover:text-accent-foreground px-4 py-2 rounded-md border border-zinc-300 dark:border-muted text-right">
+          {{ .Title }} →
+        </a>
+      {{- end -}}
+    </nav>
+    <hr class="my-10 border-t-2 border-zinc-300 dark:border-muted" />
+  {{- end -}}
+
+  {{- /* Disqus placeholder — Task 13 fills this */ -}}
+  {{- /* TODO Task 13: disqus partial */ -}}
+
+  {{- /* TODO Task 10: page-scripts partial */ -}}
+</div>
+
+<script>
+  // Locale-aware date formatting (parity with Astro's inline script in Post.astro)
+  // FIXME: Task 11 moves this into a typed module (date-locale.ts)
+  document.querySelectorAll('time').forEach((timeTag) => {
+    const dt = timeTag.getAttribute('datetime');
+    if (!dt) return;
+    const date = new Date(dt);
+    timeTag.textContent = date.toLocaleDateString(navigator.language, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    const existingTitle = timeTag.getAttribute('title') || '';
+    timeTag.setAttribute('title', existingTitle + ': ' + date.toLocaleString());
+  });
+</script>
+{{ end }}
