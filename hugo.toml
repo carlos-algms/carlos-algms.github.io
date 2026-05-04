@@ -48,6 +48,14 @@ disableAliases = true
 [markup.goldmark.renderer]
   unsafe = true
 
+[markup.highlight]
+  noClasses = false
+  lineNos = true
+  lineNumbersInTable = false
+  codeFences = true
+  guessSyntax = false
+  tabWidth = 2
+
 [build]
   [build.buildStats]
     enable = true

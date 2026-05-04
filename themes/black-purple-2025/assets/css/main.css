@@ -97,21 +97,15 @@ a {
 
   pre {
     @apply p-3;
+  }
 
-    code {
-      counter-reset: code-line-number;
-      counter-increment: code-line-number calc(var(--start, 1) - 1);
-
-      .line::before {
-        content: counter(code-line-number);
-        counter-increment: code-line-number;
-        width: 1rem;
-        margin-right: 1.5rem;
-        display: inline-block;
-        text-align: right;
-        color: rgba(115, 138, 148, 0.4);
-      }
-    }
+  .chroma .ln,
+  .chroma .lnt {
+    width: 1rem;
+    margin-right: 1.5rem;
+    display: inline-block;
+    text-align: right;
+    color: rgba(115, 138, 148, 0.4);
   }
 
   img {
