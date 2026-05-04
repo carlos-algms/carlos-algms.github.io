@@ -16,6 +16,7 @@ node_modules/
 migration-temp/
 .tools/
 .hugo_build.lock
+hugo_stats.json
 public/
 themes/black-purple-2025/static/~partytown/
 

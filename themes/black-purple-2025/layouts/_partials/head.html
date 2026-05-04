@@ -35,6 +35,8 @@
 <link rel="canonical" href="{{ .Permalink }}">
 <link rel="sitemap" href="/sitemap-index.xml">
 
+{{ partial "css.html" . }}
+
 <script>
   partytown = {
     forward: ['dataLayer.push', 'gtag'],
@@ -81,8 +83,6 @@
 </script>
 
 {{- /* TODO Task 11: theme-init.html partial render here */ -}}
-
-{{- /* TODO Task 8: css.html partial defer block here */ -}}
 
 <script type="application/ld+json">
   {
