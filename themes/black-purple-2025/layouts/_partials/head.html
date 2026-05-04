@@ -32,7 +32,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
 <link rel="stylesheet" crossorigin="anonymous" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&display=swap">
 
-<link rel="canonical" href="{{ .Permalink }}">
+{{- $canonical := .Permalink -}}
+{{- if or (eq .Kind "section") (eq .Kind "term") (eq .Kind "taxonomy") -}}
+  {{- with .Paginator -}}
+    {{- if gt .PageNumber 1 -}}
+      {{- $canonical = printf "%s%d/" $.Permalink .PageNumber -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+<link rel="canonical" href="{{ $canonical }}">
 <link rel="sitemap" href="/sitemap-index.xml">
 {{- range .AlternativeOutputFormats -}}
   <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
