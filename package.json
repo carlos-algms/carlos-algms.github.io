@@ -22,24 +22,12 @@
     "format": "oxfmt .",
     "format:check": "oxfmt --check ."
   },
-  "dependencies": {
-    "astro": "^5.10.1",
-    "clsx": "^2.1.1"
-  },
   "devDependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/partytown": "^2.1.4",
-    "@astrojs/sitemap": "^3.4.1",
     "@builder.io/partytown": "0.10.3",
-    "@rollup/plugin-yaml": "^4.1.2",
     "@tailwindcss/cli": "^4.1.11",
-    "@types/node": "^24.0.0",
     "concurrently": "^9.0.0",
-    "cross-env": "^7.0.3",
     "esbuild": "^0.25.0",
     "oxfmt": "^0.47.0",
-    "rimraf": "^6.0.1",
-    "sharp": "^0.34.2",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.8.3"
   },
