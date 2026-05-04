@@ -25,7 +25,7 @@
         </a>
 
         <div class="ml-7">
-          <a href="{{ $repoUrl }}" target="_blank"
+          <a href="{{ $repoUrl }}" target="_blank" rel="noopener noreferrer"
              class="text-xs bg-zinc-200 dark:text-muted-foreground dark:bg-zinc-700 px-1.5 py-0.5 rounded hover:underline dark:hover:text-white inline-flex items-center gap-1">
             {{ partial "icon.html" (dict "name" "repository" "class" "size-4 shrink-0") }}
             {{ $repoSlug }}
@@ -41,7 +41,7 @@
   </ul>
 
   <div class="flex justify-center">
-    <a href="https://github.com/search?q=is:issue+author:carlos-algms&type=issues" target="_blank"
+    <a href="https://github.com/search?q=is:issue+author:carlos-algms&type=issues" target="_blank" rel="noopener noreferrer"
        class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg px-5 py-2.5 my-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 inline-flex items-center">
       {{ i18n "gh_issues_all_i_opened" }}
       {{ partial "icon.html" (dict "name" "arrow" "class" "size-5 inline-block") }}

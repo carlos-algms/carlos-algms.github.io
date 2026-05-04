@@ -30,7 +30,7 @@
           {{ i18n "opened" }}
           <time datetime="{{ .created_at }}">{{ dateFormat "2006-01-02" .created_at }}</time>
           {{- with .assignee }}
-            • Assigned to
+            • {{ i18n "assigned_to" }}
             <a class="text-muted-foreground hover:underline hover:text-white"
                href="{{ .html_url }}" target="_blank" rel="noopener noreferrer">@{{ .login }}</a>
           {{- end }}
@@ -40,7 +40,7 @@
   </ul>
 
   <div class="flex justify-center">
-    <a href="https://github.com/search?q=is:pr+author:carlos-algms&type=pullrequests" target="_blank"
+    <a href="https://github.com/search?q=is:pr+author:carlos-algms&type=pullrequests" target="_blank" rel="noopener noreferrer"
        class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg px-5 py-2.5 my-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 inline-flex items-center">
       {{ i18n "gh_prs_all_i_opened" }}
       {{ partial "icon.html" (dict "name" "arrow" "class" "size-5 inline-block") }}

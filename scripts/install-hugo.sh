@@ -25,7 +25,7 @@ fi
 
 # Idempotency: skip if already installed at the right version.
 if [[ -x "${HUGO_BIN}" ]]; then
-  if "${HUGO_BIN}" version 2>/dev/null | grep -q "v${HUGO_VERSION}"; then
+  if "${HUGO_BIN}" version 2>/dev/null | grep -qE "v${HUGO_VERSION}([^0-9]|$)"; then
     echo "hugo v${HUGO_VERSION} already installed at ${HUGO_BIN}"
     exit 0
   fi
@@ -139,7 +139,7 @@ esac
 
 chmod +x "${HUGO_BIN}"
 
-if ! "${HUGO_BIN}" version | grep -q "v${HUGO_VERSION}"; then
+if ! "${HUGO_BIN}" version | grep -qE "v${HUGO_VERSION}([^0-9]|$)"; then
   echo "error: installed hugo does not report v${HUGO_VERSION}" >&2
   "${HUGO_BIN}" version >&2 || true
   exit 1

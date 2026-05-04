@@ -3,12 +3,12 @@
     <aside class="flex flex-col gap-2">
       <h3 class="font-bold">Carlos A. Gomes</h3>
       <div class="flex flex-row gap-3">
-        <a href="https://github.com/carlos-algms" target="_blank"
+        <a href="https://github.com/carlos-algms" target="_blank" rel="noopener noreferrer"
            class="inline-flex items-center justify-center rounded-full w-8 h-8 text-sm font-medium transition-colors border border-zinc-300 dark:border-zinc-700 border-input bg-background hover:bg-accent hover:text-accent-foreground"
            aria-label="Carlos Gomes GitHub Profile">
           {{ partial "icon.html" (dict "name" "github" "class" "h-4 w-4") }}
         </a>
-        <a href="https://www.linkedin.com/in/carlosalgms/" target="_blank"
+        <a href="https://www.linkedin.com/in/carlosalgms/" target="_blank" rel="noopener noreferrer"
            class="inline-flex items-center justify-center rounded-full w-8 h-8 text-sm font-medium transition-colors border border-zinc-300 dark:border-zinc-700 border-input bg-background hover:bg-accent hover:text-accent-foreground"
            aria-label="Carlos Gomes LinkedIn Profile">
           {{ partial "icon.html" (dict "name" "linkedin" "class" "h-4 w-4") }}
@@ -18,9 +18,9 @@
     <aside class="flex flex-col gap-2">
       <h4 class="font-bold">Links</h4>
       <ul class="flex flex-col gap-1 dark:text-muted-foreground">
-        <li><a class="hover:text-accent" href="/">{{ i18n "home" }}</a></li>
-        <li><a class="hover:text-accent" href="/blog/">{{ i18n "blog" }}</a></li>
-        <li><a class="hover:text-accent" href="/experiments/">{{ i18n "experiments" }}</a></li>
+        <li><a class="hover:text-accent" href="{{ relLangURL "/" }}">{{ i18n "home" }}</a></li>
+        <li><a class="hover:text-accent" href="{{ relLangURL "blog/" }}">{{ i18n "blog" }}</a></li>
+        <li><a class="hover:text-accent" href="{{ relLangURL "experiments/" }}">{{ i18n "experiments" }}</a></li>
       </ul>
     </aside>
   </div>

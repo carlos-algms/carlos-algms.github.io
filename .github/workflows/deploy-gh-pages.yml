@@ -12,9 +12,6 @@ jobs:
     permissions:
       contents: write
 
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     steps:
       - uses: actions/checkout@v4
         with:
@@ -58,6 +55,7 @@ jobs:
       - name: Build
         run: pnpm build
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HUGO_BIN: ${{ runner.temp }}/hugo/hugo
 
       - name: Deploy

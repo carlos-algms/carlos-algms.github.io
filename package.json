@@ -13,6 +13,7 @@
     "hugo": "scripts/hugo",
     "dev:hugo": "scripts/hugo server",
     "dev:ts": "node scripts/build-ts.mjs --watch",
+    "predev": "pnpm build:partytown && pnpm fetch:github",
     "dev": "concurrently -k -n hugo,ts pnpm:dev:hugo pnpm:dev:ts",
     "build:partytown": "node scripts/copy-partytown.mjs",
     "build:ts": "node scripts/build-ts.mjs",

@@ -7,7 +7,8 @@ function initSpinner(element: HTMLElement): void {
   const stage = element.querySelector<HTMLElement>('.stage');
 
   if (!stage) {
-    throw new Error('Stage element not found');
+    console.warn('Stage element not found for spinner container', element);
+    return;
   }
 
   const audio = new Audio('piao.mp3');

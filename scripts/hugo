@@ -13,7 +13,7 @@ HUGO_BIN="${HUGO_BIN:-${PROJECT_ROOT}/.tools/hugo/bin/hugo}"
 needs_install=0
 if [[ ! -x "${HUGO_BIN}" ]]; then
   needs_install=1
-elif ! "${HUGO_BIN}" version 2>/dev/null | grep -q "v${HUGO_VERSION}"; then
+elif ! "${HUGO_BIN}" version 2>/dev/null | grep -qE "v${HUGO_VERSION}([^0-9]|$)"; then
   needs_install=1
 fi
 

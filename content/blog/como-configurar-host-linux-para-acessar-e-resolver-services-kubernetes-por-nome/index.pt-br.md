@@ -7,8 +7,6 @@ tags: [kubernetes, linux, dns]
 contentLang: pt-br
 ---
 
-<main lang="pt-BR">
-
 Neste post vou explicar como configurar um host Ubuntu para ter acesso aos serviços de um Cluster Kubernetes instalado utilizando [microk8s](https://microk8s.io/).
 
 ### Como funciona o DNS interno do Kubernetes
@@ -158,5 +156,3 @@ ping my-db.default.svc
 Caso você tenha vários namespaces e não só o default, basta incluir outro domínio no arquivo `/etc/systemd/resolved.conf.d/00-k8s-dns-resolver.conf`.
 
 Espero que essa post possa te ajudar a configurar um cluster Kubernetes para seu ambiente de trabalhou ou até mesmo para criar um servidor Cloud próprio, quem sabe.
-
-</main>
