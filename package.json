@@ -16,7 +16,8 @@
     "typecheck": "astro check",
     "build:partytown": "node scripts/copy-partytown.mjs",
     "build:ts": "node scripts/build-ts.mjs",
-    "dev:ts": "node scripts/build-ts.mjs --watch"
+    "dev:ts": "node scripts/build-ts.mjs --watch",
+    "fetch:github": "scripts/fetch-github.sh"
   },
   "dependencies": {
     "astro": "^5.10.1",

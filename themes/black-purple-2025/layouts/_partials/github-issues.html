@@ -1,2 +1,50 @@
-{{- /* TODO Task 12: real implementation */ -}}
-{{- /* Placeholder: no output */ -}}
+{{- $ctx := . -}}
+{{- $class := "" -}}
+{{- if reflect.IsMap . -}}
+  {{- $ctx = .ctx -}}
+  {{- $class = .class | default "" -}}
+{{- end -}}
+{{- $issues := $ctx.Site.Data.github.issues -}}
+<section class="flex flex-col gap-4{{ with $class }} {{ . }}{{ end }}">
+  {{ partial "section-title.html" "Github Issues" }}
+
+  <ul class="grid gap-4">
+    {{- range $issues -}}
+      {{- $repoSlug := index (split .repository_url "repos/") 1 -}}
+      {{- $repoUrl := replace (replace .repository_url "api." "") "repos/" "" -}}
+      <li class="card-bordered p-4 flex flex-col gap-2">
+        <a class="inline-flex items-center gap-2 hover:text-accent"
+           href="{{ .html_url }}" target="_blank" rel="noopener noreferrer">
+          {{- if eq .state "open" -}}
+            {{ partial "icon.html" (dict "name" "issue-open" "class" "size-5 shrink-0 text-green-600") }}
+          {{- else -}}
+            {{ partial "icon.html" (dict "name" "issue-closed" "class" "size-5 shrink-0 text-accent") }}
+          {{- end -}}
+          <span class="font-medium">{{ .title }}</span>
+          <span aria-hidden="true" class="text-xs text-muted-foreground">#{{ .number }}</span>
+        </a>
+
+        <div class="ml-7">
+          <a href="{{ $repoUrl }}" target="_blank"
+             class="text-xs bg-zinc-200 dark:text-muted-foreground dark:bg-zinc-700 px-1.5 py-0.5 rounded hover:underline dark:hover:text-white inline-flex items-center gap-1">
+            {{ partial "icon.html" (dict "name" "repository" "class" "size-4 shrink-0") }}
+            {{ $repoSlug }}
+          </a>
+        </div>
+
+        <div class="text-xs text-muted-foreground pl-7">
+          {{ i18n "opened" }}
+          <time datetime="{{ .created_at }}">{{ dateFormat "2006-01-02" .created_at }}</time>
+        </div>
+      </li>
+    {{- end -}}
+  </ul>
+
+  <div class="flex justify-center">
+    <a href="https://github.com/search?q=is:issue+author:carlos-algms&type=issues" target="_blank"
+       class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg px-5 py-2.5 my-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 inline-flex items-center">
+      {{ i18n "gh_issues_all_i_opened" }}
+      {{ partial "icon.html" (dict "name" "arrow" "class" "size-5 inline-block") }}
+    </a>
+  </div>
+</section>

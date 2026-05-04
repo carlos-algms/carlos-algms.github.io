@@ -23,6 +23,7 @@ themes/black-purple-2025/static/js/
 content/**/*.js
 content/**/*.js.map
 resources/
+data/github.json
 
 
 # IDE Files
