@@ -2,6 +2,12 @@
 <html lang="{{ default .Site.Language.Lang .Params.contentLang }}">
 <head>
   {{ partial "head.html" . }}
+
+  {{- $pageCssData := dict "page" . -}}
+  {{- $pageCssKey := printf "page-css-%s" .RelPermalink -}}
+  {{- with (templates.Defer (dict "key" $pageCssKey "data" $pageCssData)) -}}
+    {{ partial "page-styles.html" . }}
+  {{- end -}}
 </head>
 <body class="relative flex flex-col min-h-dvh">
   {{ partial "header.html" . }}

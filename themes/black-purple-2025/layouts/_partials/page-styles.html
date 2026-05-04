@@ -1,0 +1,8 @@
+{{- /* Per-page CSS: emit fingerprinted <link> for each colocated styles*.css */ -}}
+{{- $page := .page -}}
+{{- $styles := $page.Resources.Match "styles*.css" -}}
+{{- range $styles -}}
+  {{- $opts := dict "minify" hugo.IsProduction -}}
+  {{- $css := . | css.TailwindCSS $opts | resources.Fingerprint "sha384" -}}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous">
+{{ end -}}

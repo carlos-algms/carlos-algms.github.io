@@ -1,0 +1,6 @@
+{{- /* Inject colocated entry-point scripts (script.js, script.*.js) */ -}}
+{{- $scripts := .Resources.Match "script*.js" -}}
+{{- range $scripts -}}
+  {{- $s := . | resources.Fingerprint "sha384" -}}
+  <script type="module" src="{{ $s.RelPermalink }}" integrity="{{ $s.Data.Integrity }}"></script>
+{{ end -}}
