@@ -1,0 +1,7 @@
+{{- /* FOUC-prevention: must run blocking, before paint, before CSS link */ -}}
+<script>
+  (function () {
+    var t = localStorage.getItem('theme') || 'dark';
+    if (t === 'dark') document.documentElement.classList.add('dark');
+  })();
+</script>
