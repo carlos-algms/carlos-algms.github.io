@@ -4,7 +4,7 @@
   {{- $ctx = .ctx -}}
   {{- $class = .class | default "" -}}
 {{- end -}}
-{{- $issues := $ctx.Site.Data.github.issues -}}
+{{- $issues := hugo.Data.github.issues -}}
 <section class="flex flex-col gap-4{{ with $class }} {{ . }}{{ end }}">
   {{ partial "section-title.html" "Github Issues" }}
 
