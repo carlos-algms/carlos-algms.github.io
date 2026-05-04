@@ -50,6 +50,7 @@
 
 {{ partial "css.html" . }}
 
+{{- if hugo.IsProduction -}}
 <script>
   partytown = {
     forward: ['dataLayer.push', 'gtag'],
@@ -94,6 +95,7 @@
     });
   }
 </script>
+{{- end -}}
 
 <script type="application/ld+json">
   {
