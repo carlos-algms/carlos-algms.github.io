@@ -1,4 +1,4 @@
-{{- $posts := first 6 (where (where .Site.RegularPages "Section" "blog") "Type" "blog") -}}
+{{- $posts := first 6 (where (where .Site.RegularPages "Section" "blog") "Type" "blog").ByDate.Reverse -}}
 <section class="flex flex-col gap-4">
   {{ partial "section-title.html" (i18n "recent_posts") }}
 

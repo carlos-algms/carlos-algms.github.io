@@ -28,7 +28,7 @@
               <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" itemprop="datePublished" title="{{ i18n "published" }}">{{ .Date.Format "2006-01-02" }}</time>
             </div>
           </header>
-          <div itemprop="articleBody">{{ .Summary }}</div>
+          <div itemprop="description">{{ .Summary }}</div>
           <a class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 rounded-lg px-5 py-2.5 my-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 inline-flex items-center"
              href="{{ .RelPermalink }}">
             {{ i18n "read_more" }}

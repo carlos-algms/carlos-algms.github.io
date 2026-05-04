@@ -10,6 +10,19 @@ OUT_FILE="$OUT_DIR/github.json"
 
 mkdir -p "$OUT_DIR"
 
+# TTL cache: skip fetch if existing file is younger than the configured age.
+# Override with GITHUB_CACHE_TTL_HOURS=0 (or any small value) to force a refresh.
+CACHE_TTL_HOURS="${GITHUB_CACHE_TTL_HOURS:-6}"
+if [ -f "$OUT_FILE" ] && [ "$CACHE_TTL_HOURS" -gt 0 ]; then
+  mtime=$(stat -f %m "$OUT_FILE" 2>/dev/null || stat -c %Y "$OUT_FILE")
+  age_seconds=$(( $(date +%s) - mtime ))
+  ttl_seconds=$(( CACHE_TTL_HOURS * 3600 ))
+  if [ "$age_seconds" -lt "$ttl_seconds" ]; then
+    echo "github data cached ($((age_seconds / 60))m old, TTL ${CACHE_TTL_HOURS}h) — skipping fetch"
+    exit 0
+  fi
+fi
+
 LIMIT=6
 QUERY_BASE='author:carlos-algms+-org:carlos-algms+-user:carlos-algms+-user:webdev-tools+-user:talesprates'
 

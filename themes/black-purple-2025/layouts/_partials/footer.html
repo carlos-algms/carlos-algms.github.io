@@ -16,12 +16,17 @@
       </div>
     </aside>
     <aside class="flex flex-col gap-2">
-      <h4 class="font-bold">Links</h4>
-      <ul class="flex flex-col gap-1 dark:text-muted-foreground">
-        <li><a class="hover:text-accent" href="{{ relLangURL "/" }}">{{ i18n "home" }}</a></li>
-        <li><a class="hover:text-accent" href="{{ relLangURL "blog/" }}">{{ i18n "blog" }}</a></li>
-        <li><a class="hover:text-accent" href="{{ relLangURL "experiments/" }}">{{ i18n "experiments" }}</a></li>
-      </ul>
+      <h4 class="font-bold">{{ i18n "links" }}</h4>
+      {{- $homeURL := relLangURL "/" -}}
+      {{- $blogURL := relLangURL "blog/" -}}
+      {{- $experimentsURL := relLangURL "experiments/" -}}
+      <nav aria-label="{{ i18n "footer_nav" }}">
+        <ul class="flex flex-col gap-1 dark:text-muted-foreground">
+          <li><a class="hover:text-accent" href="{{ $homeURL }}"{{ if eq .RelPermalink $homeURL }} aria-current="page"{{ end }}>{{ i18n "home" }}</a></li>
+          <li><a class="hover:text-accent" href="{{ $blogURL }}"{{ if eq .RelPermalink $blogURL }} aria-current="page"{{ end }}>{{ i18n "blog" }}</a></li>
+          <li><a class="hover:text-accent" href="{{ $experimentsURL }}"{{ if eq .RelPermalink $experimentsURL }} aria-current="page"{{ end }}>{{ i18n "experiments" }}</a></li>
+        </ul>
+      </nav>
     </aside>
   </div>
   <div class="container mx-auto mt-10 dark:text-muted-foreground flex justify-between border-t border-zinc-300 dark:border-zinc-800 pt-4">
