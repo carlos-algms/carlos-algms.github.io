@@ -19,6 +19,10 @@ migration-temp/
 hugo_stats.json
 public/
 themes/black-purple-2025/static/~partytown/
+themes/black-purple-2025/static/js/
+content/**/*.js
+content/**/*.js.map
+resources/
 
 
 # IDE Files
