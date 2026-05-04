@@ -29,8 +29,8 @@ disableAliases = true
     disabled = true
 
 [permalinks.page]
-  blog = '/blog/:filename/'
-  experiments = '/experiments/:filename/'
+  blog = '/blog/:contentbasename/'
+  experiments = '/experiments/:contentbasename/'
 
 [taxonomies]
   tag = "tags"
