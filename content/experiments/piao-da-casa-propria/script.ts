@@ -62,6 +62,8 @@ function initSpinner(element: HTMLElement): void {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const elements = document.querySelectorAll<HTMLElement>('.piao-da-casa-propria');
+  const elements = document.querySelectorAll<HTMLElement>(
+    '.piao-da-casa-propria',
+  );
   elements.forEach((element) => initSpinner(element));
 });

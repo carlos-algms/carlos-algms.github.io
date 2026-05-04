@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 80,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    "themes/*/layouts/**",
+    "layouts/**",
+    "public/**",
+    "resources/**",
+    "content/**/*.js",
+    "themes/black-purple-2025/static/**",
+    "migration-temp/**",
+    "src/**",
+    "source/**",
+    ".tools/**",
+    "data/github.json",
+    "docs/**"
+  ]
+}

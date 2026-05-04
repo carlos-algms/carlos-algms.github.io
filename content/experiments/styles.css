@@ -5,7 +5,7 @@
     margin: 0 auto;
   }
 
-  img[alt="Snake game screenshot"] {
+  img[alt='Snake game screenshot'] {
     max-height: 600px;
   }
 }

@@ -8,71 +8,71 @@ disableKinds = ["taxonomy"]
 disableAliases = true
 
 [params]
-  gtag_id = "G-ZNQ41VTYXZ"
-  disqusShortname = "carlos-algms"
+gtag_id = "G-ZNQ41VTYXZ"
+disqusShortname = "carlos-algms"
 
 [languages]
-  [languages.pt-br]
-    weight = 1
-    label = "Português"
-    locale = "pt-BR"
-    contentDir = "content"
-    disabled = false
-  [languages.en]
-    weight = 2
-    label = "English"
-    locale = "en-US"
-    disabled = true
-  [languages.de]
-    weight = 3
-    label = "Deutsch"
-    locale = "de-DE"
-    disabled = true
+[languages.pt-br]
+weight = 1
+label = "Português"
+locale = "pt-BR"
+contentDir = "content"
+disabled = false
+[languages.en]
+weight = 2
+label = "English"
+locale = "en-US"
+disabled = true
+[languages.de]
+weight = 3
+label = "Deutsch"
+locale = "de-DE"
+disabled = true
 
 [permalinks.page]
-  blog = '/blog/:contentbasename/'
-  experiments = '/experiments/:contentbasename/'
+blog = '/blog/:contentbasename/'
+experiments = '/experiments/:contentbasename/'
 
 [taxonomies]
-  tag = "tags"
+tag = "tags"
 
 [permalinks.taxonomy]
-  tags = '/blog/tags/'
+tags = '/blog/tags/'
 
 [permalinks.term]
-  tags = '/blog/tags/:slug/'
+tags = '/blog/tags/:slug/'
 
 [pagination]
-  pagerSize = 5
-  path = ""
+pagerSize = 5
+path = ""
 
 [markup.goldmark.renderer]
-  unsafe = true
+unsafe = true
 
 [markup.highlight]
-  noClasses = false
-  lineNos = true
-  lineNumbersInTable = false
-  codeFences = true
-  guessSyntax = false
-  tabWidth = 2
+noClasses = false
+lineNos = true
+lineNumbersInTable = false
+codeFences = true
+guessSyntax = false
+tabWidth = 2
 
 [build]
-  [build.buildStats]
-    enable = true
+[build.buildStats]
+enable = true
 
-  [[build.cachebusters]]
-    source = 'assets/notwatching/hugo_stats\.json'
-    target = 'css'
-  [[build.cachebusters]]
-    source = '(postcss|tailwind)\.config\.js'
-    target = 'css'
-
-[[module.mounts]]
-  source = 'assets'
-  target = 'assets'
+[[build.cachebusters]]
+source = 'assets/notwatching/hugo_stats\.json'
+target = 'css'
+[[build.cachebusters]]
+source = '(postcss|tailwind)\.config\.js'
+target = 'css'
 
 [[module.mounts]]
-  disableWatch = true
-  source = 'hugo_stats.json'
-  target = 'assets/notwatching/hugo_stats.json'
+source = 'assets'
+target = 'assets'
+
+[[module.mounts]]
+disableWatch = true
+source = 'hugo_stats.json'
+target = 'assets/notwatching/hugo_stats.json'
