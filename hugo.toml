@@ -9,6 +9,7 @@ disableAliases = true
 
 [params]
   gtag_id = "G-ZNQ41VTYXZ"
+  disqusShortname = "carlos-algms"
 
 [languages]
   [languages.pt-br]

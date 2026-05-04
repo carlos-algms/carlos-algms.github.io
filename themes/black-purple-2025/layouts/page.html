@@ -77,8 +77,9 @@
     <hr class="my-10 border-t-2 border-zinc-300 dark:border-muted" />
   {{- end -}}
 
-  {{- /* Disqus placeholder — Task 13 fills this */ -}}
-  {{- /* TODO Task 13: disqus partial */ -}}
+  {{- if and (eq .Section "blog") .Params.comments -}}
+    {{ partial "disqus.html" . }}
+  {{- end -}}
 
   {{ partial "page-scripts.html" . }}
 </div>
