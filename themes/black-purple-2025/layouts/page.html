@@ -57,10 +57,8 @@
 
   {{- /* Prev/next navigation for blog posts */ -}}
   {{- if and (eq .Section "blog") (or .PrevInSection .NextInSection) -}}
-    {{- $lang := default .Lang .Params.contentLang -}}
-    {{- $continueReading := index (dict "pt-br" "Continue lendo" "en" "Keep reading" "de" "Weiterlesen") $lang | default "Continue lendo" -}}
     <p class="font-bold text-2xl border-b-1 mt-15 mb-8 text-center max-w-6xl mx-auto pb-2 border-b-accent">
-      {{ $continueReading }}:
+      {{ i18n "continue_reading" }}:
     </p>
     <nav id="article-nav" class="flex flex-col mx-auto gap-2 w-max">
       {{- with .PrevInSection -}}
