@@ -11,6 +11,10 @@ disableAliases = true
 gtag_id = "G-ZNQ41VTYXZ"
 disqusShortname = "carlos-algms"
 
+[params.author]
+name = "Carlos A. Gomes"
+url = "https://github.com/carlos-algms"
+
 [languages]
 [languages.pt-br]
 weight = 1
