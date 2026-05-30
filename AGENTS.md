@@ -202,8 +202,9 @@ To enable `en` or `de`:
 
 1. Author at least one translated post per language.
 2. Flip `disabled = true` to `false` in `hugo.toml`.
-3. See `docs/migration-debt.md` for posts that need renaming
-   (`index.pt-br.md` -> `index.en.md`) at the same time.
+3. Rename each translated post's bundle file from `index.pt-br.md` to
+   `index.en.md` (or `index.de.md`) at the same time, so Hugo maps it to
+   the enabled language.
 
 ## Theme toggle + FOUC
 
