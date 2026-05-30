@@ -110,7 +110,7 @@ $ sudo mkdir -p /etc/systemd/resolved.conf.d
 $ sudo vim /etc/systemd/resolved.conf.d/00-k8s-dns-resolver.conf
 ```
 
-```properties /etc/systemd/resolved.conf.d/00-k8s-dns-resolver.conf
+```ini /etc/systemd/resolved.conf.d/00-k8s-dns-resolver.conf
 [Resolve]
 Cache=yes
 DNS=10.152.183.10
