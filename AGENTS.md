@@ -137,12 +137,16 @@ from `GH_TOKEN`.
 
 - `disableKinds = ["taxonomy"]`: suppresses the `/blog/tags/` aggregate
   index. Per-tag term pages at `/blog/tags/{tag}/` still render.
-- `disableAliases = true`: suppresses Hugo's `aliases:` redirects. Does
-  NOT suppress paginator-page-1 redirects at `/blog/1/index.html` and
-  `/experiments/1/index.html`. Those are intrinsic to Hugo's paginator;
-  they meta-refresh to the section root and are accepted as harmless.
+- `disableAliases = true` (top level): suppresses Hugo's frontmatter
+  `aliases:` redirects. Does NOT touch paginator page-1 aliases; that is
+  a separate `[pagination]` key.
 - `pagination.path = ""`: emits `/blog/2/`, not Hugo's default
   `/blog/page/2/`.
+- `pagination.disableAliases = true`: suppresses the paginator page-1
+  aliases at `/blog/1/`, `/experiments/1/`, `/blog/tags/{tag}/1/`. Without
+  it Hugo emits 15 meta-refresh redirect stubs to the section roots.
+  Disabled to match the prior Astro output (page 1 lives only at the
+  section root, no numbered duplicate).
 - `[permalinks.page]` uses `:contentbasename`. Do not change to `:slug`
   (resolves to title-derived slugs which can mismatch directory names)
   or `:filename` (deprecated since Hugo 0.144).
@@ -231,7 +235,10 @@ Hugo 0.146+ flat layout:
 - `static/images/`: favicons, apple-touch-icons. Hugo serves them at
   `/images/`.
 - `static/robots.txt`: references `/sitemap-index.xml` (compatibility
-  alias, not Hugo's default `/sitemap.xml`).
+  alias, not Hugo's default `/sitemap.xml`). Ships verbatim. Do NOT set
+  `enableRobotsTXT = true` in `hugo.toml`: it makes Hugo generate a
+  default `robots.txt` (`User-agent: *` only) that shadows this file and
+  drops the `Allow:` + `Sitemap:` lines.
 - `static/sitemap-index.xml`: static compatibility sitemap index that
   points at `/sitemap.xml`. Crawlers that cached the old entry point
   still get a valid chain.

@@ -3,7 +3,7 @@ title = "Carlos A. Gomes"
 theme = "black-purple-2025"
 defaultContentLanguage = "pt-br"
 defaultContentLanguageInSubdir = false
-enableRobotsTXT = true
+enableRobotsTXT = false
 disableKinds = ["taxonomy"]
 disableAliases = true
 
@@ -49,6 +49,7 @@ tags = '/blog/tags/:slug/'
 [pagination]
 pagerSize = 5
 path = ""
+disableAliases = true
 
 [markup.goldmark.renderer]
 unsafe = true
