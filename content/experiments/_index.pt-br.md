@@ -17,18 +17,6 @@ You can play it in the [live-version here](https://carlos-algms.github.io/snake-
 
 [snake-game sources](https://github.com/carlos-algms/snake-game)
 
-## Animated Screen effect with CSS only
-
-<a href="animated-screen/">Check the live version here</a>
-
-<a href="animated-screen/">
-  <figure style="background-color: rgb(15, 15, 15)">
-
-![Animated screen with CSS](/experiments/animated-screen/animated-screen.gif)
-
-  </figure>
-</a>
-
 ## Multiple-clocks
 
 Create an animated clock with different technologies, like with CSS and with SVG + JavaScript

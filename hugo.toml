@@ -51,6 +51,14 @@ pagerSize = 5
 path = ""
 disableAliases = true
 
+# Bare experiment document, embedded via <iframe> by the `demo` shortcode.
+[outputFormats.demo]
+mediaType = "text/html"
+# Publishes to <page>/demo.html; `path` would root it at /demo/<page>/.
+baseName = "demo"
+isHTML = true
+noUgly = true
+
 [markup.goldmark.renderer]
 unsafe = true
 

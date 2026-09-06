@@ -5,15 +5,10 @@ date: 2023-12-23
 lastmod: 2023-12-23
 comments: false
 contentLang: en
+outputs: ["html", "demo"]
 ---
 
-<div class="stage">
-  <div class="screen">
-    <figure role="img" aria-label="Animated screen with moving image and gradient overlay"></figure>
-    <div class="screen--overlay"></div>
-    <div class="screen--content"></div>
-  </div>
-</div>
+{{< demo height="780" >}}
 
 <p>
   Thanks for

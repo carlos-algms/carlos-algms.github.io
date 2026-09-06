@@ -1,0 +1,36 @@
+{{- /* Bare document for the `demo` output. No baseof, so no theme CSS
+  reaches the experiment. Body is the colocated demo.html (required);
+  styles*.css and script*.js are optional. */ -}}
+<!doctype html>
+<html lang="{{ default .Lang .Params.contentLang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ .Title }} — demo</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="{{ .Permalink }}">
+{{- range .Resources.Match "styles*.css" }}
+<link rel="stylesheet" href="{{ .RelPermalink }}">
+{{- end }}
+<style>
+  html, body { margin: 0; padding: 0; }
+  body { display: flex; align-items: center; justify-content: center; }
+  /* Not when embedded: 100dvh would pin the height and stop it shrinking. */
+  html:not(.embedded) body { min-height: 100dvh; }
+</style>
+<script>
+  // Inline and synchronous: a deferred script would flash the 100dvh rule.
+  if (window.self !== window.top) document.documentElement.classList.add('embedded');
+</script>
+</head>
+<body>
+{{- with .Resources.Get "demo.html" }}
+{{ .Content | safeHTML }}
+{{- else }}
+{{- errorf "demo output for %s: no colocated demo.html page resource" $.Path }}
+{{- end }}
+{{- range .Resources.Match "script*.js" }}
+<script type="module" src="{{ .RelPermalink }}"></script>
+{{- end }}
+</body>
+</html>

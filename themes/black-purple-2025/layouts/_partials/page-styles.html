@@ -1,6 +1,10 @@
 {{- /* Per-page CSS: emit fingerprinted <link> for each colocated styles*.css */ -}}
 {{- $page := .page -}}
 {{- $styles := $page.Resources.Match "styles*.css" -}}
+{{- /* Demo pages: this CSS belongs to the iframe only, it collides here. */ -}}
+{{- if $page.OutputFormats.Get "demo" -}}
+  {{- $styles = slice -}}
+{{- end -}}
 {{- range $styles -}}
   {{- $opts := dict "minify" hugo.IsProduction -}}
   {{- $css := . | css.TailwindCSS $opts | resources.Fingerprint "sha384" -}}
