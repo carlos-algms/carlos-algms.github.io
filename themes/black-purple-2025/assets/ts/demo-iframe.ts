@@ -8,29 +8,41 @@ function fitToContent(iframe: HTMLIFrameElement): void {
   }
 
   // Own const so the null-check above narrows inside the hoisted function.
-  const root = iframe.contentDocument.documentElement;
+  const body = iframe.contentDocument.body;
 
   function apply(): void {
-    // documentElement, not body: body is flex and reports the line height.
-    const height = root.scrollHeight;
+    // Measure the children, not the document: body is stretched by the iframe,
+    // so its own height always echoes the frame's and can never shrink. Body
+    // is a centred flex row, so take the union of the child rects.
+    const rects = [...body.children].map((c) => c.getBoundingClientRect());
+
+    if (!rects.length) {
+      return;
+    }
+
+    const height =
+      Math.max(...rects.map((r) => r.bottom)) -
+      Math.min(...rects.map((r) => r.top));
 
     if (height > 0) {
-      iframe.style.height = `${height}px`;
+      iframe.style.height = `${Math.ceil(height)}px`;
     }
   }
 
   apply();
 
   const observer = new ResizeObserver(apply);
-  observer.observe(root);
+
+  for (const child of body.children) {
+    observer.observe(child);
+  }
 }
 
 for (const iframe of document.querySelectorAll<HTMLIFrameElement>(
   'iframe[data-fit-to-content]',
 )) {
-  if (iframe.contentDocument?.readyState === 'complete') {
-    fitToContent(iframe);
-  } else {
-    iframe.addEventListener('load', () => fitToContent(iframe));
-  }
+  // Always listen: a lazy iframe starts on about:blank, which already reports
+  // readyState "complete", so an initial run alone would measure nothing.
+  iframe.addEventListener('load', () => fitToContent(iframe));
+  fitToContent(iframe);
 }
