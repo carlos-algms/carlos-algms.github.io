@@ -6,8 +6,6 @@ comments: false
 
 <div class="article-entry experiments-page">
 
-# Experiments With CSS, JavaScript and DevOPS
-
 ## Snake Game
 
 A clone of the famous snake game before smartphones were a thing.  
