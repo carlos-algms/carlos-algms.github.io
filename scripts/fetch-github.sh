@@ -43,9 +43,6 @@ fetch_search() {
     --jq '.items'
 }
 
-# Only the fields the templates render. The API returns ~22KB per PR, almost
-# all of it embedded repo objects we never read; keeping it whole is what
-# pushed the payload past the CI argv limit.
 ISSUE_FIELDS='{html_url, title, number, state, created_at, repository_url}'
 PR_FIELDS='{
   html_url, title, number, state, created_at,
@@ -90,9 +87,7 @@ else
   prs_json='[]'
 fi
 
-# Compose final JSON. Both payloads arrive on stdin rather than as --argjson:
-# Linux caps a single argument at 128KB (MAX_ARG_STRLEN), which the enriched
-# PR list now exceeds, so passing it in argv fails on CI with E2BIG.
+# stdin, not --argjson: Linux caps a single argument at 128KB.
 printf '%s\n%s\n' "$issues_json" "$prs_json" \
   | jq -n -c 'input as $issues | input as $prs | {issues: $issues, prs: $prs}' \
   > "$OUT_FILE"
