@@ -43,9 +43,22 @@ fetch_search() {
     --jq '.items'
 }
 
+# Only the fields the templates render. The API returns ~22KB per PR, almost
+# all of it embedded repo objects we never read; keeping it whole is what
+# pushed the payload past the CI argv limit.
+ISSUE_FIELDS='{html_url, title, number, state, created_at, repository_url}'
+PR_FIELDS='{
+  html_url, title, number, state, created_at,
+  assignee: (if .assignee then {login: .assignee.login, html_url: .assignee.html_url} else null end),
+  pull_request: {
+    base: {ref: .pull_request.base.ref, repo: {full_name: .pull_request.base.repo.full_name}},
+    head: {label: .pull_request.head.label}
+  }
+}'
+
 # Issues: search endpoint already returns everything the template needs.
 issues_json='[]'
-if issues_json=$(fetch_search issue 2>/dev/null); then
+if issues_json=$(fetch_search issue 2>/dev/null | jq -c "map(${ISSUE_FIELDS})"); then
   : # ok
 else
   echo "warning: failed to fetch GitHub issues, using empty list" >&2
@@ -61,8 +74,10 @@ if prs_search=$(fetch_search pr 2>/dev/null); then
       | while IFS= read -r pr; do
           pr_url=$(echo "$pr" | jq -r '.pull_request.url')
           if pr_detail=$(gh api "$pr_url" 2>/dev/null); then
-            echo "$pr" | jq --argjson detail "$pr_detail" \
-              '.pull_request = (.pull_request + $detail)'
+            printf '%s\n%s\n' "$pr" "$pr_detail" \
+              | jq -c -n "input as \$pr | input as \$detail
+                | \$pr + {pull_request: (\$pr.pull_request + \$detail)}
+                | ${PR_FIELDS}"
           else
             # Drop this PR if detail fetch fails (e.g. deleted, 404).
             echo "warning: failed to enrich PR $pr_url, dropping" >&2
