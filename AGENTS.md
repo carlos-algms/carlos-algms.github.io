@@ -90,6 +90,10 @@ production.
 - Page-local CSS can use Tailwind utilities and `@apply`. Tailwind sees
   the same `hugo_stats.json` that drives the site-wide CSS.
 - `@import "./_tokens.css"` works for module CSS.
+- EXCEPTION: `page-styles.html` and `page-scripts.html` skip pages with a
+  `demo` output. Their `styles*.css` stays raw and `script*.js` never
+  loads on the page; both belong to the iframe. Do not route demo CSS
+  through `css.TailwindCSS`.
 
 ### Generated artifacts (gitignored)
 
@@ -109,6 +113,12 @@ Never commit any of these.
 
 `scripts/fetch-github.sh` calls `gh api search/issues` for issues + PRs,
 enriches each PR with detail data, writes `data/github.json`.
+
+Payloads are projected to the fields the templates render
+(`ISSUE_FIELDS` / `PR_FIELDS`) and passed to `jq` on stdin, not
+`--argjson`. New template field means adding it to the matching
+projection. Keep both: unprojected argv exceeded Linux's 128KB cap and
+broke the deploy.
 
 TTL cache: skips fetch if `data/github.json` is younger than
 `GITHUB_CACHE_TTL_HOURS` (default 6h). Override with
@@ -230,6 +240,41 @@ Hugo 0.146+ flat layout:
 - Partials at `themes/<theme>/layouts/_partials/` (underscore prefix).
 - Inline SVG icons at `themes/<theme>/assets/icons/*.svg`, rendered via
   `_partials/icon.html`. Pass `name` and `class` via dict.
+- `page.demo.html` deliberately does NOT use `baseof.html`.
+
+## Experiment demo iframes
+
+Demos render as their own document, embedded via `<iframe>`, so experiment
+CSS cannot reach the site.
+
+Adding one requires all three:
+
+- `outputs = ["html", "demo"]` in front matter
+- colocated `demo.html`, markup only (`page.demo.html` supplies doctype
+  and head)
+- `{{< demo >}}` in the body
+
+Missing front matter or `demo.html` fails the build. Opting out of all
+three keeps the inline pipeline.
+
+- Shortcode `height` is the pre-load value only; `demo-iframe.ts` fits to
+  content after load.
+- Measure `body`'s child rects, never the document: `body` is stretched by
+  the iframe, so it can grow but never shrink.
+- Attach the `load` listener unconditionally: a lazy iframe starts on
+  `about:blank`, already `readyState: "complete"`.
+
+## Container gutter
+
+Tailwind's `.container` has no padding. The gutter comes from the
+`:is(main, header, footer) > .container` rule in
+`themes/black-purple-2025/assets/css/main.css`, which sets `width` with a
+`min()` so the gutter is subtracted from the width itself.
+
+- Do not use breakpoint-scoped padding: media-query width counts the
+  scrollbar, element width does not, leaving a dead zone at the cutoff.
+- Keep the `>`: it skips the nested `<ol class="container">` in list
+  pages, which inherits the gutter.
 
 ## Static assets
 
@@ -252,6 +297,23 @@ Hugo 0.146+ flat layout:
 - Formatter: `pnpm format` (oxfmt). Hugo templates are excluded by
   `.oxfmtrc.json` ignore patterns.
 - No tests, no stylelint, no ESLint.
+
+## Known traps
+
+- Verify layout in a browser (`agent-browser eval` for computed values),
+  not by reading CSS.
+- `public/` may be stale or from `hugo server` (livereload, `localhost`
+  URLs). `curl` the page and its CSS before concluding a fix failed.
+- `--minify` drops attribute quotes (`rel=canonical`) and merges identical
+  rules into grouped selectors. Greps for quoted HTML or single selectors
+  undercount.
+- Squash-merge: `git log main..<branch>` lists merged commits as
+  unmerged. Use `git diff main..<branch>`.
+- `jq --argjson` caps at 128KB per argument on Linux, not macOS. Pass
+  large JSON on stdin, read with `input`.
+- Media-query `rem` resolves against the browser's initial 16px; element
+  `rem` resolves against `:root`. A scaled root font desynchronises
+  breakpoints from the values they set.
 
 ## Hard never-dos
 
