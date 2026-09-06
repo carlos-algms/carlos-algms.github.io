@@ -61,7 +61,7 @@
     <p class="font-bold text-2xl border-b-1 mt-15 mb-8 text-center max-w-6xl mx-auto pb-2 border-b-accent">
       {{ i18n "continue_reading" }}:
     </p>
-    <nav id="article-nav" class="flex flex-col mx-auto gap-2 w-max">
+    <nav id="article-nav" class="flex flex-col mx-auto gap-2 w-max max-w-full">
       {{- with .PrevInSection -}}
         <a href="{{ .RelPermalink }}"
            class="hover:bg-purple-800 hover:text-accent-foreground px-4 py-2 rounded-md border border-zinc-300 dark:border-muted">
