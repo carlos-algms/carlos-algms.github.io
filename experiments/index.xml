@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Experiments with CSS, JavaScript and DevOPS on Carlos A. Gomes</title><link>https://carlos-algms.github.io/experiments/</link><description>Recent content in Experiments with CSS, JavaScript and DevOPS on Carlos A. Gomes</description><generator>Hugo</generator><language>pt-BR</language><lastBuildDate>Sat, 13 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://carlos-algms.github.io/experiments/index.xml" rel="self" type="application/rss+xml"/><item><title>Pião da Casa Própria com CSS e JavaScript</title><link>https://carlos-algms.github.io/experiments/piao-da-casa-propria/</link><pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate><guid>https://carlos-algms.github.io/experiments/piao-da-casa-propria/</guid><description>&lt;iframe src="https://carlos-algms.github.io/experiments/piao-da-casa-propria/demo.html"
+ title="Pião da Casa Própria com CSS e JavaScript — demo"
+ height="480"
+ loading="lazy"
+ data-fit-to-content
+ class="w-full block border-0"&gt;&lt;/iframe&gt;&lt;script type="module" src="https://carlos-algms.github.io/js/demo-iframe.js"&gt;&lt;/script&gt;</description></item><item><title>Animated Screen with CSS only</title><link>https://carlos-algms.github.io/experiments/animated-screen/</link><pubDate>Sat, 23 Dec 2023 00:00:00 +0000</pubDate><guid>https://carlos-algms.github.io/experiments/animated-screen/</guid><description>&lt;iframe src="https://carlos-algms.github.io/experiments/animated-screen/demo.html"
+ title="Animated Screen with CSS only — demo"
+ height="780"
+ loading="lazy"
+ data-fit-to-content
+ class="w-full block border-0"&gt;&lt;/iframe&gt;&lt;script type="module" src="https://carlos-algms.github.io/js/demo-iframe.js"&gt;&lt;/script&gt;
+&lt;p&gt;
+ Thanks for
+ &lt;a href="https://www.youtube.com/watch?v=jMVhxBB3l0w"&gt;HyperPlexed&lt;/a&gt;
+ for the inspirational video
+&lt;/p&gt;</description></item></channel></rss>

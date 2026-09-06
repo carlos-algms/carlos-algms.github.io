@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Css on Carlos A. Gomes</title><link>https://carlos-algms.github.io/blog/tags/css/</link><description>Recent content in Css on Carlos A. Gomes</description><generator>Hugo</generator><language>pt-BR</language><lastBuildDate>Mon, 25 Jan 2021 10:00:00 -0300</lastBuildDate><atom:link href="https://carlos-algms.github.io/blog/tags/css/index.xml" rel="self" type="application/rss+xml"/><item><title>Como criar um plugin de Carrossel de imagens com css puro</title><link>https://carlos-algms.github.io/blog/como-criar-um-plugin-de-carrossel-de-imagens-com-css-puro/</link><pubDate>Sat, 08 Apr 2017 23:32:59 -0300</pubDate><guid>https://carlos-algms.github.io/blog/como-criar-um-plugin-de-carrossel-de-imagens-com-css-puro/</guid><description>&lt;p&gt;Existem vários plugins para jQuery, React e até mesmo Angular para criar um carrossel de imagens, mas é possível criar utilizando apenas CSS puro.&lt;/p&gt;
+&lt;h2 id="elementos-de-um-carrossel"&gt;Elementos de um carrossel&lt;/h2&gt;
+&lt;p&gt;&lt;img src="https://carlos-algms.github.io/blog/como-criar-um-plugin-de-carrossel-de-imagens-com-css-puro/carrossel-elements.png" alt="Elementos de um carrossel"&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Stage&lt;/strong&gt;: A área disponível para o carrossel&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Item&lt;/strong&gt;: O item visível atualmente pelo usuário&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Next/Prev Buttons&lt;/strong&gt;: Os botões para passar aos items anteriores/próximos, que normalmente estão ocultos&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

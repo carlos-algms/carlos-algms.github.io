@@ -1,0 +1,1 @@
+var e=document.querySelector('input[name="theme-selector"]');if(e){let c=document.documentElement.classList.contains("dark");e.checked=!c,e.addEventListener("change",()=>{let t=e.checked?"light":"dark";localStorage.setItem("theme",t),document.documentElement.classList.toggle("dark",t==="dark")})}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on Carlos A. Gomes</title><link>https://carlos-algms.github.io/blog/tags/docker/</link><description>Recent content in Docker on Carlos A. Gomes</description><generator>Hugo</generator><language>pt-BR</language><lastBuildDate>Mon, 25 Jan 2016 23:28:06 -0300</lastBuildDate><atom:link href="https://carlos-algms.github.io/blog/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>tutorial docker iniciando e como rodar containers</title><link>https://carlos-algms.github.io/blog/tutorial-docker-iniciando-e-como-rodar-containers/</link><pubDate>Mon, 25 Jan 2016 23:28:06 -0300</pubDate><guid>https://carlos-algms.github.io/blog/tutorial-docker-iniciando-e-como-rodar-containers/</guid><description>&lt;p&gt;&lt;img src="https://carlos-algms.github.io/blog/tutorial-docker-iniciando-e-como-rodar-containers/docker.png" alt="docker logo"&gt;&lt;/p&gt;
+&lt;h2 id="rodando-imagens"&gt;Rodando imagens&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;$ docker run ubuntu
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Este comando vai seguir os seguintes passos:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Baixar a última versão do Ubuntu disponível para Docker, caso você ainda não tenha&lt;/li&gt;
+&lt;li&gt;Instalar a imagem em uma máquina virtual&lt;/li&gt;
+&lt;li&gt;Finalizar a execução&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;É possível, ainda, escolher a versão da imagem&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;$ docker run ubuntu:14.04
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;O problema do comando run é que ele cria um container e morre, desligando assim a máquina virtual e deixando você sem acesso.&lt;/p&gt;</description></item></channel></rss>

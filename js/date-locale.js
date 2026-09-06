@@ -1,0 +1,1 @@
+document.querySelectorAll("time").forEach(t=>{let n=t.getAttribute("datetime");if(!n)return;let e=new Date(n);if(Number.isNaN(e.getTime()))return;t.textContent=e.toLocaleDateString(navigator.language,{year:"numeric",month:"long",day:"numeric"});let i=e.toLocaleString(),r=t.getAttribute("title")??"";t.setAttribute("title",r?`${r}: ${i}`:i)});
