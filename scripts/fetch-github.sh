@@ -75,10 +75,11 @@ else
   prs_json='[]'
 fi
 
-# Compose final JSON.
-jq -n \
-  --argjson issues "$issues_json" \
-  --argjson prs "$prs_json" \
-  '{issues: $issues, prs: $prs}' > "$OUT_FILE"
+# Compose final JSON. Both payloads arrive on stdin rather than as --argjson:
+# Linux caps a single argument at 128KB (MAX_ARG_STRLEN), which the enriched
+# PR list now exceeds, so passing it in argv fails on CI with E2BIG.
+printf '%s\n%s\n' "$issues_json" "$prs_json" \
+  | jq -n -c 'input as $issues | input as $prs | {issues: $issues, prs: $prs}' \
+  > "$OUT_FILE"
 
 echo "fetched $(echo "$issues_json" | jq 'length') issues, $(echo "$prs_json" | jq 'length') PRs into $OUT_FILE"
