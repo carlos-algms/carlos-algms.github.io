@@ -1,0 +1,22 @@
+{{- $homeURL := relLangURL "/" -}}
+{{- $blogURL := relLangURL "blog/" -}}
+{{- $experimentsURL := relLangURL "experiments/" -}}
+<header class="sticky top-0 z-10 h-16 bg-neutral-200/50 dark:bg-neutral-900/50 backdrop-blur-xl">
+  <div class="container mx-auto flex h-full items-center justify-between flex-col sm:flex-row">
+    <a class="hover:text-accent font-bold text-lg" href="{{ $homeURL }}">Carlos A. Gomes</a>
+
+    <aside class="flex flex-wrap items-center justify-center gap-4">
+      {{ partial "theme-toggle.html" . }}
+
+      {{ partial "language-switcher.html" . }}
+
+      <nav aria-label="{{ i18n "header_nav" }}">
+        <ul class="flex gap-4">
+          <li><a class="hover:text-accent" href="{{ $homeURL }}"{{ if eq .RelPermalink $homeURL }} aria-current="page"{{ end }}>{{ i18n "home" }}</a></li>
+          <li><a class="hover:text-accent" href="{{ $blogURL }}"{{ if eq .RelPermalink $blogURL }} aria-current="page"{{ end }}>{{ i18n "blog" }}</a></li>
+          <li><a class="hover:text-accent" href="{{ $experimentsURL }}"{{ if eq .RelPermalink $experimentsURL }} aria-current="page"{{ end }}>{{ i18n "experiments" }}</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+</header>

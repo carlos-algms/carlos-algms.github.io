@@ -12,9 +12,6 @@ jobs:
     permissions:
       contents: write
 
-    env:
-      GH_PERSONAL_TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}
-
     steps:
       - uses: actions/checkout@v4
         with:
@@ -31,19 +28,39 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
 
-      - name: prepare
+      - name: Install Hugo
+        shell: bash
         run: |
-          git config --global init.defaultBranch main
-          git config --global user.name "${GITHUB_ACTOR}"
-          git config --global user.email "${GITHUB_ACTOR}@bots.github.com"
+          set -euo pipefail
+
+          HUGO_VERSION="$(tr -d '[:space:]' < .hugo-version)"
+          archive="hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
+          checksums="hugo_${HUGO_VERSION}_checksums.txt"
+          base_url="https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}"
+
+          curl -fsSLO "${base_url}/${archive}"
+          curl -fsSLO "${base_url}/${checksums}"
+
+          awk -v file="${archive}" '$2 == file { print $0 }' "${checksums}" \
+            | sha256sum -c -
+
+          mkdir -p "${RUNNER_TEMP}/hugo"
+          tar -C "${RUNNER_TEMP}/hugo" -xzf "${archive}"
+          echo "${RUNNER_TEMP}/hugo" >> "${GITHUB_PATH}"
+
+          "${RUNNER_TEMP}/hugo/hugo" version
 
       - run: pnpm install --frozen-lockfile
 
-      - run: pnpm build
+      - name: Build
+        run: pnpm build
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HUGO_BIN: ${{ runner.temp }}/hugo/hugo
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./public
           publish_branch: gh-pages # deploying branch

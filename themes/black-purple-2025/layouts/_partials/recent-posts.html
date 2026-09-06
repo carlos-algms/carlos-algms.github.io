@@ -1,0 +1,31 @@
+{{- $posts := first 6 (where (where .Site.RegularPages "Section" "blog") "Type" "blog").ByDate.Reverse -}}
+<section class="flex flex-col gap-4">
+  {{ partial "section-title.html" (i18n "recent_posts") }}
+
+  <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {{- range $posts -}}
+      <li class="flex flex-col gap-2 justify-between card-bordered p-4">
+        <h2 class="font-semibold tracking-tight text-xl" title="{{ .Title }}">
+          <a href="{{ .RelPermalink }}" class="hover:text-accent">{{ .Title }}</a>
+        </h2>
+        <div class="flex justify-between items-center">
+          <time class="text-xs text-muted-foreground" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+            {{ .Date.Format "2006-01-02" }}
+          </time>
+          <a class="text-accent hover:underline" href="{{ .RelPermalink }}">
+            {{ i18n "read_more" }}
+            {{ partial "icon.html" (dict "name" "arrow" "class" "size-4") }}
+          </a>
+        </div>
+      </li>
+    {{- end -}}
+  </ul>
+
+  <div class="flex justify-center">
+    <a href="{{ relLangURL "blog/" }}"
+       class="hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 text-white bg-purple-700 rounded-lg px-5 py-2.5 my-2 inline-flex items-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
+      {{ i18n "all_my_posts" }}
+      {{ partial "icon.html" (dict "name" "arrow" "class" "size-5 inline-block") }}
+    </a>
+  </div>
+</section>

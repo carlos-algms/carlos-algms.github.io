@@ -1,0 +1,10 @@
+{{- /* Inject colocated entry-point scripts (script.js, script.*.js) */ -}}
+{{- $scripts := .Resources.Match "script*.js" -}}
+{{- /* Demo pages: the DOM this drives is inside the iframe, not here. */ -}}
+{{- if .OutputFormats.Get "demo" -}}
+  {{- $scripts = slice -}}
+{{- end -}}
+{{- range $scripts -}}
+  {{- $s := . | resources.Fingerprint "sha384" -}}
+  <script type="module" src="{{ $s.RelPermalink }}" integrity="{{ $s.Data.Integrity }}"></script>
+{{ end -}}

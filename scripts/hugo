@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+VERSION_FILE="${PROJECT_ROOT}/.hugo-version"
+
+HUGO_VERSION="$(tr -d '[:space:]' < "${VERSION_FILE}")"
+
+# Allow caller (e.g. CI) to override the binary location; otherwise install locally.
+HUGO_BIN="${HUGO_BIN:-${PROJECT_ROOT}/.tools/hugo/bin/hugo}"
+
+needs_install=0
+if [[ ! -x "${HUGO_BIN}" ]]; then
+  needs_install=1
+elif ! "${HUGO_BIN}" version 2>/dev/null | grep -qE "v${HUGO_VERSION}([^0-9]|$)"; then
+  needs_install=1
+fi
+
+if [[ "${needs_install}" -eq 1 ]]; then
+  "${SCRIPT_DIR}/install-hugo.sh"
+  HUGO_BIN="${PROJECT_ROOT}/.tools/hugo/bin/hugo"
+fi
+
+exec "${HUGO_BIN}" "$@"

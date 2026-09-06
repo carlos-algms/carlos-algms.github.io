@@ -1,0 +1,11 @@
+.experiments-page {
+  img {
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  img[alt='Snake game screenshot'] {
+    max-height: 600px;
+  }
+}

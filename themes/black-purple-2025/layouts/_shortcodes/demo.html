@@ -1,0 +1,20 @@
+{{- /* Embed this page's `demo` output in an iframe. Needs
+  `outputs = ["html", "demo"]` in front matter. `height` is the pre-load
+  value only; demo-iframe.ts then fits to content.
+  Usage: {{< demo >}} or {{< demo height="700" >}} */ -}}
+{{- $height := .Get "height" | default "520" -}}
+{{- with .Page.OutputFormats.Get "demo" -}}
+  <iframe src="{{ .RelPermalink }}"
+          title="{{ $.Page.Title }} — demo"
+          height="{{ $height }}"
+          loading="lazy"
+          data-fit-to-content
+          class="w-full block border-0"></iframe>
+  {{- /* Emit the sizing script once even if a page has several demos. */ -}}
+  {{- if not ($.Page.Store.Get "demoScriptEmitted") -}}
+    {{- $.Page.Store.Set "demoScriptEmitted" true -}}
+    <script type="module" src="/js/demo-iframe.js"></script>
+  {{- end -}}
+{{- else -}}
+  {{- errorf "demo shortcode on %s: add `outputs = [\"html\", \"demo\"]` to its front matter" $.Page.Path -}}
+{{- end -}}

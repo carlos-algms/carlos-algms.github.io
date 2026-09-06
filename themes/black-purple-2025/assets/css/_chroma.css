@@ -1,0 +1,207 @@
+/* Darcula syntax highlighting (JetBrains Darcula ripoff).
+   Hand-written, NOT from `hugo gen chromastyles`.
+   Dark palette mirrors my Neovim custom theme one-to-one; light is the
+   IntelliJ Light counterpart, since Darcula is dark-only.
+
+   Palette is defined once per mode as custom properties named after that
+   theme's `pallet` table. The token rules below are written once
+   and reference those vars, so a recolor means editing the palette block
+   only. Structural rules (.lntd, .line, ...) carry no color and are also
+   written once.
+
+   Covers all 83 chroma token classes. `.cl` (CodeLine) and `.chroma`
+   are structural wrappers, not tokens. */
+
+/* ── Palette: light (IntelliJ Light) ───────────────────────────────── */
+:where(:root:not(.dark)) .chroma {
+  --c-bg: #fbfbfb;
+  --c-fg: #080808;
+  --c-comment: #8c8c8c;
+  --c-keyword: #0033b3;
+  --c-string: #067d17;
+  --c-number: #1750eb;
+  --c-constant: #871094;
+  --c-callable: #00627a;
+  --c-type: #0033b3;
+  --c-preproc: #9e880d;
+  --c-tag: #0033b3;
+  --c-attribute: #174ad4;
+  --c-regex: #264eff;
+  --c-error: #bc3f3c;
+  --c-error-fg: #ffffff;
+  --c-line-number: #999999;
+  --c-whitespace: #c0c0c0;
+  --c-output: #4a4a4a;
+  --c-hl-bg: #e4f0fe;
+  --c-diff-add-bg: #c9f5cf;
+  --c-diff-del-bg: #f5c9c9;
+  --c-keyword-weight: bold;
+  --c-punct-selector: #080808;
+}
+
+/* ── Palette: dark (Darcula, = pallet in darcluar.lua) ─────────────── */
+:where(.dark) .chroma {
+  --c-bg: #1c1c1c;           /* pallet.bg */
+  --c-fg: #bac4cf;           /* pallet.fg */
+  --c-comment: #808080;      /* pallet.comment */
+  --c-keyword: #cc7832;      /* pallet.keyword */
+  --c-string: #6a8759;       /* pallet.string */
+  --c-number: #6897bb;       /* pallet.type, Number links to Type */
+  --c-constant: #9876aa;     /* pallet.constant */
+  --c-callable: #ffc66d;     /* pallet.callable */
+  --c-type: #6897bb;         /* pallet.type */
+  --c-preproc: #bbb529;      /* pallet.preProc */
+  --c-tag: #ffc66d;          /* @tag links to @function */
+  --c-attribute: #bac4cf;    /* @tag.attribute links to @identifier */
+  --c-regex: #9876aa;        /* @string.regexp links to Constant */
+  --c-error: #cc666e;        /* pallet.error */
+  --c-error-fg: #bc3f3c;     /* pallet.errorMsg */
+  --c-line-number: #606366;  /* pallet.lineNumber */
+  --c-whitespace: #606060;   /* pallet.muted */
+  --c-output: #bbbbbb;       /* pallet.stdOutput */
+  --c-hl-bg: #313335;        /* pallet.gutter */
+  --c-diff-add-bg: #293a32;  /* pallet.diffAddBg */
+  --c-diff-del-bg: #3a2e2e;  /* pallet.diffDeleteBg */
+  --c-keyword-weight: normal;
+  --c-punct-selector: #bac4cf; /* pallet.fg, @punctuation -> Identifier */
+}
+
+/* ── Tokens: written once, driven by the palette above ─────────────── */
+.chroma {
+  color: var(--c-fg); background-color: var(--c-bg); -webkit-text-size-adjust: none;
+
+/* Error */          .err { color:var(--c-error-fg);background-color:var(--c-error) }
+/* Other */          .x { color:var(--c-fg) }
+/* LineLink */       .lnlinks { outline:none;text-decoration:none;color:inherit }
+/* LineTableTD */    .lntd { vertical-align:top;padding:0;margin:0;border:0; }
+/* LineTable */      .lntable { border-spacing:0;padding:0;margin:0;border:0; }
+/* LineHighlight */  .hl { background-color:var(--c-hl-bg) }
+/* LineNumbersTable */ .lnt { white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:var(--c-line-number) }
+/* LineNumbers */    .ln { white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:var(--c-line-number) }
+/* Line */           .line { display:flex; }
+
+/* Keyword */        .k { color:var(--c-keyword);font-weight:var(--c-keyword-weight) }
+/* KeywordConstant */ .kc { color:var(--c-keyword);font-weight:var(--c-keyword-weight) }
+/* KeywordDeclaration */ .kd { color:var(--c-keyword);font-weight:var(--c-keyword-weight) }
+/* KeywordNamespace */ .kn { color:var(--c-keyword);font-weight:var(--c-keyword-weight) }
+/* KeywordPseudo */  .kp { color:var(--c-keyword);font-weight:var(--c-keyword-weight) }
+/* KeywordReserved */ .kr { color:var(--c-keyword);font-weight:var(--c-keyword-weight) }
+/* KeywordType */    .kt { color:var(--c-type) }
+
+/* Name */           .n { color:var(--c-fg) }
+/* NameAttribute */  .na { color:var(--c-attribute) }
+/* NameBuiltin */    .nb { color:var(--c-keyword) }
+/* NameBuiltinPseudo */ .bp { color:var(--c-keyword) }
+/* NameClass */      .nc { color:var(--c-callable) }
+/* NameConstant */   .no { color:var(--c-constant) }
+/* NameDecorator */  .nd { color:var(--c-preproc) }
+/* NameEntity */     .ni { color:var(--c-constant) }
+/* NameException */  .ne { color:var(--c-error) }
+/* NameFunction */   .nf { color:var(--c-callable) }
+/* NameFunctionMagic */ .fm { color:var(--c-callable) }
+/* NameLabel */      .nl { color:var(--c-fg) }
+/* NameNamespace */  .nn { color:var(--c-fg) }
+/* NameOther */      .nx { color:var(--c-fg) }
+/* NameProperty */   .py { color:var(--c-constant) }
+/* NameTag */        .nt { color:var(--c-tag) }
+/* NameVariable */   .nv { color:var(--c-constant) }
+/* NameVariableClass */ .vc { color:var(--c-constant) }
+/* NameVariableGlobal */ .vg { color:var(--c-constant) }
+/* NameVariableInstance */ .vi { color:var(--c-constant) }
+/* NameVariableMagic */ .vm { color:var(--c-constant) }
+
+/* Literal */        .l { color:var(--c-number) }
+/* LiteralDate */    .ld { color:var(--c-string) }
+/* LiteralString */  .s { color:var(--c-string) }
+/* LiteralStringAffix */ .sa { color:var(--c-string) }
+/* LiteralStringBacktick */ .sb { color:var(--c-string) }
+/* LiteralStringChar */ .sc { color:var(--c-string) }
+/* LiteralStringDelimiter */ .dl { color:var(--c-string) }
+/* LiteralStringDoc */ .sd { color:var(--c-comment);font-style:italic }
+/* LiteralStringDouble */ .s2 { color:var(--c-string) }
+/* LiteralStringEscape */ .se { color:var(--c-keyword);font-weight:bold }
+/* LiteralStringHeredoc */ .sh { color:var(--c-string) }
+/* LiteralStringInterpol */ .si { color:var(--c-constant);font-weight:bold }
+/* LiteralStringOther */ .sx { color:var(--c-string) }
+/* LiteralStringRegex */ .sr { color:var(--c-regex) }
+/* LiteralStringSingle */ .s1 { color:var(--c-string) }
+/* LiteralStringSymbol */ .ss { color:var(--c-string) }
+
+/* LiteralNumber */  .m { color:var(--c-number) }
+/* LiteralNumberBin */ .mb { color:var(--c-number) }
+/* LiteralNumberFloat */ .mf { color:var(--c-number) }
+/* LiteralNumberHex */ .mh { color:var(--c-number) }
+/* LiteralNumberInteger */ .mi { color:var(--c-number) }
+/* LiteralNumberIntegerLong */ .il { color:var(--c-number) }
+/* LiteralNumberOct */ .mo { color:var(--c-number) }
+
+/* Operator */       .o { color:var(--c-keyword) }
+/* OperatorWord */   .ow { color:var(--c-keyword);font-weight:var(--c-keyword-weight) }
+/* Punctuation */    .p { color:var(--c-fg) }
+
+/* Comment */        .c { color:var(--c-comment);font-style:italic }
+/* CommentHashbang */ .ch { color:var(--c-comment);font-style:italic }
+/* CommentMultiline */ .cm { color:var(--c-comment);font-style:italic }
+/* CommentSingle */  .c1 { color:var(--c-comment);font-style:italic }
+/* CommentSpecial */ .cs { color:var(--c-comment);font-weight:bold;font-style:italic }
+/* CommentPreproc */ .cp { color:var(--c-preproc) }
+/* CommentPreprocFile */ .cpf { color:var(--c-preproc) }
+
+/* Generic */        .g { color:var(--c-fg) }
+/* GenericDeleted */ .gd { color:var(--c-fg);background-color:var(--c-diff-del-bg) }
+/* GenericEmph */    .ge { font-style:italic }
+/* GenericError */   .gr { color:var(--c-error-fg) }
+/* GenericHeading */ .gh { color:var(--c-keyword);font-weight:bold }
+/* GenericInserted */ .gi { color:var(--c-fg);background-color:var(--c-diff-add-bg) }
+/* GenericOutput */  .go { color:var(--c-output) }
+/* GenericPrompt */  .gp { color:var(--c-comment) }
+/* GenericStrong */  .gs { font-weight:bold }
+/* GenericSubheading */ .gu { color:var(--c-keyword) }
+/* GenericTraceback */ .gt { color:var(--c-error-fg) }
+/* GenericUnderline */ .gl { text-decoration:underline }
+/* TextWhitespace */ .w { color:var(--c-whitespace) }
+}
+
+/* ── Per-language overrides ────────────────────────────────────────────
+   Chroma reuses one class for different roles depending on the lexer, so
+   a few classes need a different color in CSS/HTML than in general code.
+   Scoped via the `language-*` class Hugo puts on <code>.
+
+   Verified by tokenizing samples through Chroma:
+     CSS   #id → .nn   .class/element → .nc/.nt   :pseudo → .nd
+           property → .k   unit(px) → .kt   punctuation(#.:{};) → .p
+     HTML  tag → .nt   attribute → .na   angle brackets → .p
+
+   Without this, `:checked` renders preproc-yellow (Python's @decorator
+   color) and `#carousel1` renders plain foreground.
+
+   Selector parts (#id, .class, element, :pseudo) all share the callable
+   color so `#carousel1:checked` reads as one selector. */
+
+/* Selectors below are written as `.chroma :where(.language-X)` so they
+   match the generic rules' specificity (0,2,0) and win on source order.
+   Using a bare `:where(.language-X)` would score (0,1,0) and lose to
+   `.chroma .nd`, silently doing nothing. */
+
+/* CSS: selectors are callable-gold, properties are plain fg (matches
+   @selector/@type.css → @function and @property.css → @identifier). */
+.chroma :where(.language-css) {
+/* id selector name   */ .nn { color:var(--c-callable) }
+/* class selector     */ .nc { color:var(--c-callable) }
+/* element selector   */ .nt { color:var(--c-callable) }
+/* pseudo-class/elem  */ .nd { color:var(--c-callable) }
+/* property name      */ .k { color:var(--c-fg);font-weight:normal }
+/* unit (px, em)      */ .kt { color:var(--c-number) }
+/* attribute in [ ]   */ .na { color:var(--c-fg) }
+/* # . : { } ; and ,  */ .p { color:var(--c-punct-selector) }
+/* > ~ + = [ ]        */ .o { color:var(--c-fg) }
+}
+
+/* HTML/XML: tag name and its angle brackets share the tag color, so
+   `<section>` reads as one unit (@tag → @function, @tag.attribute →
+   @identifier). */
+.chroma :where(.language-html, .language-xml, .language-svg, .language-vue) {
+/* tag name           */ .nt { color:var(--c-tag) }
+/* < > </ />          */ .p { color:var(--c-tag) }
+/* attribute name     */ .na { color:var(--c-attribute) }
+}

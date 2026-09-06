@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{ default .Site.Language.Lang .Params.contentLang }}">
+<head>
+  {{ partial "head.html" . }}
+
+  {{- $pageCssData := dict "page" . -}}
+  {{- $pageCssKey := printf "page-css-%s" .RelPermalink -}}
+  {{- with (templates.Defer (dict "key" $pageCssKey "data" $pageCssData)) -}}
+    {{ partial "page-styles.html" . }}
+  {{- end -}}
+</head>
+<body class="relative flex flex-col min-h-dvh">
+  {{ partial "header.html" . }}
+
+  <main class="flex-1">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{ partial "footer.html" . }}
+
+  <script type="module" src="/js/theme-toggle.js"></script>
+  <script type="module" src="/js/date-locale.js"></script>
+</body>
+</html>

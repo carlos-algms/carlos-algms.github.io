@@ -13,6 +13,17 @@ db.json
 node_modules/
 .deploy*/
 .tmp/
+migration-temp/
+.tools/
+.hugo_build.lock
+hugo_stats.json
+public/
+themes/black-purple-2025/static/~partytown/
+themes/black-purple-2025/static/js/
+content/**/*.js
+content/**/*.js.map
+resources/
+data/github.json
 
 
 # IDE Files

@@ -1,0 +1,19 @@
+{{- $shortname := site.Params.disqusShortname -}}
+<hr class="my-10 border-t-2 border-zinc-300 dark:border-muted">
+<div id="disqus_thread" class="text-accent">
+{{- if and hugo.IsProduction $shortname -}}
+  <script>
+    (function () {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://{{ $shortname }}.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view comments.</noscript>
+{{- else if hugo.IsProduction -}}
+  <p class="text-center text-muted-foreground">Comments unavailable: Disqus shortname not configured.</p>
+{{- else -}}
+  <p class="text-center text-white font-bold uppercase">Disqus disabled in non-production mode.</p>
+{{- end -}}
+</div>

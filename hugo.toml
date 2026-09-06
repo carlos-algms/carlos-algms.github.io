@@ -1,0 +1,91 @@
+baseURL = "https://carlos-algms.github.io/"
+title = "Carlos A. Gomes"
+theme = "black-purple-2025"
+defaultContentLanguage = "pt-br"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = false
+disableKinds = ["taxonomy"]
+disableAliases = true
+
+[params]
+gtag_id = "G-ZNQ41VTYXZ"
+disqusShortname = "carlos-algms"
+
+[params.author]
+name = "Carlos A. Gomes"
+url = "https://github.com/carlos-algms"
+
+[languages]
+[languages.pt-br]
+weight = 1
+label = "Português"
+locale = "pt-BR"
+contentDir = "content"
+disabled = false
+[languages.en]
+weight = 2
+label = "English"
+locale = "en-US"
+disabled = true
+[languages.de]
+weight = 3
+label = "Deutsch"
+locale = "de-DE"
+disabled = true
+
+[permalinks.page]
+blog = '/blog/:contentbasename/'
+experiments = '/experiments/:contentbasename/'
+
+[taxonomies]
+tag = "tags"
+
+[permalinks.taxonomy]
+tags = '/blog/tags/'
+
+[permalinks.term]
+tags = '/blog/tags/:slug/'
+
+[pagination]
+pagerSize = 5
+path = ""
+disableAliases = true
+
+# Bare experiment document, embedded via <iframe> by the `demo` shortcode.
+[outputFormats.demo]
+mediaType = "text/html"
+# Publishes to <page>/demo.html; `path` would root it at /demo/<page>/.
+baseName = "demo"
+isHTML = true
+noUgly = true
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.highlight]
+noClasses = false
+lineNos = true
+lineNumbersInTable = false
+codeFences = true
+guessSyntax = false
+tabWidth = 2
+
+[build]
+[build.buildStats]
+enable = true
+
+[[build.cachebusters]]
+source = 'assets/notwatching/hugo_stats\.json'
+target = 'css'
+[[build.cachebusters]]
+source = '(postcss|tailwind)\.config\.js'
+target = 'css'
+
+[[module.mounts]]
+source = 'assets'
+target = 'assets'
+
+[[module.mounts]]
+disableWatch = true
+source = 'hugo_stats.json'
+target = 'assets/notwatching/hugo_stats.json'

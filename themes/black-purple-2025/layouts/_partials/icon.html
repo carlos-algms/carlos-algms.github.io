@@ -1,0 +1,13 @@
+{{- /*
+  Usage: {{ partial "icon.html" (dict "name" "arrow" "class" "size-4") }}
+  Reads themes/.../assets/icons/{name}.svg, injects class,
+  emits inline SVG.
+*/ -}}
+{{- $name := .name -}}
+{{- $class := .class | default "" -}}
+{{- $aria := .aria | default "true" -}}
+{{- with resources.Get (printf "icons/%s.svg" $name) -}}
+  {{- $svg := .Content -}}
+  {{- $svg = replace $svg "<svg" (printf "<svg class=%q aria-hidden=%q" $class $aria) 1 -}}
+  {{- $svg | safeHTML -}}
+{{- end -}}
