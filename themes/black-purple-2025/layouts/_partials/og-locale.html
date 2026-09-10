@@ -1,0 +1,13 @@
+{{- /* Convert a BCP 47 language tag to the Open Graph locale format.
+
+Open Graph wants language_TERRITORY with an uppercase territory (pt_BR),
+while Hugo's .Lang carries the config key (pt-br). A tag with no region
+passes through unchanged (en -> en).
+
+Usage: {{ partial "og-locale.html" "pt-br" }} -> pt_BR */ -}}
+{{- $parts := split . "-" -}}
+{{- $locale := index $parts 0 -}}
+{{- if gt (len $parts) 1 -}}
+  {{- $locale = printf "%s_%s" $locale (upper (index $parts 1)) -}}
+{{- end -}}
+{{- $locale -}}
