@@ -23,6 +23,7 @@ recent_posts: Recent posts
 all_my_posts: All my posts
 toggle_theme_title: Toggle light and dark theme
 all_posts_with_tag: List all posts with tag
+site_description: Posts about software development, Linux, and tools I use daily, by Carlos A. Gomes.
 assigned_to: Assigned to
 continue_reading: Keep reading
 links: Links

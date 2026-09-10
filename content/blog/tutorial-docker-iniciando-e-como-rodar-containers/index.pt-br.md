@@ -1,9 +1,11 @@
 ---
 title: tutorial docker iniciando e como rodar containers
+description: Primeiros passos com Docker, como rodar imagens, criar containers e entender o que acontece a cada comando.
 date: 2016-01-25T23:28:06-03:00
 lastmod: 2016-01-25T23:28:06-03:00
 comments: true
-tags: [docker]
+tags:
+  - docker
 contentLang: pt-br
 ---
 

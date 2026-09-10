@@ -2,7 +2,7 @@
 {{ $paginator := .Paginate .Pages }}
 <div class="container mx-auto">
   <h1 class="text-2xl font-bold tracking-tight mb-3">
-    #{{ .Title }}{{ if gt $paginator.PageNumber 1 }} - {{ i18n "page" }} {{ $paginator.PageNumber }}{{ end }}
+    #{{ partial "term-name.html" . }}{{ if gt $paginator.PageNumber 1 }} - {{ i18n "page" }} {{ $paginator.PageNumber }}{{ end }}
   </h1>
 
   <ol class="container mx-auto">

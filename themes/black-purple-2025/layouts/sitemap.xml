@@ -15,7 +15,7 @@
     <priority>{{ .Sitemap.Priority }}</priority>
     {{- end }}
   </url>
-  {{- if and (eq .Kind "section") .Paginator (gt .Paginator.TotalPages 1) }}
+  {{- if and (in (slice "section" "term") .Kind) .Paginator (gt .Paginator.TotalPages 1) }}
     {{- $base := .Permalink -}}
     {{- $lastmod := .Lastmod -}}
     {{- range $i := seq 2 .Paginator.TotalPages }}

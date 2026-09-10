@@ -5,7 +5,9 @@ date: 2023-12-23
 lastmod: 2023-12-23
 comments: false
 contentLang: en
-outputs: ["html", "demo"]
+outputs:
+  - html
+  - demo
 ---
 
 {{< demo height="780" >}}

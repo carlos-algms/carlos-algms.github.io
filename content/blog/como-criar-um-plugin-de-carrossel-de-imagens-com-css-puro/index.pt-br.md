@@ -1,9 +1,11 @@
 ---
 title: Como criar um plugin de Carrossel de imagens com css puro
+description: Como construir um carrossel de imagens funcional usando apenas CSS puro, sem jQuery, React ou Angular.
 date: 2017-04-08T23:32:59-03:00
 lastmod: 2021-01-25T10:00:00-03:00
 comments: true
-tags: [css]
+tags:
+  - css
 contentLang: pt-br
 ---
 

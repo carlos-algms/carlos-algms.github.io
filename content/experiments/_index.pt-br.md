@@ -1,5 +1,6 @@
 ---
 title: Experiments with CSS, JavaScript and DevOPS
+description: Experimentos com CSS, JavaScript e DevOps, incluindo um clone do Snake, relógios animados e um micro-framework de flexbox.
 comments: false
 # TODO: en/de translations of experiments landing page
 ---

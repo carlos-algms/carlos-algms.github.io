@@ -1,10 +1,14 @@
 ---
 # TODO: rename to index.en.md when en is enabled
 title: How to configure the hostname of the server
+description: The difference between a hostname and an FQDN, and how to set both on a Linux server.
 date: 2014-07-06T13:27:40-03:00
 lastmod: 2014-07-06T13:27:40-03:00
 comments: true
-tags: [linux, ubuntu, cloud]
+tags:
+  - linux
+  - ubuntu
+  - cloud
 contentLang: en
 ---
 

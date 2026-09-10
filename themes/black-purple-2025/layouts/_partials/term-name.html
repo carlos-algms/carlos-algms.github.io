@@ -1,0 +1,21 @@
+{{- /* Display name for a taxonomy term.
+
+Hugo title-cases auto-generated term titles (titleCaseStyle defaults to "ap"),
+which mangles acronyms: "css" -> "Css", "ssh" -> "Ssh". `.Data.Term` holds the
+raw string from front matter, so overrides are keyed on that, not on .Title.
+
+Unlisted terms fall back to .Title, keeping AP casing for ordinary words
+("linux" -> "Linux"). Add an entry only where the default is wrong. */ -}}
+{{- $overrides := dict
+  "css" "CSS"
+  "dns" "DNS"
+  "ssh" "SSH"
+  "vm" "VM"
+  "intellij" "IntelliJ"
+-}}
+{{- $raw := .Data.Term -}}
+{{- with index $overrides (lower $raw) -}}
+  {{- . -}}
+{{- else -}}
+  {{- $.Title -}}
+{{- end -}}

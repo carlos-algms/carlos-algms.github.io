@@ -15,6 +15,9 @@
   Carlos A. Gomes
 {{- else if .Title -}}
   {{- $title := .Title -}}
+  {{- if eq .Kind "term" -}}
+    {{- $title = partial "term-name.html" . -}}
+  {{- end -}}
   {{- if or (eq .Kind "section") (eq .Kind "term") (eq .Kind "taxonomy") -}}
     {{- with .Paginator -}}
       {{- if gt .PageNumber 1 -}}
@@ -42,6 +45,89 @@
 {{- end -}}
 <link rel="canonical" href="{{ $canonical }}">
 <link rel="sitemap" href="/sitemap-index.xml">
+
+{{- /* Allow full-size image previews and untruncated text snippets in Search
+       and Discover. Without max-image-preview Google caps previews at a
+       thumbnail; the default max-snippet is Google's own choice of length. */}}
+{{- if eq .Kind "404" -}}
+<meta name="robots" content="noindex">
+{{- else -}}
+<meta name="robots" content="max-image-preview:large, max-snippet:-1">
+{{- end }}
+
+{{- /* Shared description chain: front matter -> content summary -> site default.
+       Paginated list pages get a page-scoped suffix so each page is unique. */ -}}
+{{- $desc := .Description -}}
+{{- if and (not $desc) .IsPage -}}
+  {{- $desc = .Summary -}}
+{{- end -}}
+{{- /* Normalise before the empty check: a summary can be non-empty HTML that
+       plainifies to nothing (e.g. a body that is only a shortcode). */ -}}
+{{- $desc = $desc | plainify | htmlUnescape | replaceRE "\\s+" " " | strings.TrimSpace -}}
+{{- /* Term pages share the site default otherwise, making every tag page a
+       duplicate of the others. Name the tag so each one is distinct. */ -}}
+{{- if and (not $desc) (eq .Kind "term") -}}
+  {{- $desc = printf "%s %s." (i18n "all_posts_with_tag") (partial "term-name.html" .) -}}
+{{- end -}}
+{{- if not $desc -}}
+  {{- $desc = i18n "site_description" -}}
+{{- end -}}
+{{- if gt (len $desc) 160 -}}
+  {{- $desc = printf "%s…" (substr $desc 0 159 | strings.TrimSpace) -}}
+{{- end -}}
+{{- if or (eq .Kind "section") (eq .Kind "term") (eq .Kind "taxonomy") -}}
+  {{- with .Paginator -}}
+    {{- if gt .PageNumber 1 -}}
+      {{- $desc = printf "%s (%s %d)" $desc (i18n "page") .PageNumber -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* og:title mirrors <title> without the site-name suffix on the home page. */ -}}
+{{- $ogTitle := cond (eq .Kind "home") site.Title .Title -}}
+{{- if eq .Kind "term" -}}
+  {{- $ogTitle = partial "term-name.html" . -}}
+{{- end -}}
+{{- if and (ne .Kind "home") (or (eq .Kind "section") (eq .Kind "term") (eq .Kind "taxonomy")) -}}
+  {{- with .Paginator -}}
+    {{- if gt .PageNumber 1 -}}
+      {{- $ogTitle = printf "%s - %s %d" $ogTitle (i18n "page") .PageNumber -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $ogTitle -}}
+  {{- $ogTitle = site.Title -}}
+{{- end -}}
+
+<meta name="description" content="{{ $desc }}">
+
+<meta property="og:type" content="{{ if and .IsPage (eq .Section "blog") }}article{{ else }}website{{ end }}">
+<meta property="og:title" content="{{ $ogTitle }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:url" content="{{ $canonical }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+{{- /* og:locale is language_TERRITORY with an uppercase territory (pt_BR),
+       so the region half of the lang tag has to be upper-cased. */ -}}
+{{- $langTag := default .Lang .Params.contentLang -}}
+{{- $langParts := split $langTag "-" -}}
+{{- $ogLocale := index $langParts 0 -}}
+{{- if gt (len $langParts) 1 -}}
+  {{- $ogLocale = printf "%s_%s" $ogLocale (upper (index $langParts 1)) -}}
+{{- end -}}
+<meta property="og:locale" content="{{ $ogLocale }}">
+{{- if and .IsPage (eq .Section "blog") }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:modified_time" content="{{ (default .Date .Lastmod).Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:author" content="{{ site.Params.author.name }}">
+{{- range .Params.tags }}
+<meta property="article:tag" content="{{ . }}">
+{{- end }}
+{{- end }}
+
+{{- /* summary, not summary_large_image: this site publishes text-only posts. */}}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ $ogTitle }}">
+<meta name="twitter:description" content="{{ $desc }}">
 {{- range .AlternativeOutputFormats -}}
   <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
 {{- end }}
